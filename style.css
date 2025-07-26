@@ -123,12 +123,17 @@ ul {
     color: var(--white-color);
     font-size: 2em;
     cursor: pointer;
-    display: none; /* Oculto por defecto en desktop */
+    display: none; /* Oculto por defecto en desktop, se muestra en media query */
     transition: transform 0.3s ease;
 }
 
 #menu-toggle:hover {
     transform: scale(1.1);
+}
+
+#main-nav {
+    /* Por defecto, visible para desktop */
+    display: block;
 }
 
 #main-nav ul {
@@ -396,6 +401,9 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     text-align: left;
     overflow: hidden; /* Para animar el desplegable */
+    max-width: 800px; /* Limita el ancho del acordeón */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .faq-question {
@@ -409,6 +417,8 @@ main {
     align-items: center;
     background-color: var(--light-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative; /* Asegura que el icono esté correctamente posicionado */
+    z-index: 1; /* Para que el cursor no cambie sobre el icono */
 }
 
 .faq-question:hover {
@@ -416,6 +426,8 @@ main {
 }
 
 .faq-question .expand-icon {
+    font-size: 1.5em; /* Tamaño del icono */
+    margin-left: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -426,15 +438,15 @@ main {
 .faq-answer {
     font-size: 1em;
     color: #666;
-    padding: 0 25px 20px;
+    padding: 0 25px; /* Elimina padding-bottom inicialmente */
     max-height: 0; /* Oculta la respuesta por defecto */
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    transition: max-height 0.3s ease-out, padding-bottom 0.3s ease-out; /* Animación de padding-bottom también */
 }
 
 .faq-answer.active {
     max-height: 200px; /* Suficiente altura para la mayoría de respuestas, ajustar si es necesario */
-    padding: 0 25px 20px;
+    padding-bottom: 20px; /* Añade padding-bottom cuando está activa */
 }
 
 /* --- Footer --- */
@@ -457,7 +469,6 @@ footer {
     height: 100%;
     overflow: auto; /* Habilitar scroll si el contenido es grande */
     background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente */
-    display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -466,6 +477,7 @@ footer {
 }
 
 .modal.active {
+    display: flex; /* Muestra el modal como flexbox cuando está activo */
     opacity: 1;
     visibility: visible;
 }
@@ -696,7 +708,7 @@ footer {
 
     #main-nav {
         position: fixed;
-        top: 0;
+        top: 0; /* Ajusta la posición para que el menú esté debajo del header */
         right: -250px; /* Oculta el menú a la derecha */
         width: 250px;
         height: 100%;
@@ -705,10 +717,13 @@ footer {
         transition: right 0.3s ease;
         z-index: 999;
         padding-top: 70px; /* Espacio para el header */
+        /* Asegurarse de que esté oculto hasta que se active */
+        visibility: hidden;
     }
 
     #main-nav.active {
         right: 0; /* Muestra el menú deslizándolo */
+        visibility: visible;
     }
 
     #main-nav ul {
@@ -791,7 +806,6 @@ footer {
     }
 
     .faq-item {
-        padding: 0; /* Se elimina el padding para que lo manejen faq-question y faq-answer */
         margin-bottom: 10px;
     }
 
@@ -844,6 +858,19 @@ footer {
 }
 
 @media (min-width: 769px) {
+    /* Asegura que el menú de navegación sea visible en desktop */
+    #main-nav {
+        display: block !important; /* !important para anular cualquier estilo inline si fuera necesario */
+        position: static; /* Restaura la posición estática en desktop */
+        height: auto;
+        box-shadow: none;
+        padding-top: 0;
+        visibility: visible;
+    }
+    #menu-toggle {
+        display: none; /* Oculta el icono de menú en desktop */
+    }
+
     .modal-content {
         flex-direction: row; /* En desktop, el modal se ve en fila */
     }
