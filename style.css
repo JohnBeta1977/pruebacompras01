@@ -262,6 +262,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer; /* Hace que toda la tarjeta sea cliqueable */
 }
 
 .product-card:hover {
@@ -390,29 +391,50 @@ main {
 
 .faq-item {
     background-color: var(--light-color);
-    margin-bottom: 20px;
-    padding: 25px;
+    margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     text-align: left;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    overflow: hidden; /* Para animar el desplegable */
 }
 
-.faq-item:hover {
-    background-color: #E0E0E0; /* Gris ligeramente más oscuro */
-    transform: translateY(-5px);
-}
-
-.faq-item h3 {
+.faq-question {
     font-family: var(--font-heading);
     font-size: 1.3em;
     color: var(--dark-color);
-    margin-bottom: 10px;
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.faq-item p {
+.faq-question:hover {
+    background-color: #E0E0E0;
+}
+
+.faq-question .expand-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active .expand-icon {
+    transform: rotate(180deg); /* Gira el icono cuando está activo */
+}
+
+.faq-answer {
     font-size: 1em;
     color: #666;
+    padding: 0 25px 20px;
+    max-height: 0; /* Oculta la respuesta por defecto */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.faq-answer.active {
+    max-height: 200px; /* Suficiente altura para la mayoría de respuestas, ajustar si es necesario */
+    padding: 0 25px 20px;
 }
 
 /* --- Footer --- */
@@ -423,6 +445,180 @@ footer {
     padding: 25px 0;
     font-size: 0.9em;
 }
+
+/* --- Product Modal --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 10000; /* Por encima de todo lo demás */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar scroll si el contenido es grande */
+    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease-out;
+    display: flex; /* Para el layout interno */
+    flex-direction: column; /* Por defecto en móvil, luego fila */
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--dark-color);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column; /* Columna por defecto en móvil */
+    gap: 30px;
+    width: 100%;
+}
+
+.product-image-gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.gallery-main-image {
+    width: 100%;
+    height: 300px; /* Altura fija para la imagen principal del modal */
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    background-color: var(--light-color); /* Fondo mientras carga la imagen */
+}
+
+.gallery-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajusta la imagen sin recortar */
+    display: block;
+}
+
+.gallery-prev, .gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: var(--white-color);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 2.5em;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.gallery-prev {
+    left: 10px;
+}
+
+.gallery-next {
+    right: 10px;
+}
+
+.gallery-prev:hover, .gallery-next:hover {
+    background-color: rgba(0,0,0,0.7);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap; /* Permite que las miniaturas se envuelvan */
+}
+
+.thumbnail-item {
+    width: 80px; /* Tamaño de las miniaturas */
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.thumbnail-item.active, .thumbnail-item:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.product-details {
+    flex: 1;
+    text-align: left;
+}
+
+.product-details h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.product-details .price {
+    font-size: 2em;
+    margin-bottom: 25px;
+    display: block;
+    color: var(--primary-color);
+}
+
+#modal-buy-btn {
+    width: 100%; /* El botón ocupa todo el ancho disponible */
+    padding: 15px 30px;
+    font-size: 1.2em;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
 
 /* --- Animaciones CSS --- */
 @keyframes fadeInUp {
@@ -595,6 +791,67 @@ footer {
     }
 
     .faq-item {
+        padding: 0; /* Se elimina el padding para que lo manejen faq-question y faq-answer */
+        margin-bottom: 10px;
+    }
+
+    .faq-question {
+        padding: 15px 20px;
+        font-size: 1.1em;
+    }
+
+    .faq-answer {
+        padding: 0 20px 15px;
+    }
+
+    /* Modal Responsive */
+    .modal-content {
+        width: 95%;
         padding: 20px;
+        flex-direction: column; /* Asegura que sea columna en móvil */
+    }
+
+    .modal-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .product-details h2 {
+        font-size: 1.8em;
+    }
+
+    .product-details p {
+        font-size: 1em;
+    }
+
+    .product-details .price {
+        font-size: 1.6em;
+    }
+
+    .gallery-main-image {
+        height: 250px;
+    }
+
+    .thumbnail-item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .gallery-prev, .gallery-next {
+        font-size: 2em;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 769px) {
+    .modal-content {
+        flex-direction: row; /* En desktop, el modal se ve en fila */
+    }
+    .product-image-gallery {
+        padding-right: 20px;
+        border-right: 1px solid var(--light-color);
+    }
+    .product-details {
+        padding-left: 20px;
     }
 }
