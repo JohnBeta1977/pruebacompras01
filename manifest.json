@@ -1,6 +1,6 @@
 {
-    "name": "Mi Tienda Online",
-    "short_name": "Mi Tienda",
+    "name": "Compras&Más",
+    "short_name": "Compras&Más",
     "description": "Tu tienda favorita para encontrar productos increíbles.",
     "start_url": "./index.html",
     "display": "fullscreen",
