@@ -1,0 +1,600 @@
+/* Variables CSS para colores y tipografía (fácil de modificar) */
+:root {
+    --primary-color: #4CAF50; /* Verde vibrante (similar a WhatsApp) */
+    --secondary-color: #FFC107; /* Amarillo para acentos */
+    --accent-color: #2196F3; /* Azul para botones/enlaces */
+    --dark-color: #263238; /* Gris oscuro para texto principal */
+    --light-color: #EEEEEE; /* Gris claro para fondos */
+    --white-color: #FFFFFF;
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Reset Básico y Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Splash Screen --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color); /* Color de fondo del splash */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.splash-logo {
+    max-width: 200px; /* Tamaño del logo en el splash */
+    animation: pulse 1.5s infinite alternate; /* Animación de pulsación */
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1.1); }
+}
+
+/* --- Header y Navegación --- */
+.sticky-header {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    padding: 15px 0;
+    position: fixed; /* Hace que la cabecera sea fija */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Asegura que esté por encima del contenido */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.sticky-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.8em;
+    color: var(--white-color);
+    transition: color 0.3s ease;
+}
+
+.logo-img {
+    height: 40px; /* Tamaño del logo en la cabecera */
+    margin-right: 10px;
+    border-radius: 50%; /* Si quieres que el logo sea circular */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+    transform: rotate(10deg); /* Pequeña animación al pasar el ratón */
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-size: 2em;
+    cursor: pointer;
+    display: none; /* Oculto por defecto en desktop */
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+#main-nav ul {
+    display: flex;
+    gap: 25px; /* Espacio entre los ítems del menú */
+}
+
+#main-nav ul li a {
+    color: var(--white-color);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--secondary-color);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+#main-nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+#main-nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Espacio para el contenido debajo de la cabecera fija */
+main {
+    padding-top: 80px; /* Ajusta este valor al alto de tu header */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/hero-bg.jpg') no-repeat center center/cover; /* Reemplaza con una imagen de fondo */
+    color: var(--white-color);
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1976D2; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-3px);
+}
+
+/* --- Secciones de Categorías y Productos --- */
+.category-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.category-section:nth-of-type(odd) {
+    background-color: var(--white-color);
+}
+
+.category-section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.category-section h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 20px;
+}
+
+.product-card {
+    background-color: var(--white-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--light-color);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4em;
+    margin: 15px 15px 5px;
+    color: var(--dark-color);
+}
+
+.product-card p {
+    font-size: 0.95em;
+    color: #555;
+    margin: 0 15px 10px;
+    flex-grow: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+.product-card .price {
+    font-family: var(--font-heading);
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 15px 15px;
+    display: block;
+}
+
+.product-card .price.old-price {
+    font-size: 1em;
+    color: #999;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.product-card .price.new-price {
+    font-size: 1.6em;
+    color: #E64A19; /* Un rojo anaranjado para ofertas */
+    font-weight: 800;
+    animation: bounceIn 0.8s;
+}
+
+
+.product-card .buy-btn {
+    background-color: var(--primary-color); /* Verde WhatsApp */
+    color: var(--white-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: calc(100% - 30px); /* Ocupa el ancho del card menos el padding */
+    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card .buy-btn:hover {
+    background-color: #388E3C; /* Verde más oscuro */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Resaltar "Ofertas Especiales" */
+.highlight-category {
+    background-color: #FFFDE7; /* Fondo amarillo muy claro */
+    border-top: 5px solid var(--secondary-color);
+    border-bottom: 5px solid var(--secondary-color);
+    animation: fadeIn 1s ease-out;
+}
+
+.highlight-category h2 {
+    color: #E64A19; /* Color de texto más llamativo para el título */
+    animation: slideInDown 1s ease-out;
+}
+
+.highlight-category h2::after {
+    background-color: #E64A19;
+}
+
+/* --- Sección de Preguntas Frecuentes (FAQ) --- */
+.faq-section {
+    padding: 60px 0;
+    background-color: var(--white-color);
+    text-align: center;
+}
+
+.faq-section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.faq-item {
+    background-color: var(--light-color);
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: left;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.faq-item:hover {
+    background-color: #E0E0E0; /* Gris ligeramente más oscuro */
+    transform: translateY(-5px);
+}
+
+.faq-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.9em;
+}
+
+/* --- Animaciones CSS --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/* --- Responsive Design (Mobile First) --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Header */
+    .sticky-header {
+        padding: 10px 0;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .logo-img {
+        height: 35px;
+    }
+
+    #menu-toggle {
+        display: block; /* Muestra el icono de menú en móvil */
+    }
+
+    #main-nav {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Oculta el menú a la derecha */
+        width: 250px;
+        height: 100%;
+        background-color: var(--dark-color);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        transition: right 0.3s ease;
+        z-index: 999;
+        padding-top: 70px; /* Espacio para el header */
+    }
+
+    #main-nav.active {
+        right: 0; /* Muestra el menú deslizándolo */
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #main-nav ul li {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #main-nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    #main-nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        width: 100%;
+    }
+
+    #main-nav ul li a::after {
+        display: none; /* Desactivar la línea en el menú móvil */
+    }
+
+    /* Main content padding adjustment */
+    main {
+        padding-top: 70px; /* Ajusta este valor al alto de tu header en móvil */
+    }
+
+    /* Hero Section */
+    .hero-section {
+        padding: 80px 15px;
+        min-height: 300px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-section p {
+        font-size: 1em;
+    }
+
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    /* Category sections */
+    .category-section {
+        padding: 40px 0;
+    }
+
+    .category-section h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+
+    .product-card {
+        margin: 0 auto; /* Centra las tarjetas */
+        max-width: 320px; /* Limita el ancho en móvil */
+    }
+
+    .product-card img {
+        height: 180px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 40px 0;
+    }
+
+    .faq-section h2 {
+        font-size: 2em;
+    }
+
+    .faq-item {
+        padding: 20px;
+    }
+}
