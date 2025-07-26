@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda Online - Encuentra las mejores ofertas en Electrónica, Moda, Hogar y más</title>
+    <meta name="description" content="Descubre una amplia variedad de productos en nuestra tienda online: electrónica innovadora, moda con estilo, artículos para el hogar y jardín, y equipamiento deportivo. ¡Compra fácil y seguro!">
+    <meta name="keywords" content="tienda online, comprar online, electrónica, moda, hogar, jardín, deportes, ofertas, descuentos, productos">
+    <meta name="author" content="Tu Nombre o Nombre de tu Tienda">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta property="og:title" content="Mi Tienda Online - Encuentra las mejores ofertas">
+    <meta property="og:description" content="Descubre productos increíbles en Electrónica, Moda, Hogar y más. ¡Visítanos ahora!">
+    <meta property="og:image" content="https://example.com/img/share_image.jpg"> <meta property="og:url" content="https://example.com"> <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mi Tienda Online">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TuCuentaDeTwitter"> <meta name="twitter:creator" content="@TuCuentaDeTwitter"> <meta name="twitter:title" content="Mi Tienda Online - ¡Ofertas que no puedes perderte!">
+    <meta name="twitter:description" content="Explora nuestro catálogo de productos y encuentra todo lo que necesitas al mejor precio.">
+    <meta name="twitter:image" content="https://example.com/img/twitter_share_image.jpg"> </head>
+<body>
+
+    <div id="splash-screen">
+        <img src="img/splash_screen.png" alt="Cargando..." class="splash-logo">
+    </div>
+
+    <header id="main-header" class="sticky-header">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="Mi Tienda Logo" class="logo-img">
+                Mi Tienda
+            </a>
+            <button id="menu-toggle" class="menu-icon material-icons">menu</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#ofertas-especiales">Ofertas Especiales</a></li>
+                    <li><a href="#categoria1">Electrónica</a></li>
+                    <li><a href="#categoria2">Moda y Accesorios</a></li>
+                    <li><a href="#categoria3">Hogar y Jardín</a></li>
+                    <li><a href="#categoria4">Deportes y Aire Libre</a></li>
+                    <li><a href="#faq">Preguntas Frecuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h1>Bienvenido a nuestra tienda</h1>
+                <p>Descubre productos increíbles con las mejores ofertas.</p>
+                <button class="btn-primary">Explorar Productos</button>
+            </div>
+        </section>
+
+        <section id="ofertas-especiales" class="category-section highlight-category">
+            <div class="container">
+                <h2>🔥 Ofertas Especiales 🔥</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="productos/oferta_producto1.jpg" alt="Smart TV 4K 50">
+                        <h3>Smart TV 4K 50"</h3>
+                        <p>¡Descuento increíble! Calidad de imagen superior.</p>
+                        <span class="price old-price">$1.500.000 COP</span>
+                        <span class="price new-price">$999.000 COP</span>
+                        <button class="buy-btn" data-product="Smart TV 4K 50">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/oferta_producto2.jpg" alt="Cafetera Programable">
+                        <h3>Cafetera Programable</h3>
+                        <p>Despierta con el aroma de tu café favorito.</p>
+                        <span class="price old-price">$200.000 COP</span>
+                        <span class="price new-price">$140.000 COP</span>
+                        <button class="buy-btn" data-product="Cafetera Programable">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/oferta_producto3.jpg" alt="Dron con Cámara HD">
+                        <h3>Dron con Cámara HD</h3>
+                        <p>Captura momentos desde el cielo.</p>
+                        <span class="price old-price">$450.000 COP</span>
+                        <span class="price new-price">$320.000 COP</span>
+                        <button class="buy-btn" data-product="Dron con Cámara HD">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/oferta_producto4.jpg" alt="Mochila Antirrobo USB">
+                        <h3>Mochila Antirrobo USB</h3>
+                        <p>Seguridad y carga para tus dispositivos.</p>
+                        <span class="price old-price">$90.000 COP</span>
+                        <span class="price new-price">$65.000 COP</span>
+                        <button class="buy-btn" data-product="Mochila Antirrobo USB">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/oferta_producto5.jpg" alt="Auriculares Gaming RGB">
+                        <h3>Auriculares Gaming RGB</h3>
+                        <p>Inmersión total en tus juegos.</p>
+                        <span class="price old-price">$150.000 COP</span>
+                        <span class="price new-price">$100.000 COP</span>
+                        <button class="buy-btn" data-product="Auriculares Gaming RGB">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/oferta_producto6.jpg" alt="Set de Cuchillos de Cocina Profesional">
+                        <h3>Set de Cuchillos de Cocina Profesional</h3>
+                        <p>Precisión y durabilidad para tu cocina.</p>
+                        <span class="price old-price">$120.000 COP</span>
+                        <span class="price new-price">$85.000 COP</span>
+                        <button class="buy-btn" data-product="Set de Cuchillos de Cocina Profesional">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categoria1" class="category-section">
+            <div class="container">
+                <h2>Categoría 1: Electrónica</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="productos/categoria1_producto1.jpg" alt="Auriculares Inalámbricos">
+                        <h3>Auriculares Inalámbricos</h3>
+                        <p>Sonido de alta fidelidad, cómodos y con gran autonomía.</p>
+                        <span class="price">$50.000 COP</span>
+                        <button class="buy-btn" data-product="Auriculares Inalámbricos">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria1_producto2.jpg" alt="Smartwatch">
+                        <h3>Smartwatch</h3>
+                        <p>Controla tu salud y notificaciones desde tu muñeca.</p>
+                        <span class="price">$120.000 COP</span>
+                        <button class="buy-btn" data-product="Smartwatch">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria1_producto3.jpg" alt="Power Bank 10000mAh">
+                        <h3>Power Bank 10000mAh</h3>
+                        <p>Carga tus dispositivos en cualquier lugar.</p>
+                        <span class="price">$35.000 COP</span>
+                        <button class="buy-btn" data-product="Power Bank 10000mAh">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria1_producto4.jpg" alt="Mini Proyector Portátil">
+                        <h3>Mini Proyector Portátil</h3>
+                        <p>Disfruta de tus películas en pantalla grande.</p>
+                        <span class="price">$250.000 COP</span>
+                        <button class="buy-btn" data-product="Mini Proyector Portátil">Comprar</button>
+                    </div>
+                     <div class="product-card">
+                        <img src="productos/categoria1_producto5.jpg" alt="Teclado Bluetooth">
+                        <h3>Teclado Bluetooth</h3>
+                        <p>Compacto y perfecto para trabajar desde cualquier lugar.</p>
+                        <span class="price">$45.000 COP</span>
+                        <button class="buy-btn" data-product="Teclado Bluetooth">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria1_producto6.jpg" alt="Cámara Web Full HD">
+                        <h3>Cámara Web Full HD</h3>
+                        <p>Calidad de video para tus videollamadas y streaming.</p>
+                        <span class="price">$70.000 COP</span>
+                        <button class="buy-btn" data-product="Cámara Web Full HD">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categoria2" class="category-section">
+            <div class="container">
+                <h2>Categoría 2: Moda y Accesorios</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto1.jpg" alt="Bolso de Cuero Unisex">
+                        <h3>Bolso de Cuero Unisex</h3>
+                        <p>Elegante y práctico para el día a día.</p>
+                        <span class="price">$80.000 COP</span>
+                        <button class="buy-btn" data-product="Bolso de Cuero Unisex">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto2.jpg" alt="Gafas de Sol Polarizadas">
+                        <h3>Gafas de Sol Polarizadas</h3>
+                        <p>Protección UV y diseño moderno.</p>
+                        <span class="price">$40.000 COP</span>
+                        <button class="buy-btn" data-product="Gafas de Sol Polarizadas">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto3.jpg" alt="Bufanda de Lana Tejida">
+                        <h3>Bufanda de Lana Tejida</h3>
+                        <p>Suave y cálida, ideal para el invierno.</p>
+                        <span class="price">$25.000 COP</span>
+                        <button class="buy-btn" data-product="Bufanda de Lana Tejida">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto4.jpg" alt="Reloj Casual Hombre">
+                        <h3>Reloj Casual Hombre</h3>
+                        <p>Diseño minimalista, perfecto para cualquier ocasión.</p>
+                        <span class="price">$95.000 COP</span>
+                        <button class="buy-btn" data-product="Reloj Casual Hombre">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto5.jpg" alt="Aretes de Plata 925">
+                        <h3>Aretes de Plata 925</h3>
+                        <p>Elegancia y brillo para tu estilo.</p>
+                        <span class="price">$30.000 COP</span>
+                        <button class="buy-btn" data-product="Aretes de Plata 925">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria2_producto6.jpg" alt="Cinturón de Cuero Reversible">
+                        <h3>Cinturón de Cuero Reversible</h3>
+                        <p>Dos estilos en uno, versátil y duradero.</p>
+                        <span class="price">$55.000 COP</span>
+                        <button class="buy-btn" data-product="Cinturón de Cuero Reversible">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categoria3" class="category-section">
+            <div class="container">
+                <h2>Categoría 3: Hogar y Jardín</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto1.jpg" alt="Juego de Sábanas de Algodón">
+                        <h3>Juego de Sábanas de Algodón</h3>
+                        <p>Confort y suavidad para un descanso perfecto.</p>
+                        <span class="price">$75.000 COP</span>
+                        <button class="buy-btn" data-product="Juego de Sábanas de Algodón">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto2.jpg" alt="Set de Herramientas Básicas">
+                        <h3>Set de Herramientas Básicas</h3>
+                        <p>Imprescindible para cualquier arreglo en casa.</p>
+                        <span class="price">$60.000 COP</span>
+                        <button class="buy-btn" data-product="Set de Herramientas Básicas">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto3.jpg" alt="Maceta Colgante Decorativa">
+                        <h3>Maceta Colgante Decorativa</h3>
+                        <p>Añade un toque verde a tus espacios.</p>
+                        <span class="price">$20.000 COP</span>
+                        <button class="buy-btn" data-product="Maceta Colgante Decorativa">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto4.jpg" alt="Lámpara de Escritorio LED">
+                        <h3>Lámpara de Escritorio LED</h3>
+                        <p>Iluminación ajustable y diseño moderno.</p>
+                        <span class="price">$48.000 COP</span>
+                        <button class="buy-btn" data-product="Lámpara de Escritorio LED">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto5.jpg" alt="Robot Aspirador Inteligente">
+                        <h3>Robot Aspirador Inteligente</h3>
+                        <p>Limpieza automática para tu hogar.</p>
+                        <span class="price">$300.000 COP</span>
+                        <button class="buy-btn" data-product="Robot Aspirador Inteligente">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria3_producto6.jpg" alt="Mantel Antimanchas">
+                        <h3>Mantel Antimanchas</h3>
+                        <p>Ideal para proteger tu mesa con estilo.</p>
+                        <span class="price">$38.000 COP</span>
+                        <button class="buy-btn" data-product="Mantel Antimanchas">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categoria4" class="category-section">
+            <div class="container">
+                <h2>Categoría 4: Deportes y Aire Libre</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto1.jpg" alt="Botella de Agua Deportiva">
+                        <h3>Botella de Agua Deportiva</h3>
+                        <p>Hidratación garantizada para tus entrenamientos.</p>
+                        <span class="price">$20.000 COP</span>
+                        <button class="buy-btn" data-product="Botella de Agua Deportiva">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto2.jpg" alt="Bandas de Resistencia">
+                        <h3>Bandas de Resistencia</h3>
+                        <p>Perfectas para entrenar en casa o al aire libre.</p>
+                        <span class="price">$30.000 COP</span>
+                        <button class="buy-btn" data-product="Bandas de Resistencia">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto3.jpg" alt="Tienda de Campaña Individual">
+                        <h3>Tienda de Campaña Individual</h3>
+                        <p>Ligera y fácil de montar para tus aventuras.</p>
+                        <span class="price">$150.000 COP</span>
+                        <button class="buy-btn" data-product="Tienda de Campaña Individual">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto4.jpg" alt="Mancuernas Ajustables">
+                        <h3>Mancuernas Ajustables</h3>
+                        <p>Versatilidad para tus rutinas de fuerza.</p>
+                        <span class="price">$180.000 COP</span>
+                        <button class="buy-btn" data-product="Mancuernas Ajustables">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto5.jpg" alt="Kit de Snorkel">
+                        <h3>Kit de Snorkel</h3>
+                        <p>Explora el mundo submarino con comodidad.</p>
+                        <span class="price">$65.000 COP</span>
+                        <button class="buy-btn" data-product="Kit de Snorkel">Comprar</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="productos/categoria4_producto6.jpg" alt="Mochila de Senderismo 30L">
+                        <h3>Mochila de Senderismo 30L</h3>
+                        <p>Espaciosa y cómoda para tus excursiones.</p>
+                        <span class="price">$90.000 COP</span>
+                        <button class="buy-btn" data-product="Mochila de Senderismo 30L">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-item">
+                    <h3>¿Cuáles son los métodos de pago aceptados?</h3>
+                    <p>Aceptamos pagos con tarjeta de crédito/débito (Visa, MasterCard), PayPal y transferencias bancarias directas.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Cuánto tiempo tarda el envío?</h3>
+                    <p>El tiempo de envío estándar es de 3 a 5 días hábiles. Para envíos express, el tiempo es de 1 a 2 días hábiles.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Puedo devolver un producto si no estoy satisfecho?</h3>
+                    <p>Sí, tienes 30 días para devolver cualquier producto si no cumple tus expectativas, siempre y cuando esté en su estado original.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Ofrecen garantía en sus productos?</h3>
+                    <p>Todos nuestros productos cuentan con una garantía mínima de 6 meses por defectos de fabricación.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mi Tienda Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
