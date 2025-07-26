@@ -29,6 +29,10 @@ body {
     overflow-x: hidden; /* Evita scroll horizontal */
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 a {
     text-decoration: none;
     color: var(--accent-color);
