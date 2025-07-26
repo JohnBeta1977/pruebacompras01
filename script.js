@@ -14,15 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
+            // Opcional: Deshabilita el scroll del body cuando el menú está abierto
+            document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
         });
 
-        // Cerrar el menú si se hace clic en un enlace
+        // Cerrar el menú si se hace clic en un enlace o fuera del menú (overlay)
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mainNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             });
         });
+
+        // Opcional: Cerrar el menú si se hace clic fuera de él (si implementas un overlay)
+        // document.addEventListener('click', (event) => {
+        //     if (!mainNav.contains(event.target) && !menuToggle.contains(event.target) && mainNav.classList.contains('active')) {
+        //         mainNav.classList.remove('active');
+        //         document.body.classList.remove('no-scroll');
+        //     }
+        // });
     }
 
     // --- Lógica del Modal de Producto y Slider ---
@@ -42,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Datos de productos (ejemplo). En un proyecto real, esto vendría de una API o JSON.
     // He agregado rutas de imagen adicionales para el slider.
+    // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
     const productsData = {
         'oferta1': {
             name: 'Smart TV 4K 50"',
@@ -205,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'moda6': {
             name: 'Cinturón de Cuero Reversible',
-            description: 'Dos estilos en uno: un lado negro y otro marrón. Versátil y duradero para combinar con diferentes atuendos.',
+            description: 'Dos estilos en uno, versátil y duradero para combinar con diferentes atuendos.',
             price: '$55.000 COP',
             images: [
                 'productos/categoria2_producto6.jpg',
@@ -313,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'deporte6': {
             name: 'Mochila de Senderismo 30L',
-            description: 'Espaciosa y cómoda para tus excursiones de un día. Múltiples bolsillos y soporte lumbar para mayor confort.',
+            description: 'Espaciosa y cómoda para tus excursiones. Múltiples bolsillos y soporte lumbar para mayor confort.',
             price: '$90.000 COP',
             images: [
                 'productos/categoria4_producto6.jpg',
@@ -336,14 +348,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (product) {
                 modalProductTitle.textContent = product.name;
                 modalProductDescription.textContent = product.description;
-                
+
                 // Manejar precio con o sin oferta
                 if (product.originalPrice) {
                     modalProductPrice.innerHTML = `<span class="old-price">${product.originalPrice}</span> <span class="new-price">${product.price}</span>`;
                 } else {
                     modalProductPrice.textContent = product.price;
                 }
-                
+
                 modalBuyButton.dataset.product = product.name; // Para el botón de WhatsApp del modal
 
                 productImages = product.images;
@@ -351,18 +363,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateModalImageAndThumbnails();
 
                 productModal.classList.add('active');
+                // Opcional: Deshabilita el scroll del body cuando el modal está abierto
+                document.body.classList.add('no-scroll');
             }
         });
     });
 
     closeButton.addEventListener('click', () => {
         productModal.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     });
 
     // Cerrar modal al hacer clic fuera del contenido
     window.addEventListener('click', (event) => {
         if (event.target === productModal) {
             productModal.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         }
     });
 
@@ -377,6 +393,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateModalImageAndThumbnails() {
+        if (productImages.length === 0) { // Manejar caso sin imágenes
+            modalProductImage.src = 'placeholder.jpg'; // Imagen por defecto
+            galleryThumbnails.innerHTML = '';
+            galleryPrev.style.display = 'none';
+            galleryNext.style.display = 'none';
+            return;
+        } else if (productImages.length === 1) { // Si solo hay una imagen, oculta los botones de navegación
+            galleryPrev.style.display = 'none';
+            galleryNext.style.display = 'none';
+        } else {
+            galleryPrev.style.display = 'block';
+            galleryNext.style.display = 'block';
+        }
+
         modalProductImage.src = productImages[currentImageIndex];
         galleryThumbnails.innerHTML = ''; // Limpiar miniaturas existentes
 
@@ -415,6 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
         productModal.classList.remove('active'); // Cerrar modal después de enviar a WhatsApp
+        document.body.classList.remove('no-scroll');
     });
 
 
@@ -424,9 +455,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const answer = question.nextElementSibling; // La respuesta es el siguiente hermano
             const icon = question.querySelector('.expand-icon');
 
-            // Cierra todas las demás respuestas abiertas
+            // Cierra todas las demás respuestas abiertas y resetea sus iconos
             document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
-                if (openAnswer !== answer) {
+                if (openAnswer !== answer) { // Solo si no es la respuesta actual
                     openAnswer.classList.remove('active');
                     openAnswer.previousElementSibling.classList.remove('active'); // Quitar clase activa de la pregunta
                     openAnswer.previousElementSibling.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
@@ -436,7 +467,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Abre o cierra la respuesta actual
             answer.classList.toggle('active');
             question.classList.toggle('active'); // Activa/desactiva la pregunta también
-            if (answer.classList.contains('active')) {
+
+            // Gira el icono de la pregunta actual
+            if (question.classList.contains('active')) {
                 icon.style.transform = 'rotate(180deg)';
             } else {
                 icon.style.transform = 'rotate(0deg)';
@@ -457,16 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Opcional: Detectar si el usuario está añadiendo la PWA a su pantalla de inicio
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (event) => {
-        event.preventDefault(); // Evitar que Chrome muestre automáticamente el prompt
-        deferredPrompt = event;
-        console.log('👍', 'beforeinstallprompt', deferredPrompt);
-    });
-
-    window.addEventListener('appinstalled', (event) => {
-        console.log('👍', 'appinstalled', event);
-        deferredPrompt = null;
-    });
+    // Opcional: Clase para deshabilitar el scroll del body
+    // Necesitas añadir esto en tu CSS:
+    // body.no-scroll { overflow: hidden; }
 });
