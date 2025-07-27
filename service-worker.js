@@ -1,39 +1,21 @@
-const CACHE_NAME = 'mi-tienda-pwa-v1';
+const CACHE_NAME = 'mi-tienda-pwa-v2'; // Incrementamos la versión para forzar una nueva caché
 const urlsToCache = [
     '/pruebacompras01/', // Ruta base de tu repositorio GitHub Pages
     '/pruebacompras01/index.html',
     '/pruebacompras01/style.css',
     '/pruebacompras01/script.js',
-    '/pruebacompras01/logo.png', // Tu logo para favicon y splash
+    '/pruebacompras01/logo.png', // Único logo para favicon e íconos PWA
     '/pruebacompras01/fondo.jpg', // Tu imagen de fondo
     '/pruebacompras01/manifest.json',
-    // Íconos para PWA (asegúrate de que estas rutas coincidan con tu manifest.json y existan)
-    '/pruebacompras01/icons/icon-72x72.png',
-    '/pruebacompras01/icons/icon-96x96.png',
-    '/pruebacompras01/icons/icon-128x128.png',
-    '/pruebacompras01/icons/icon-144x144.png',
-    '/pruebacompras01/icons/icon-152x152.png',
-    '/pruebacompras01/icons/icon-192x192.png',
-    '/pruebacompras01/icons/icon-384x384.png',
-    '/pruebacompras01/icons/icon-512x512.png',
-    // Íconos de Flaticon (agrega todos los que estés usando)
-    '/pruebacompras01/icons/home.png',
-    '/pruebacompras01/icons/products.png',
-    '/pruebacompras01/icons/categories.png',
-    '/pruebacompras01/icons/faq.png',
-    '/pruebacompras01/icons/contact.png',
-    '/pruebacompras01/icons/facebook.png',
-    '/pruebacompras01/icons/instagram.png',
-    '/pruebacompras01/icons/twitter.png',
-    // Imágenes de productos (agrega todas las que uses en tu HTML)
+    // Imágenes de productos (asegúrate de que estas rutas sean exactas y los archivos existan en la raíz)
     '/pruebacompras01/productos_oferta1.jpg',
     '/pruebacompras01/productos_oferta1_alt1.jpg',
     '/pruebacompras01/productos_oferta1_alt2.jpg',
     '/pruebacompras01/productos_oferta2.jpg',
     '/pruebacompras01/productos_categoria1_producto1.jpg',
     '/pruebacompras01/productos_categoria1_producto1_alt1.jpg',
-    // Agrega aquí todas las demás imágenes, videos, y assets que uses en tu página
-    // por ejemplo:
+    // Agrega aquí todas las demás imágenes, videos, y assets que uses en tu página y que estén en la raíz
+    // Por ejemplo:
     // '/pruebacompras01/video_cafetera.mp4',
     // '/pruebacompras01/productos_oferta3.jpg',
     // '/pruebacompras01/video_dron.mp4',
