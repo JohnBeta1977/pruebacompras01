@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Tienda Online - Ofertas Exclusivas</title>
-    <meta name="description" content="Descubre ofertas increíbles en electrónica, moda, hogar y deportes. ¡Tu tienda online de confianza!">
-    <meta name="keywords" content="tienda online, ofertas, electrónica, moda, hogar, deportes, ecommerce">
+    <title>Tu Tienda Online - Ofertas Exclusivas en Electrónica, Moda y Hogar</title>
+    
+    <meta name="description" content="Descubre ofertas increíbles en electrónica, moda, hogar y productos usados. ¡Tu tienda online de confianza con envío gratis y pago seguro!">
+    <meta name="keywords" content="tienda online, ofertas, electrónica, moda, hogar, usados, productos reacondicionados, envío gratis, pago seguro, ecommerce Colombia, WhatsApp compras">
+    
+    <meta name="author" content="Tu Tienda Online">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tutiendaonline.com.co/"> <meta property="og:title" content="Tu Tienda Online - Ofertas Exclusivas">
+    <meta property="og:description" content="Descubre ofertas increíbles en electrónica, moda, hogar y productos usados. ¡Tu tienda online de confianza con envío gratis y pago seguro!">
+    <meta property="og:image" content="https://tutiendaonline.com.co/logo.png"> <meta property="og:url" content="https://tutiendaonline.com.co/"> <meta property="og:type" content="website">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TuTiendaOnline"> <meta name="twitter:title" content="Tu Tienda Online - Ofertas Exclusivas">
+    <meta name="twitter:description" content="Descubre ofertas increíbles en electrónica, moda, hogar y productos usados. ¡Tu tienda online de confianza con envío gratis y pago seguro!">
+    <meta name="twitter:image" content="https://tutiendaonline.com.co/logo.png"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <link rel="manifest" href="/pruebacompras01/manifest.json">
@@ -30,13 +40,21 @@
             <div class="logo">
                 <img src="logo.png" alt="Tu Tienda Logo">
             </div>
-            <div class="menu-icon" id="menuToggle">
-                <i class="material-icons">menu</i>
+            <div class="menu-right">
+                <a href="#" class="primary-btn download-btn">
+                    <span class="material-icons">download</span> Descargar App
+                </a>
+                <div class="menu-icon" id="menuToggle">
+                    <i class="material-icons">menu</i>
+                </div>
             </div>
             <ul class="nav-links">
                 <li><a href="#hero">Inicio</a></li>
-                <li><a href="#products">Productos</a></li>
-                <li><a href="#categories">Categorías</a></li>
+                <li><a href="#products">Ofertas</a></li>
+                <li><a href="#electronica">Electrónica</a></li>
+                <li><a href="#moda">Moda</a></li>
+                <li><a href="#hogar">Hogar</a></li>
+                <li><a href="#usados">Usados</a></li>
                 <li><a href="#about">Nosotros</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -51,16 +69,21 @@
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="#hero"><span class="material-icons">home</span> Inicio</a></li>
-                <li><a href="#products"><span class="material-icons">shopping_bag</span> Productos</a></li>
-                <li><a href="#categories"><span class="material-icons">list</span> Categorías</a></li>
+                <li><a href="#products"><span class="material-icons">shopping_bag</span> Ofertas</a></li>
+                <li><a href="#electronica"><span class="material-icons">devices</span> Electrónica</a></li>
+                <li><a href="#moda"><span class="material-icons">style</span> Moda</a></li>
+                <li><a href="#hogar"><span class="material-icons">chair</span> Hogar</a></li>
+                <li><a href="#usados"><span class="material-icons">recycling</span> Usados</a></li>
                 <li><a href="#faq"><span class="material-icons">help_outline</span> Preguntas Frecuentes</a></li>
                 <li><a href="#contact"><span class="material-icons">mail_outline</span> Contacto</a></li>
+                <li class="sidebar-download-btn"><a href="#" class="primary-btn"><span class="material-icons">download</span> Descargar App</a></li>
             </ul>
         </nav>
         <div class="social-icons-sidebar">
-            <a href="#"><span class="material-icons">facebook</span></a>
-            <a href="#"><span class="material-icons">camera_alt</span></a>
-            <a href="#"><span class="material-icons">link</span></a> </div>
+            <a href="https://facebook.com/tutiendaonline" target="_blank"><span class="material-icons">facebook</span></a>
+            <a href="https://instagram.com/tutiendaonline" target="_blank"><span class="material-icons">camera_alt</span></a>
+            <a href="https://twitter.com/tutiendaonline" target="_blank"><span class="material-icons">public</span></a>
+        </div>
     </aside>
 
     <main>
@@ -110,43 +133,263 @@
                     <h3>Drone de Alta Resolución</h3>
                     <p class="description">Captura momentos únicos con cámaras 4K y estabilidad de vuelo avanzada.</p>
                     <p class="price"><span>$399.99</span> $299.99</p>
-                    <a href="https://wa.me/573205893469?text=Me%20interesa%20comprar%20el%20Drone%20de%20Alta%20Resolución" target="_blank" class="primary-btn buy-now-btn">Comprar</a>
+                    <button class="primary-btn buy-now-btn" data-product-name="Drone de Alta Resolución">Comprar</button>
                 </div>
                 <div class="product-card" data-product-id="2">
                     <div class="product-images">
                         <img src="productos_oferta2.jpg" alt="Auriculares Inalámbricos Pro" class="main-image">
                         <div class="alt-images">
-                            </div>
+                            <img src="productos_oferta2.jpg" alt="Auriculares Pro en caja">
+                        </div>
                     </div>
                     <h3>Auriculares Inalámbricos Pro</h3>
                     <p class="description">Sonido inmersivo y cancelación de ruido para una experiencia sin interrupciones.</p>
                     <p class="price"><span>$129.99</span> $79.99</p>
-                    <a href="https://wa.me/573205893469?text=Me%20interesa%20comprar%20los%20Auriculares%20Inalámbricos%20Pro" target="_blank" class="primary-btn buy-now-btn">Comprar</a>
+                    <button class="primary-btn buy-now-btn" data-product-name="Auriculares Inalámbricos Pro">Comprar</button>
                 </div>
                 <div class="product-card" data-product-id="3">
                     <div class="product-images">
-                        <img src="productos_oferta1.jpg" alt="Smartwatch Deportivo" class="main-image">
+                        <img src="productos_oferta1_alt1.jpg" alt="Smartwatch Deportivo" class="main-image">
                         <div class="alt-images">
-                            <img src="productos_oferta1_alt1.jpg" alt="Smartwatch Vista Frontal">
+                            <img src="productos_oferta1.jpg" alt="Smartwatch Vista Frontal">
                         </div>
                     </div>
                     <h3>Smartwatch Deportivo</h3>
                     <p class="description">Monitoriza tu actividad física y recibe notificaciones en tu muñeca.</p>
                     <p class="price"><span>$199.99</span> $149.99</p>
-                    <a href="https://wa.me/573205893469?text=Me%20interesa%20comprar%20el%20Smartwatch%20Deportivo" target="_blank" class="primary-btn buy-now-btn">Comprar</a>
+                    <button class="primary-btn buy-now-btn" data-product-name="Smartwatch Deportivo">Comprar</button>
                 </div>
                 <div class="product-card" data-product-id="4">
                     <div class="product-images">
                         <img src="productos_oferta2.jpg" alt="Cámara de Seguridad WiFi" class="main-image">
                         <div class="alt-images">
-                            </div>
+                            <img src="productos_oferta2.jpg" alt="Cámara de seguridad instalada">
+                        </div>
                     </div>
                     <h3>Cámara de Seguridad WiFi</h3>
                     <p class="description">Vigila tu hogar desde cualquier lugar con visión nocturna y audio bidireccional.</p>
                     <p class="price"><span>$89.99</span> $59.99</p>
-                    <a href="https://wa.me/573205893469?text=Me%20interesa%20comprar%20la%20Cámara%20de%20Seguridad%20WiFi" target="_blank" class="primary-btn buy-now-btn">Comprar</a>
+                    <button class="primary-btn buy-now-btn" data-product-name="Cámara de Seguridad WiFi">Comprar</button>
                 </div>
+            </div>
+        </section>
+
+        <section id="electronica" class="products-section">
+            <h2>Electrónica</h2>
+            <div class="product-grid">
+                <div class="product-card" data-product-id="e1">
+                    <div class="product-images">
+                        <img src="electronica_tv.jpg" alt="Smart TV 55 Pulgadas" class="main-image">
+                        <div class="alt-images">
+                            <img src="electronica_tv_alt1.jpg" alt="Smart TV detalle">
+                            <img src="electronica_tv_alt2.jpg" alt="Smart TV encendido">
+                        </div>
+                    </div>
+                    <h3>Smart TV 55 Pulgadas</h3>
+                    <p class="description">Experiencia visual inmersiva con resolución 4K y funciones inteligentes.</p>
+                    <p class="price"><span>$899.99</span> $749.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Smart TV 55 Pulgadas">Comprar</button>
                 </div>
+                <div class="product-card" data-product-id="e2">
+                    <div class="product-images">
+                        <img src="electronica_laptop.jpg" alt="Laptop Ultrabook" class="main-image">
+                        <div class="alt-images">
+                            <img src="electronica_laptop_alt1.jpg" alt="Laptop teclado">
+                        </div>
+                    </div>
+                    <h3>Laptop Ultrabook</h3>
+                    <p class="description">Potencia y portabilidad para trabajo y entretenimiento.</p>
+                    <p class="price"><span>$1199.99</span> $999.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Laptop Ultrabook">Comprar</button>
+                </div>
+                 <div class="product-card" data-product-id="e3">
+                    <div class="product-images">
+                        <img src="electronica_altavoz.jpg" alt="Altavoz Inteligente" class="main-image">
+                        <div class="alt-images">
+                            <img src="electronica_altavoz_alt1.jpg" alt="Altavoz en sala">
+                        </div>
+                    </div>
+                    <h3>Altavoz Inteligente</h3>
+                    <p class="description">Controla tu casa con tu voz y disfruta de un sonido envolvente.</p>
+                    <p class="price"><span>$79.99</span> $59.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Altavoz Inteligente">Comprar</button>
+                </div>
+                 <div class="product-card" data-product-id="e4">
+                    <div class="product-images">
+                        <img src="electronica_consola.jpg" alt="Consola de Videojuegos" class="main-image">
+                        <div class="alt-images">
+                            <img src="electronica_consola_alt1.jpg" alt="Consola con controles">
+                        </div>
+                    </div>
+                    <h3>Consola de Videojuegos</h3>
+                    <p class="description">Sumérgete en mundos virtuales con gráficos de última generación.</p>
+                    <p class="price"><span>$499.99</span> $399.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Consola de Videojuegos">Comprar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="moda" class="products-section">
+            <h2>Moda y Accesorios</h2>
+            <div class="product-grid">
+                <div class="product-card" data-product-id="m1">
+                    <div class="product-images">
+                        <img src="moda_chaqueta.jpg" alt="Chaqueta de Cuero Elegante" class="main-image">
+                        <div class="alt-images">
+                            <img src="moda_chaqueta_alt1.jpg" alt="Chaqueta en persona">
+                            <img src="moda_chaqueta_alt2.jpg" alt="Chaqueta de espalda">
+                        </div>
+                    </div>
+                    <h3>Chaqueta de Cuero Elegante</h3>
+                    <p class="description">Estilo y confort en una prenda atemporal.</p>
+                    <p class="price"><span>$149.99</span> $99.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Chaqueta de Cuero Elegante">Comprar</button>
+                </div>
+                 <div class="product-card" data-product-id="m2">
+                    <div class="product-images">
+                        <img src="moda_reloj.jpg" alt="Reloj Clásico de Acero" class="main-image">
+                        <div class="alt-images">
+                            <img src="moda_reloj_alt1.jpg" alt="Reloj en muñeca">
+                        </div>
+                    </div>
+                    <h3>Reloj Clásico de Acero</h3>
+                    <p class="description">Elegancia y precisión para cada ocasión.</p>
+                    <p class="price"><span>$89.99</span> $59.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Reloj Clásico de Acero">Comprar</button>
+                </div>
+                 <div class="product-card" data-product-id="m3">
+                    <div class="product-images">
+                        <img src="moda_zapatos.jpg" alt="Zapatillas Deportivas Urbano" class="main-image">
+                        <div class="alt-images">
+                            <img src="moda_zapatos_alt1.jpg" alt="Zapatillas puestas">
+                        </div>
+                    </div>
+                    <h3>Zapatillas Deportivas Urbano</h3>
+                    <p class="description">Comodidad y diseño para tu día a día.</p>
+                    <p class="price"><span>$79.99</span> $49.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Zapatillas Deportivas Urbano">Comprar</button>
+                </div>
+                 <div class="product-card" data-product-id="m4">
+                    <div class="product-images">
+                        <img src="moda_bolso.jpg" alt="Bolso de Mano Femenino" class="main-image">
+                        <div class="alt-images">
+                            <img src="moda_bolso_alt1.jpg" alt="Bolso abierto">
+                        </div>
+                    </div>
+                    <h3>Bolso de Mano Femenino</h3>
+                    <p class="description">El accesorio perfecto para complementar tu estilo.</p>
+                    <p class="price"><span>$69.99</span> $45.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Bolso de Mano Femenino">Comprar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="hogar" class="products-section">
+            <h2>Hogar y Decoración</h2>
+            <div class="product-grid">
+                <div class="product-card" data-product-id="h1">
+                    <div class="product-images">
+                        <img src="hogar_aspiradora.jpg" alt="Robot Aspirador Inteligente" class="main-image">
+                        <div class="alt-images">
+                            <img src="hogar_aspiradora_alt1.jpg" alt="Robot aspirador en uso">
+                        </div>
+                    </div>
+                    <h3>Robot Aspirador Inteligente</h3>
+                    <p class="description">Mantén tu hogar impecable sin esfuerzo.</p>
+                    <p class="price"><span>$299.99</span> $199.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Robot Aspirador Inteligente">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="h2">
+                    <div class="product-images">
+                        <img src="hogar_cafetera.jpg" alt="Cafetera Espresso Profesional" class="main-image">
+                        <div class="alt-images">
+                            <img src="hogar_cafetera_alt1.jpg" alt="Cafetera haciendo cafe">
+                        </div>
+                    </div>
+                    <h3>Cafetera Espresso Profesional</h3>
+                    <p class="description">Disfruta de tu café favorito como un barista.</p>
+                    <p class="price"><span>$159.99</span> $119.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Cafetera Espresso Profesional">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="h3">
+                    <div class="product-images">
+                        <img src="hogar_lampara.jpg" alt="Lámpara de Pie Moderna" class="main-image">
+                        <div class="alt-images">
+                            <img src="hogar_lampara_alt1.jpg" alt="Lámpara encendida">
+                        </div>
+                    </div>
+                    <h3>Lámpara de Pie Moderna</h3>
+                    <p class="description">Ilumina tu espacio con estilo y funcionalidad.</p>
+                    <p class="price"><span>$89.99</span> $59.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Lámpara de Pie Moderna">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="h4">
+                    <div class="product-images">
+                        <img src="hogar_juego_cama.jpg" alt="Juego de Sábanas Algodón Egipcio" class="main-image">
+                        <div class="alt-images">
+                            <img src="hogar_juego_cama_alt1.jpg" alt="Juego de cama doblado">
+                        </div>
+                    </div>
+                    <h3>Juego de Sábanas Algodón Egipcio</h3>
+                    <p class="description">Descanso de lujo con la suavidad del mejor algodón.</p>
+                    <p class="price"><span>$109.99</span> $79.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Juego de Sábanas Algodón Egipcio">Comprar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="usados" class="products-section">
+            <h2>Productos Usados y Reacondicionados</h2>
+            <div class="product-grid">
+                <div class="product-card" data-product-id="u1">
+                    <div class="product-images">
+                        <img src="usados_celular.jpg" alt="Smartphone Reacondicionado A+" class="main-image">
+                        <div class="alt-images">
+                            <img src="usados_celular_alt1.jpg" alt="Smartphone pantalla">
+                        </div>
+                    </div>
+                    <h3>Smartphone Reacondicionado A+</h3>
+                    <p class="description">Funcionalidad premium a un precio accesible, como nuevo.</p>
+                    <p class="price"><span>$450.00</span> $299.99</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Smartphone Reacondicionado A+">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="u2">
+                    <div class="product-images">
+                        <img src="usados_bici.jpg" alt="Bicicleta de Montaña Usada" class="main-image">
+                        <div class="alt-images">
+                            <img src="usados_bici_alt1.jpg" alt="Bicicleta en terreno">
+                        </div>
+                    </div>
+                    <h3>Bicicleta de Montaña Usada</h3>
+                    <p class="description">Aventura al aire libre con equipamiento de segunda mano en buen estado.</p>
+                    <p class="price"><span>$300.00</span> $180.00</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Bicicleta de Montaña Usada">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="u3">
+                    <div class="product-images">
+                        <img src="usados_tablet.jpg" alt="Tablet Usada Excelentes Condiciones" class="main-image">
+                        <div class="alt-images">
+                            <img src="usados_tablet_alt1.jpg" alt="Tablet con apps">
+                        </div>
+                    </div>
+                    <h3>Tablet Usada Excelentes Condiciones</h3>
+                    <p class="description">Ideal para estudio o entretenimiento, totalmente funcional.</p>
+                    <p class="price"><span>$200.00</span> $120.00</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Tablet Usada Excelentes Condiciones">Comprar</button>
+                </div>
+                <div class="product-card" data-product-id="u4">
+                    <div class="product-images">
+                        <img src="usados_libros.jpg" alt="Colección de Libros Clásicos (Usados)" class="main-image">
+                        <div class="alt-images">
+                            <img src="usados_libros_alt1.jpg" alt="Libros apilados">
+                        </div>
+                    </div>
+                    <h3>Colección de Libros Clásicos (Usados)</h3>
+                    <p class="description">Grandes obras literarias en formato de segunda mano.</p>
+                    <p class="price"><span>$60.00</span> $35.00</p>
+                    <button class="primary-btn buy-now-btn" data-product-name="Colección de Libros Clásicos (Usados)">Comprar</button>
+                </div>
+            </div>
         </section>
 
         <section id="categories" class="categories-section">
@@ -202,7 +445,6 @@
 
     <div id="productModal" class="modal">
         <div class="modal-content">
-            <span class="close-button material-icons">close</span>
             <div class="modal-body">
                 <div class="modal-images-container">
                     <div class="image-slider">
@@ -224,6 +466,9 @@
                     </div>
                 </div>
             </div>
+            <button class="close-modal-btn" id="closeModalButton">
+                <span class="material-icons">close</span>
+            </button>
         </div>
     </div>
 
@@ -238,7 +483,10 @@
                 <ul>
                     <li><a href="#hero">Inicio</a></li>
                     <li><a href="#products">Ofertas</a></li>
-                    <li><a href="#categories">Categorías</a></li>
+                    <li><a href="#electronica">Electrónica</a></li>
+                    <li><a href="#moda">Moda</a></li>
+                    <li><a href="#hogar">Hogar</a></li>
+                    <li><a href="#usados">Usados</a></li>
                     <li><a href="#about">Nosotros</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
@@ -246,13 +494,14 @@
             <div class="footer-section social-media">
                 <h3>Síguenos</h3>
                 <div class="social-icons">
-                    <a href="#"><span class="material-icons">facebook</span></a>
-                    <a href="#"><span class="material-icons">camera_alt</span></a>
-                    <a href="#"><span class="material-icons">link</span></a> </div>
+                    <a href="https://facebook.com/tutiendaonline" target="_blank"><span class="material-icons">facebook</span></a>
+                    <a href="https://instagram.com/tutiendaonline" target="_blank"><span class="material-icons">camera_alt</span></a>
+                    <a href="https://twitter.com/tutiendaonline" target="_blank"><span class="material-icons">public</span></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Tu Tienda Online. Todos los derechos reservados.</p>
+            <p>© 2025 Tu Tienda Online. Todos los derechos reservados.</p>
         </div>
     </footer>
 
