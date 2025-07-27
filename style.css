@@ -1,4 +1,4 @@
-/* Variables CSS (Nuevos tonos más vivos, eliminando grises y oscuros innecesarios) */
+/* Variables CSS */
 :root {
     --primary-color: #ffc107; /* Amarillo Sol (vivo) */
     --secondary-color: #2196f3; /* Azul Cielo (vivo) */
@@ -26,6 +26,7 @@ body {
     min-height: 100vh; /* Asegura que el body ocupe toda la altura visible */
     z-index: 1; /* Asegura que el contenido esté por encima del overlay */
     color: var(--text-color);
+    overflow-x: hidden; /* Previene scroll horizontal */
 }
 
 /* Overlay para la transparencia del fondo */
@@ -133,17 +134,19 @@ section {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out; /* Para una transición suave del padding */
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out, height 0.3s ease-in-out; /* Para una transición suave del padding y altura */
+    min-height: 70px; /* Altura base del navbar */
+    box-sizing: border-box; /* Asegura que el padding no añada altura extra */
 }
 
 /* Clase para la reducción del navbar al scroll */
 .navbar.scrolled {
-    background-color: rgba(69, 90, 100, 0.5); /* Color oscuro con 50% de opacidad */
+    background-color: rgba(69, 90, 100, 0.7); /* Color oscuro con 70% de opacidad para mejor legibilidad */
     backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del menú (opcional) */
     -webkit-backdrop-filter: blur(5px); /* Compatibilidad con Safari */
     padding: 0.5rem 2rem; /* Reduce el padding en un 50% */
+    min-height: 50px; /* Reduce la altura total */
 }
-
 
 .navbar .logo img {
     height: 40px; /* Tamaño del logo en el navbar */
@@ -151,7 +154,7 @@ section {
 }
 
 .navbar.scrolled .logo img {
-    height: 30px; /* Reducir el logo al 50% de la altura original (40px -> 20px si la reducción fuera a la mitad, 30px es 75%) */
+    height: 25px; /* Reducir el logo a un tamaño más pequeño (aproximadamente un 60% del original) */
 }
 
 
@@ -914,16 +917,17 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
-        padding: 1rem 1rem; /* Menú superior más visible, un poco más reducido que antes */
-        min-height: 50px; /* Altura mínima ajustada */
+        padding: 0.8rem 1rem; /* Menú superior más visible, un poco más reducido que antes */
+        min-height: 60px; /* Altura mínima ajustada */
     }
 
     .navbar.scrolled {
-        padding: 0.5rem 1rem; /* Más reducido al 50% del padding base móvil */
+        padding: 0.4rem 1rem; /* Más reducido al 50% del padding base móvil */
+        min-height: 40px; /* Altura mínima ajustada al hacer scroll */
     }
 
     .navbar .logo img {
-        height: 40px; /* Tamaño del logo en el navbar para móvil */
+        height: 35px; /* Tamaño del logo en el navbar para móvil */
     }
 
     .navbar.scrolled .logo img {
@@ -940,10 +944,6 @@ footer {
 
     .navbar .menu-right {
         gap: 10px; /* Espacio más pequeño para móviles */
-    }
-
-    .navbar .menu-icon {
-        display: block; /* Mostrar icono de menú hamburguesa */
     }
 
     .download-btn {
