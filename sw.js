@@ -1,147 +1,156 @@
-const CACHE_NAME = 'comprasymas-v1';
+const CACHE_NAME = 'tiendaonline-cache-v1';
 const urlsToCache = [
-    './',
+    './', // Esto es crucial para la página de inicio
     'index.html',
     'style.css',
     'script.js',
     'manifest.json',
-    'favicon.ico',
-    'https://github.com/JohnBeta1977/pruebacompras01/blob/main/logo.png?raw=true', // Logo desde GitHub
-    'img/hero-bg.jpg', // Imagen de fondo del héroe (asegúrate de que exista)
-
-    // Iconos de la PWA (asegúrate de que estos archivos existan en img/icons/)
-    'img/icons/icon-72x72.png',
-    'img/icons/icon-96x96.png',
-    'img/icons/icon-128x128.png',
-    'img/icons/icon-144x144.png',
-    'img/icons/icon-152x152.png',
-    'img/icons/icon-192x192.png',
-    'img/icons/icon-384x384.png',
-    'img/icons/icon-512x512.png',
-
-    // Imágenes de productos (asegúrate de que todas estas existan en productos/)
-    // Ofertas
-    'productos/oferta_producto1.jpg',
-    'productos/oferta_producto1_alt1.jpg',
-    'productos/oferta_producto1_alt2.jpg',
-    'productos/oferta_producto2.jpg',
-    'productos/oferta_producto2_alt1.jpg',
-    'productos/oferta_producto3.jpg',
-    'productos/oferta_producto3_alt1.jpg',
-    'productos/oferta_producto4.jpg',
-    'productos/oferta_producto4_alt1.jpg',
-    'productos/oferta_producto5.jpg',
-    'productos/oferta_producto5_alt1.jpg',
-    'productos/oferta_producto6.jpg',
-    'productos/oferta_producto6_alt1.jpg',
-    // Categoria 1
-    'productos/categoria1_producto1.jpg',
-    'productos/categoria1_producto1_alt1.jpg',
-    'productos/categoria1_producto2.jpg',
-    'productos/categoria1_producto2_alt1.jpg',
-    'productos/categoria1_producto3.jpg',
-    'productos/categoria1_producto3_alt1.jpg',
-    'productos/categoria1_producto4.jpg',
-    'productos/categoria1_producto4_alt1.jpg',
-    'productos/categoria1_producto5.jpg',
-    'productos/categoria1_producto5_alt1.jpg',
-    'productos/categoria1_producto6.jpg',
-    'productos/categoria1_producto6_alt1.jpg',
-    // Categoria 2
-    'productos/categoria2_producto1.jpg',
-    'productos/categoria2_producto1_alt1.jpg',
-    'productos/categoria2_producto2.jpg',
-    'productos/categoria2_producto2_alt1.jpg',
-    'productos/categoria2_producto3.jpg',
-    'productos/categoria2_producto3_alt1.jpg',
-    'productos/categoria2_producto4.jpg',
-    'productos/categoria2_producto4_alt1.jpg',
-    'productos/categoria2_producto5.jpg',
-    'productos/categoria2_producto5_alt1.jpg',
-    'productos/categoria2_producto6.jpg',
-    'productos/categoria2_producto6_alt1.jpg',
-    // Categoria 3
-    'productos/categoria3_producto1.jpg',
-    'productos/categoria3_producto1_alt1.jpg',
-    'productos/categoria3_producto2.jpg',
-    'productos/categoria3_producto2_alt1.jpg',
-    'productos/categoria3_producto3.jpg',
-    'productos/categoria3_producto3_alt1.jpg',
-    'productos/categoria3_producto4.jpg',
-    'productos/categoria3_producto4_alt1.jpg',
-    'productos/categoria3_producto5.jpg',
-    'productos/categoria3_producto5_alt1.jpg',
-    'productos/categoria3_producto6.jpg',
-    'productos/categoria3_producto6_alt1.jpg',
-    // Categoria 4
-    'productos/categoria4_producto1.jpg',
-    'productos/categoria4_producto1_alt1.jpg',
-    'productos/categoria4_producto2.jpg',
-    'productos/categoria4_producto2_alt1.jpg',
-    'productos/categoria4_producto3.jpg',
-    'productos/categoria4_producto3_alt1.jpg',
-    'productos/categoria4_producto4.jpg',
-    'productos/categoria4_producto4_alt1.jpg',
-    'productos/categoria4_producto5.jpg',
-    'productos/categoria4_producto5_alt1.jpg',
-    'productos/categoria4_producto6.jpg',
-    'productos/categoria4_producto6_alt1.jpg',
-    'https://fonts.googleapis.com/icon?family=Material+Icons',
-    'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap'
+    'fondo.jpg', // La nueva imagen de fondo
+    'logo.png', // Tu logo
+    // Iconos para PWA (asegúrate de que existan)
+    'icon-72x72.png',
+    'icon-96x96.png',
+    'icon-128x128.png',
+    'icon-144x144.png',
+    'icon-152x152.png',
+    'icon-192x192.png',
+    'icon-384x384.png',
+    'icon-512x512.png',
+    // Imágenes de productos - renombra estas a lo que tengas en tu carpeta raíz
+    'productos_oferta1.jpg',
+    'productos_oferta1_alt1.jpg',
+    'productos_oferta1_alt2.jpg',
+    'productos_oferta2.jpg',
+    'productos_oferta2_alt1.jpg',
+    'productos_oferta3.jpg',
+    'productos_oferta3_alt1.jpg',
+    'productos_oferta4.jpg',
+    'productos_oferta4_alt1.jpg',
+    'productos_oferta5.jpg',
+    'productos_oferta5_alt1.jpg',
+    'productos_oferta6.jpg',
+    'productos_oferta6_alt1.jpg',
+    'productos_categoria1_producto1.jpg',
+    'productos_categoria1_producto1_alt1.jpg',
+    'productos_categoria1_producto2.jpg',
+    'productos_categoria1_producto2_alt1.jpg',
+    'productos_categoria1_producto3.jpg',
+    'productos_categoria1_producto3_alt1.jpg',
+    'productos_categoria1_producto4.jpg',
+    'productos_categoria1_producto4_alt1.jpg',
+    'productos_categoria1_producto5.jpg',
+    'productos_categoria1_producto5_alt1.jpg',
+    'productos_categoria1_producto6.jpg',
+    'productos_categoria1_producto6_alt1.jpg',
+    'productos_categoria2_producto1.jpg',
+    'productos_categoria2_producto1_alt1.jpg',
+    'productos_categoria2_producto2.jpg',
+    'productos_categoria2_producto2_alt1.jpg',
+    'productos_categoria2_producto3.jpg',
+    'productos_categoria2_producto3_alt1.jpg',
+    'productos_categoria2_producto4.jpg',
+    'productos_categoria2_producto4_alt1.jpg',
+    'productos_categoria2_producto5.jpg',
+    'productos_categoria2_producto5_alt1.jpg',
+    'productos_categoria2_producto6.jpg',
+    'productos_categoria2_producto6_alt1.jpg',
+    'productos_categoria3_producto1.jpg',
+    'productos_categoria3_producto1_alt1.jpg',
+    'productos_categoria3_producto2.jpg',
+    'productos_categoria3_producto2_alt1.jpg',
+    'productos_categoria3_producto3.jpg',
+    'productos_categoria3_producto3_alt1.jpg',
+    'productos_categoria3_producto4.jpg',
+    'productos_categoria3_producto4_alt1.jpg',
+    'productos_categoria3_producto5.jpg',
+    'productos_categoria3_producto5_alt1.jpg',
+    'productos_categoria3_producto6.jpg',
+    'productos_categoria3_producto6_alt1.jpg',
+    'productos_categoria4_producto1.jpg',
+    'productos_categoria4_producto1_alt1.jpg',
+    'productos_categoria4_producto2.jpg',
+    'productos_categoria4_producto2_alt1.jpg',
+    'productos_categoria4_producto3.jpg',
+    'productos_categoria4_producto3_alt1.jpg',
+    'productos_categoria4_producto4.jpg',
+    'productos_categoria4_producto4_alt1.jpg',
+    'productos_categoria4_producto5.jpg',
+    'productos_categoria4_producto5_alt1.jpg',
+    'productos_categoria4_producto6.jpg',
+    'productos_categoria4_producto6_alt1.jpg',
+    'placeholder.jpg', // Si usas una imagen de placeholder
+    'https://fonts.googleapis.com/icon?family=Material+Icons', // Íconos de Material Design
+    'https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-I-rkPt5FzO5S_JusyYv9tX_s.woff2', // Cachear la fuente real de los íconos
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap', // Cachear las fuentes de Google Fonts
+    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2', // Ejemplo de fuente Poppins
+    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2', // Ejemplo de fuente Roboto
+    // Añade aquí cualquier otro activo que quieras cachear (videos, otros CSS/JS externos)
 ];
 
+// Evento de instalación: cachea los archivos estáticos
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('Opened cache');
+                console.log('Service Worker: Cacheando archivos estáticos');
                 return cache.addAll(urlsToCache);
             })
-    );
-});
-
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Cache hit - return response
-                if (response) {
-                    return response;
-                }
-                // No hay respuesta en caché, ir a la red
-                return fetch(event.request).then(
-                    (response) => {
-                        // Comprobar si recibimos una respuesta válida
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-                        // IMPORTANTE: Clonar la respuesta. Una respuesta es un stream
-                        // y solo puede ser consumida una vez. Como queremos que el
-                        // navegador la consuma y el cache la consuma, necesitamos clonarla.
-                        const responseToCache = response.clone();
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, responseToCache);
-                            });
-                        return response;
-                    }
-                );
+            .catch(error => {
+                console.error('Service Worker: Fallo al cachear', error);
             })
     );
+    self.skipWaiting(); // Fuerza la activación del nuevo Service Worker inmediatamente
 });
 
+// Evento de activación: limpia cachés antiguas
 self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        // Eliminar caches viejos
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('Service Worker: Eliminando caché antigua', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
         })
+    );
+    // Asegura que el Service Worker tome el control de los clientes existentes
+    return self.clients.claim();
+});
+
+// Evento de fetch: estrategia de caché primero, luego red
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                // Si está en caché, lo devuelve
+                if (response) {
+                    return response;
+                }
+                // Si no, intenta obtenerlo de la red
+                return fetch(event.request)
+                    .then((fetchResponse) => {
+                        // Si la respuesta de la red es válida, la cachea y la devuelve
+                        if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
+                            return fetchResponse;
+                        }
+                        const responseToCache = fetchResponse.clone();
+                        caches.open(CACHE_NAME)
+                            .then((cache) => {
+                                cache.put(event.request, responseToCache);
+                            });
+                        return fetchResponse;
+                    })
+                    .catch(() => {
+                        // Opcional: Si falla la red, puedes servir una página offline
+                        // Por ejemplo, si un archivo crucial como index.html no está disponible
+                        if (event.request.mode === 'navigate') {
+                             return caches.match('index.html'); // O una página offline.html si la tuvieras
+                        }
+                        return new Response('Offline content unavailable.', { status: 503, headers: { 'Content-Type': 'text/plain' } });
+                    });
+            })
     );
 });
