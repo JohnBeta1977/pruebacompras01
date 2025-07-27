@@ -1,13 +1,13 @@
-const CACHE_NAME = 'tiendaonline-cache-v1';
+const CACHE_NAME = 'tiendaonline-cache-v2'; // Incrementa la versión del caché para forzar la actualización
 const urlsToCache = [
-    './', // Esto es crucial para la página de inicio
+    './',
     'index.html',
     'style.css',
     'script.js',
     'manifest.json',
-    'fondo.jpg', // La nueva imagen de fondo
-    'logo.png', // Tu logo
-    // Iconos para PWA (asegúrate de que existan)
+    'fondo.jpg',
+    'logo.png',
+    // Iconos PWA
     'icon-72x72.png',
     'icon-96x96.png',
     'icon-128x128.png',
@@ -16,7 +16,7 @@ const urlsToCache = [
     'icon-192x192.png',
     'icon-384x384.png',
     'icon-512x512.png',
-    // Imágenes de productos - renombra estas a lo que tengas en tu carpeta raíz
+    // Imágenes de productos (asegúrate de que todas estén aquí)
     'productos_oferta1.jpg',
     'productos_oferta1_alt1.jpg',
     'productos_oferta1_alt2.jpg',
@@ -78,14 +78,21 @@ const urlsToCache = [
     'productos_categoria4_producto5_alt1.jpg',
     'productos_categoria4_producto6.jpg',
     'productos_categoria4_producto6_alt1.jpg',
-    'placeholder.jpg', // Si usas una imagen de placeholder
-    'https://fonts.googleapis.com/icon?family=Material+Icons', // Íconos de Material Design
-    'https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-I-rkPt5FzO5S_JusyYv9tX_s.woff2', // Cachear la fuente real de los íconos
-    'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap', // Cachear las fuentes de Google Fonts
-    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2', // Ejemplo de fuente Poppins
-    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2', // Ejemplo de fuente Roboto
-    // Añade aquí cualquier otro activo que quieras cachear (videos, otros CSS/JS externos)
+    'placeholder.jpg',
+    // **NUEVOS VIDEOS** - Asegúrate de que los nombres coincidan con los de `script.js`
+    'video_cafetera.mp4',
+    'video_dron.mp4',
+    // Si tienes imágenes de poster para los videos, también cachalas:
+    // 'video_cafetera.jpg',
+    // 'video_dron.jpg',
+    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-I-rkPt5FzO5S_JusyYv9tX_s.woff2',
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap',
+    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2',
+    'https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JPXPjOcFVFSA.woff2'
 ];
+
+// ... (El resto del código del Service Worker permanece igual) ...
 
 // Evento de instalación: cachea los archivos estáticos
 self.addEventListener('install', (event) => {
@@ -99,7 +106,7 @@ self.addEventListener('install', (event) => {
                 console.error('Service Worker: Fallo al cachear', error);
             })
     );
-    self.skipWaiting(); // Fuerza la activación del nuevo Service Worker inmediatamente
+    self.skipWaiting();
 });
 
 // Evento de activación: limpia cachés antiguas
@@ -116,7 +123,6 @@ self.addEventListener('activate', (event) => {
             );
         })
     );
-    // Asegura que el Service Worker tome el control de los clientes existentes
     return self.clients.claim();
 });
 
@@ -125,14 +131,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // Si está en caché, lo devuelve
                 if (response) {
                     return response;
                 }
-                // Si no, intenta obtenerlo de la red
                 return fetch(event.request)
                     .then((fetchResponse) => {
-                        // Si la respuesta de la red es válida, la cachea y la devuelve
                         if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
                             return fetchResponse;
                         }
@@ -144,10 +147,8 @@ self.addEventListener('fetch', (event) => {
                         return fetchResponse;
                     })
                     .catch(() => {
-                        // Opcional: Si falla la red, puedes servir una página offline
-                        // Por ejemplo, si un archivo crucial como index.html no está disponible
                         if (event.request.mode === 'navigate') {
-                             return caches.match('index.html'); // O una página offline.html si la tuvieras
+                             return caches.match('index.html');
                         }
                         return new Response('Offline content unavailable.', { status: 503, headers: { 'Content-Type': 'text/plain' } });
                     });
