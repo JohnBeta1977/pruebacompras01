@@ -61,9 +61,9 @@ a:hover {
 }
 
 section {
-    padding: 3rem 1.5rem; /* Márgenes de sección reducidos */
+    padding: 2.5rem 1.5rem; /* Márgenes de sección reducidos */
     max-width: 1200px;
-    margin: 1.5rem auto; /* Márgenes entre secciones reducidos */
+    margin: 1.2rem auto; /* Márgenes entre secciones reducidos */
     background-color: var(--white-color); /* Fondo blanco para las secciones sobre la imagen */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Sombra sutil */
     border-radius: 8px;
@@ -133,20 +133,27 @@ section {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease-in-out; /* Para una transición suave */
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out; /* Para una transición suave del padding */
 }
 
-/* Clase para la transparencia después del scroll */
+/* Clase para la reducción del navbar al scroll */
 .navbar.scrolled {
     background-color: rgba(69, 90, 100, 0.5); /* Color oscuro con 50% de opacidad */
     backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del menú (opcional) */
     -webkit-backdrop-filter: blur(5px); /* Compatibilidad con Safari */
+    padding: 0.5rem 2rem; /* Reduce el padding en un 50% */
 }
 
 
 .navbar .logo img {
     height: 40px; /* Tamaño del logo en el navbar */
+    transition: height 0.3s ease-in-out; /* Suavizar transición del logo */
 }
+
+.navbar.scrolled .logo img {
+    height: 30px; /* Reducir el logo al 50% de la altura original (40px -> 20px si la reducción fuera a la mitad, 30px es 75%) */
+}
+
 
 .navbar .nav-links {
     display: flex; /* Por defecto para desktop */
@@ -156,7 +163,7 @@ section {
 }
 
 .navbar .nav-links li {
-    margin-left: 2rem;
+    margin-left: 1.5rem; /* Espaciado entre links */
 }
 
 .navbar .nav-links a {
@@ -167,6 +174,12 @@ section {
 
 .navbar .nav-links a:hover {
     color: var(--primary-color);
+}
+
+.navbar .menu-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre el botón de descargar y el icono de menú */
 }
 
 .navbar .menu-icon {
@@ -223,7 +236,7 @@ section {
 }
 
 .sidebar-nav ul li {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem; /* Espaciado entre elementos de la barra lateral */
 }
 
 .sidebar-nav ul li a {
@@ -250,6 +263,13 @@ section {
 
 .sidebar-nav ul li a:hover .material-icons {
     color: var(--primary-color); /* Amarillo vivo para el icono */
+}
+
+.sidebar-download-btn {
+    margin-top: 2rem; /* Espacio extra para el botón de descargar */
+}
+.sidebar-download-btn .primary-btn {
+    width: 100%;
 }
 
 .social-icons-sidebar {
@@ -298,9 +318,21 @@ section {
     transform: translateY(-2px);
 }
 
+/* Download Button in Navbar */
+.download-btn {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 0.6rem 1.2rem; /* Un poco más pequeño para caber en el navbar */
+    font-size: 0.9rem;
+}
+.download-btn:hover {
+    background-color: #43a047;
+}
+
+
 /* Hero Section */
 .hero {
-    min-height: 60vh; /* Altura mínima reducida */
+    min-height: 50vh; /* Altura mínima reducida (antes 60vh) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -313,14 +345,14 @@ section {
 
 .hero-content {
     background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente para el texto */
-    padding: 2rem; /* Padding reducido */
+    padding: 1.8rem; /* Padding reducido */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    max-width: 700px; /* Ancho máximo reducido */
+    max-width: 600px; /* Ancho máximo reducido */
 }
 
 .hero-content h1 {
-    font-size: 2rem; /* Tamaño del título reducido */
+    font-size: 1.8rem; /* Tamaño del título reducido */
     margin-bottom: 0.5rem; /* Margen inferior reducido */
     color: var(--text-color); /* Color de texto oscuro para el título */
 }
@@ -330,7 +362,7 @@ section {
 }
 
 .hero-content p {
-    font-size: 1rem; /* Tamaño del párrafo reducido */
+    font-size: 0.9rem; /* Tamaño del párrafo reducido */
     margin-bottom: 1rem; /* Margen inferior reducido */
     color: var(--gray-text-color);
 }
@@ -394,6 +426,7 @@ section {
 .feature-item h3 {
     font-size: 1.5rem;
     color: var(--text-color); /* Color de texto oscuro para consistencia */
+    margin-bottom: 0.5rem; /* Margen reducido */
 }
 
 .feature-item p {
@@ -406,10 +439,11 @@ section {
 }
 
 .products-section h2, .categories-section h2, .about-section h2, .faq-section h2, .contact-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem; /* Margen de títulos de sección ajustado */
-    padding-bottom: 10px;
+    font-size: 2.2rem; /* Tamaño de título de sección un poco más pequeño */
+    margin-bottom: 1rem; /* Margen de títulos de sección ajustado */
+    padding-bottom: 8px;
     position: relative;
+    padding-top: 0; /* Asegura que no haya espacio extra arriba del h2 */
 }
 
 .products-section h2::after, .categories-section h2::after, .about-section h2::after, .faq-section h2::after, .contact-section h2::after {
@@ -427,16 +461,16 @@ section {
 .product-grid {
     display: grid;
     /* 3 o 4 columnas en PC, ajustando el minmax */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; /* Espaciado entre productos reducido */
-    margin-top: 1.5rem; /* Margen superior reducido */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajustado para 3-4 columnas */
+    gap: 1.2rem; /* Espaciado entre productos reducido */
+    margin-top: 1.2rem; /* Margen superior reducido */
 }
 
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem; /* Espaciado entre categorías reducido */
-    margin-top: 1.5rem; /* Margen superior reducido */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem; /* Espaciado entre categorías reducido */
+    margin-top: 1.2rem; /* Margen superior reducido */
 }
 
 .product-card, .category-card {
@@ -497,30 +531,30 @@ section {
 }
 
 .product-card h3 {
-    font-size: 1.3rem;
-    margin: 1rem 1rem 0.5rem; /* Margen de título de producto ajustado */
+    font-size: 1.2rem; /* Tamaño de título de producto ajustado */
+    margin: 0.8rem 1rem 0.4rem; /* Margen de título de producto ajustado */
     color: var(--text-color); /* Color de texto oscuro para consistencia */
 }
 
 .product-card .description {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Tamaño de descripción un poco más pequeño */
     color: var(--gray-text-color);
     padding: 0 1rem;
-    margin-bottom: 0.8rem; /* Margen inferior de descripción ajustado */
+    margin-bottom: 0.6rem; /* Margen inferior de descripción ajustado */
 }
 
 .product-card .price {
-    font-size: 1.4rem;
+    font-size: 1.3rem; /* Tamaño de precio un poco más pequeño */
     font-weight: 700;
     color: var(--primary-color);
-    margin: 0 1rem 1rem;
+    margin: 0 1rem 0.8rem; /* Margen de precio ajustado */
 }
 
 .product-card .price span {
     text-decoration: line-through;
     color: var(--gray-text-color);
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Tamaño de precio tachado */
     margin-right: 0.5rem;
 }
 
@@ -534,13 +568,13 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 150px; /* Altura mínima para la tarjeta */
+    min-height: 140px; /* Altura mínima para la tarjeta reducida */
     text-align: center;
     padding: 1rem; /* Padding interno */
 }
 .category-card h3 {
     margin: 0; /* Eliminar margen del título dentro de la tarjeta */
-    font-size: 1.4rem;
+    font-size: 1.3rem; /* Tamaño de título de categoría ajustado */
     color: var(--text-color); /* Color de texto oscuro por defecto */
 }
 /* Colores específicos para categorías */
@@ -554,14 +588,14 @@ section {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.8rem; /* Espaciado entre campos reducido */
     max-width: 600px;
-    margin: 1.5rem auto; /* Margen superior ajustado */
+    margin: 1.2rem auto; /* Margen superior ajustado */
 }
 
 .contact-form input,
 .contact-form textarea {
-    padding: 1rem;
+    padding: 0.9rem; /* Padding de inputs reducido */
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
@@ -576,20 +610,20 @@ section {
 }
 
 .contact-info {
-    margin-top: 1.5rem; /* Margen ajustado */
+    margin-top: 1.2rem; /* Margen ajustado */
     color: var(--gray-text-color);
 }
 
 .contact-info p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Margen entre párrafos de contacto reducido */
 }
 
 /* FAQ Section */
 .faq-item {
     background-color: var(--light-background-color); /* Fondo claro y vivo */
     border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    padding: 1.3rem; /* Padding de FAQ item reducido */
+    margin-bottom: 0.8rem; /* Margen entre FAQ items reducido */
     text-align: left;
 }
 
@@ -600,12 +634,13 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0; /* Eliminar margen inferior del h3 en FAQ */
 }
 
 .faq-item p {
     color: var(--gray-text-color);
     display: none; /* Ocultar respuesta por defecto */
-    margin-top: 1rem;
+    margin-top: 0.8rem; /* Margen superior de párrafo de respuesta FAQ */
 }
 
 .faq-item p.active {
@@ -617,7 +652,7 @@ section {
 footer {
     background-color: var(--dark-section-color);
     color: var(--white-color);
-    padding: 3rem 2rem;
+    padding: 2.5rem 1.5rem; /* Padding del footer reducido */
     text-align: center;
 }
 
@@ -626,24 +661,24 @@ footer {
     flex-wrap: wrap;
     justify-content: space-around;
     max-width: 1200px;
-    margin: 0 auto 2rem;
-    gap: 2rem;
+    margin: 0 auto 1.5rem; /* Margen inferior del contenido del footer reducido */
+    gap: 1.5rem; /* Espaciado entre secciones del footer reducido */
 }
 
 .footer-section {
     flex: 1;
-    min-width: 250px;
+    min-width: 220px;
     text-align: left;
 }
 
 .footer-section h3 {
     color: var(--white-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Margen de títulos del footer reducido */
 }
 
 .footer-section p, .footer-section ul li a {
     color: rgba(255, 255, 255, 0.8); /* Mayor opacidad para el texto blanco */
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .footer-section ul {
@@ -653,7 +688,7 @@ footer {
 }
 
 .footer-section ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Margen entre items de lista del footer reducido */
 }
 
 .footer-section ul li a:hover {
@@ -662,13 +697,13 @@ footer {
 
 .social-icons {
     display: flex;
-    gap: 15px;
-    margin-top: 1rem;
+    gap: 12px; /* Espaciado entre iconos sociales reducido */
+    margin-top: 0.8rem; /* Margen superior de iconos sociales reducido */
     justify-content: center; /* Centrar iconos sociales en footer */
 }
 
 .social-icons .material-icons {
-    font-size: 30px;
+    font-size: 28px; /* Tamaño de icono social reducido */
     color: var(--white-color); /* Iconos blancos por defecto */
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -680,9 +715,9 @@ footer {
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
+    padding-top: 1.2rem; /* Padding superior del texto de copyright reducido */
+    margin-top: 1.2rem; /* Margen superior del texto de copyright reducido */
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -722,22 +757,32 @@ footer {
     to { opacity: 1; transform: scale(1); }
 }
 
-.close-button {
-    color: #aaa;
+/* Botón de cerrar de la modal: Abajo a la derecha, redondo, gris con X negra */
+.close-modal-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 32px;
+    bottom: 15px; /* Ajusta la posición desde abajo */
+    right: 15px; /* Ajusta la posición desde la derecha */
+    background-color: #e0e0e0; /* Fondo gris */
+    color: #424242; /* Color de la 'x' negra */
+    border-radius: 50%;
+    width: 45px; /* Tamaño del botón */
+    height: 45px; /* Tamaño del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* Tamaño de la 'x' */
     font-weight: bold;
     cursor: pointer;
-    z-index: 1; /* Asegura que esté por encima de todo en la modal */
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.close-button:hover,
-.close-button:focus {
-    color: var(--red-color);
-    text-decoration: none;
+.close-modal-btn:hover {
+    background-color: #bdbdbd; /* Gris más oscuro al pasar el ratón */
+    transform: scale(1.05);
 }
+
 
 .modal-body {
     display: flex;
@@ -869,49 +914,72 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
-        padding: 1.2rem 1rem; /* Menú superior más visible */
-        min-height: 55px;
+        padding: 1rem 1rem; /* Menú superior más visible, un poco más reducido que antes */
+        min-height: 50px; /* Altura mínima ajustada */
+    }
+
+    .navbar.scrolled {
+        padding: 0.5rem 1rem; /* Más reducido al 50% del padding base móvil */
     }
 
     .navbar .logo img {
-        height: 45px; /* Tamaño del logo en el navbar */
+        height: 40px; /* Tamaño del logo en el navbar para móvil */
+    }
+
+    .navbar.scrolled .logo img {
+        height: 25px; /* Reducir el logo en móvil al scroll */
     }
 
     .navbar .menu-icon {
-        font-size: 2.5rem; /* Aumenta el tamaño del icono de menú */
+        font-size: 2.2rem; /* Aumenta el tamaño del icono de menú */
     }
 
     .navbar .nav-links {
         display: none; /* Ocultar enlaces de navegación en móviles */
     }
 
+    .navbar .menu-right {
+        gap: 10px; /* Espacio más pequeño para móviles */
+    }
+
     .navbar .menu-icon {
         display: block; /* Mostrar icono de menú hamburguesa */
     }
 
+    .download-btn {
+        padding: 0.5rem 1rem; /* Botón de descarga más pequeño en móvil */
+        font-size: 0.8rem;
+    }
+
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .hero-content p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .features {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem; /* Menos espacio entre items de característica */
     }
 
     .product-grid, .category-grid {
         grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 1rem; /* Menos espacio entre productos/categorías */
+    }
+
+    .product-card h3 {
+        font-size: 1.1rem;
     }
 
     .product-card .price {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .product-card .price span {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .footer-content {
@@ -929,33 +997,25 @@ footer {
     }
 
     section {
-        padding: 2rem 1rem; /* Menos padding en móviles */
+        padding: 1.8rem 1rem; /* Menos padding en móviles */
     }
 
     /* Modal en móviles */
     .modal-content {
         width: 95%;
         margin: 20px auto; /* Mantener un margen superior e inferior */
+        padding: 15px; /* Padding interno de la modal reducido */
     }
 
     .modal-body {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px; /* Menos espacio entre secciones de la modal en móvil */
     }
     .modal-images-container {
         flex-basis: auto; /* Permite que la imagen ocupe el ancho disponible */
     }
     .image-slider img {
-        height: 250px; /* Altura más pequeña para móviles */
-    }
-}
-
-@media (max-width: 480px) {
-    .splash-screen h1 {
-        font-size: 1.8rem;
-    }
-    .modal-content {
-        padding: 15px;
+        height: 220px; /* Altura más pequeña para móviles */
     }
     .modal-title {
         font-size: 1.5rem;
@@ -965,5 +1025,28 @@ footer {
     }
     .modal-actions {
         flex-direction: column; /* Botones apilados en pantallas muy pequeñas */
+        gap: 8px; /* Menos espacio entre botones */
+    }
+    .close-modal-btn {
+        width: 40px; /* Botón de cerrar más pequeño */
+        height: 40px;
+        font-size: 20px;
+        bottom: 10px; /* Posición ajustada */
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-screen h1 {
+        font-size: 1.8rem;
+    }
+    .modal-content {
+        padding: 10px;
+    }
+    .modal-title {
+        font-size: 1.3rem;
+    }
+    .modal-price {
+        font-size: 1.5rem;
     }
 }
