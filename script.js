@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'https://img.kwcdn.com/product/fancy/5fa83337-625f-4405-b423-8abf690119cb.jpg?imageView2/2/w/800/q/70/format/webp',
                 'https://img.kwcdn.com/product/fancy/6ea1907f-664d-4791-aa20-76e1235c37ea.jpg?imageView2/2/w/800/q/70/format/webp',
                 'https://img.kwcdn.com/product/fancy/8e5f79f0-8854-4dc9-a0f6-d625e1178cb4.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/5e4c0902-8276-45ce-a08d-6a46bdae8ea9.jpg?imageView2/2/w/800/q/70/format/webp'
+                'https://img.kwcdn.com/product/fancy/5e4c0902-8276-45ce-a08d-6a46bdae8ea9.jpg?imageView2/2/w/800/q/70/format/webp',
             ]
         },
         'oferta2': {
