@@ -43,22 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentImageIndex = 0;
     let productImages = [];
 
-    // Datos de productos (ejemplo). En un proyecto real, esto vendría de una API o JSON.
-    // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
+    // Datos de productos (ejemplo).
+    // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu carpeta raíz**
     const productsData = {
         'oferta1': {
-            name: 'Reloj Hombre y Mujer',
-            description: 'Pulsera de Cuarzo para Hombres y Mujeres, Correa de Cuero sintetico, El Regalo Ideal en Colores Variados.',
-            price: '$12.000 COP',
-            // **originalPrice: '$18.000 COP',**
+            name: 'Smart TV 4K 50"',
+            description: 'Disfruta de una calidad de imagen inmersiva y funciones inteligentes. Conexión Wi-Fi y múltiples puertos HDMI.',
+            price: '$999.000 COP',
+            originalPrice: '$1.500.000 COP',
             images: [
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
-                'https://goods-vod.kwcdn.com/goods-video/1a1b9570b71f695122366de90651165f11b2d43b.f30.mp4',
-                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg'
+                'productos_oferta1.jpg',
+                'productos_oferta1_alt1.jpg',
+                'productos_oferta1_alt2.jpg'
             ]
         },
         'oferta2': {
@@ -67,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$140.000 COP',
             originalPrice: '$200.000 COP',
             images: [
-                'productos/oferta_producto2.jpg',
-                'productos/oferta_producto2_alt1.jpg'
+                'productos_oferta2.jpg',
+                'productos_oferta2_alt1.jpg'
             ]
         },
         'oferta3': {
@@ -77,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$320.000 COP',
             originalPrice: '$450.000 COP',
             images: [
-                'productos/oferta_producto3.jpg',
-                'productos/oferta_producto3_alt1.jpg'
+                'productos_oferta3.jpg',
+                'productos_oferta3_alt1.jpg'
             ]
         },
         'oferta4': {
@@ -87,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$65.000 COP',
             originalPrice: '$90.000 COP',
             images: [
-                'productos/oferta_producto4.jpg',
-                'productos/oferta_producto4_alt1.jpg'
+                'productos_oferta4.jpg',
+                'productos_oferta4_alt1.jpg'
             ]
         },
         'oferta5': {
@@ -97,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$100.000 COP',
             originalPrice: '$150.000 COP',
             images: [
-                'productos/oferta_producto5.jpg',
-                'productos/oferta_producto5_alt1.jpg'
+                'productos_oferta5.jpg',
+                'productos_oferta5_alt1.jpg'
             ]
         },
         'oferta6': {
@@ -107,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$85.000 COP',
             originalPrice: '$120.000 COP',
             images: [
-                'productos/oferta_producto6.jpg',
-                'productos/oferta_producto6_alt1.jpg'
+                'productos_oferta6.jpg',
+                'productos_oferta6_alt1.jpg'
             ]
         },
         'elec1': {
@@ -116,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Sonido de alta fidelidad, cómodos y con gran autonomía de batería. Perfectos para el día a día y tus entrenamientos.',
             price: '$50.000 COP',
             images: [
-                'productos/categoria1_producto1.jpg',
-                'productos/categoria1_producto1_alt1.jpg'
+                'productos_categoria1_producto1.jpg',
+                'productos_categoria1_producto1_alt1.jpg'
             ]
         },
         'elec2': {
@@ -125,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Controla tu salud, recibe notificaciones y monitorea tu actividad física desde tu muñeca. Compatible con iOS y Android.',
             price: '$120.000 COP',
             images: [
-                'productos/categoria1_producto2.jpg',
-                'productos/categoria1_producto2_alt1.jpg'
+                'productos_categoria1_producto2.jpg',
+                'productos_categoria1_producto2_alt1.jpg'
             ]
         },
         'elec3': {
@@ -134,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Mantén tus dispositivos cargados en cualquier lugar con esta batería portátil de alta capacidad. Diseño compacto y ligero.',
             price: '$35.000 COP',
             images: [
-                'productos/categoria1_producto3.jpg',
-                'productos/categoria1_producto3_alt1.jpg'
+                'productos_categoria1_producto3.jpg',
+                'productos_categoria1_producto3_alt1.jpg'
             ]
         },
         'elec4': {
@@ -143,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Transforma cualquier pared en una pantalla de cine. Ideal para noches de películas, presentaciones o gaming.',
             price: '$250.000 COP',
             images: [
-                'productos/categoria1_producto4.jpg',
-                'productos/categoria1_producto4_alt1.jpg'
+                'productos_categoria1_producto4.jpg',
+                'productos_categoria1_producto4_alt1.jpg'
             ]
         },
         'elec5': {
@@ -152,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Compacto y perfecto para trabajar desde cualquier lugar con tu tablet o smartphone. Conexión rápida y estable.',
             price: '$45.000 COP',
             images: [
-                'productos/categoria1_producto5.jpg',
-                'productos/categoria1_producto5_alt1.jpg'
+                'productos_categoria1_producto5.jpg',
+                'productos_categoria1_producto5_alt1.jpg'
             ]
         },
         'elec6': {
@@ -161,8 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Calidad de video nítida para tus videollamadas, streaming y grabaciones. Micrófono incorporado con reducción de ruido.',
             price: '$70.000 COP',
             images: [
-                'productos/categoria1_producto6.jpg',
-                'productos/categoria1_producto6_alt1.jpg'
+                'productos_categoria1_producto6.jpg',
+                'productos_categoria1_producto6_alt1.jpg'
             ]
         },
         'moda1': {
@@ -170,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Elegante y práctico para el día a día, con múltiples compartimentos para organizar tus pertenencias.',
             price: '$80.000 COP',
             images: [
-                'productos/categoria2_producto1.jpg',
-                'productos/categoria2_producto1_alt1.jpg'
+                'productos_categoria2_producto1.jpg',
+                'productos_categoria2_producto1_alt1.jpg'
             ]
         },
         'moda2': {
@@ -179,8 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Protección UV y diseño moderno que se adapta a cualquier estilo. Ideales para conducir o disfrutar del aire libre.',
             price: '$40.000 COP',
             images: [
-                'productos/categoria2_producto2.jpg',
-                'productos/categoria2_producto2_alt1.jpg'
+                'productos_categoria2_producto2.jpg',
+                'productos_categoria2_producto2_alt1.jpg'
             ]
         },
         'moda3': {
@@ -188,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Suave y cálida, ideal para el invierno. Un accesorio esencial para mantenerte abrigado con estilo.',
             price: '$25.000 COP',
             images: [
-                'productos/categoria2_producto3.jpg',
-                'productos/categoria2_producto3_alt1.jpg'
+                'productos_categoria2_producto3.jpg',
+                'productos_categoria2_producto3_alt1.jpg'
             ]
         },
         'moda4': {
@@ -197,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Diseño minimalista y elegante, perfecto para cualquier ocasión. Resistente al agua para el uso diario.',
             price: '$95.000 COP',
             images: [
-                'productos/categoria2_producto4.jpg',
-                'productos/categoria2_producto4_alt1.jpg'
+                'productos_categoria2_producto4.jpg',
+                'productos_categoria2_producto4_alt1.jpg'
             ]
         },
         'moda5': {
@@ -206,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Elegancia y brillo para tu estilo. Diseño clásico y atemporal, perfectos para cualquier evento.',
             price: '$30.000 COP',
             images: [
-                'productos/categoria2_producto5.jpg',
-                'productos/categoria2_producto5_alt1.jpg'
+                'productos_categoria2_producto5.jpg',
+                'productos_categoria2_producto5_alt1.jpg'
             ]
         },
         'moda6': {
@@ -215,8 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Dos estilos en uno, versátil y duradero para combinar con diferentes atuendos.',
             price: '$55.000 COP',
             images: [
-                'productos/categoria2_producto6.jpg',
-                'productos/categoria2_producto6_alt1.jpg'
+                'productos_categoria2_producto6.jpg',
+                'productos_categoria2_producto6_alt1.jpg'
             ]
         },
         'hogar1': {
@@ -224,8 +220,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Confort y suavidad para un descanso perfecto. Tejido transpirable y resistente al lavado.',
             price: '$75.000 COP',
             images: [
-                'productos/categoria3_producto1.jpg',
-                'productos/categoria3_producto1_alt1.jpg'
+                'productos_categoria3_producto1.jpg',
+                'productos_categoria3_producto1_alt1.jpg'
             ]
         },
         'hogar2': {
@@ -233,8 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Imprescindible para cualquier arreglo en casa. Incluye martillo, destornilladores, alicates y más, en un estuche compacto.',
             price: '$60.000 COP',
             images: [
-                'productos/categoria3_producto2.jpg',
-                'productos/categoria3_producto2_alt1.jpg'
+                'productos_categoria3_producto2.jpg',
+                'productos_categoria3_producto2_alt1.jpg'
             ]
         },
         'hogar3': {
@@ -242,8 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Añade un toque verde y moderno a tus espacios interiores o exteriores. Fácil de instalar y limpiar.',
             price: '$20.000 COP',
             images: [
-                'productos/categoria3_producto3.jpg',
-                'productos/categoria3_producto3_alt1.jpg'
+                'productos_categoria3_producto3.jpg',
+                'productos_categoria3_producto3_alt1.jpg'
             ]
         },
         'hogar4': {
@@ -251,8 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Iluminación ajustable y diseño moderno. Ideal para estudiar, trabajar o leer. Con control táctil.',
             price: '$48.000 COP',
             images: [
-                'productos/categoria3_producto4.jpg',
-                'productos/categoria3_producto4_alt1.jpg'
+                'productos_categoria3_producto4.jpg',
+                'productos_categoria3_producto4_alt1.jpg'
             ]
         },
         'hogar5': {
@@ -260,8 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Limpieza automática para tu hogar. Programa su funcionamiento y olvídate de la suciedad. Compatible con asistentes de voz.',
             price: '$300.000 COP',
             images: [
-                'productos/categoria3_producto5.jpg',
-                'productos/categoria3_producto5_alt1.jpg'
+                'productos_categoria3_producto5.jpg',
+                'productos_categoria3_producto5_alt1.jpg'
             ]
         },
         'hogar6': {
@@ -269,8 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Ideal para proteger tu mesa con estilo. Fácil de limpiar y resistente a derrames. Perfecto para uso diario o eventos.',
             price: '$38.000 COP',
             images: [
-                'productos/categoria3_producto6.jpg',
-                'productos/categoria3_producto6_alt1.jpg'
+                'productos_categoria3_producto6.jpg',
+                'productos_categoria3_producto6_alt1.jpg'
             ]
         },
         'deporte1': {
@@ -278,8 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Hidratación garantizada para tus entrenamientos. Diseño ergonómico y material duradero, libre de BPA.',
             price: '$20.000 COP',
             images: [
-                'productos/categoria4_producto1.jpg',
-                'productos/categoria4_producto1_alt1.jpg'
+                'productos_categoria4_producto1.jpg',
+                'productos_categoria4_producto1_alt1.jpg'
             ]
         },
         'deporte2': {
@@ -287,8 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Perfectas para entrenar en casa o al aire libre. Incluye diferentes niveles de resistencia para todos los niveles de fitness.',
             price: '$30.000 COP',
             images: [
-                'productos/categoria4_producto2.jpg',
-                'productos/categoria4_producto2_alt1.jpg'
+                'productos_categoria4_producto2.jpg',
+                'productos_categoria4_producto2_alt1.jpg'
             ]
         },
         'deporte3': {
@@ -296,8 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Ligera y fácil de montar para tus aventuras al aire libre. Impermeable y resistente al viento, ideal para senderismo.',
             price: '$150.000 COP',
             images: [
-                'productos/categoria4_producto3.jpg',
-                'productos/categoria4_producto3_alt1.jpg'
+                'productos_categoria4_producto3.jpg',
+                'productos_categoria4_producto3_alt1.jpg'
             ]
         },
         'deporte4': {
@@ -305,8 +301,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Versatilidad para tus rutinas de fuerza. Ajusta el peso rápidamente para diferentes ejercicios. Ahorra espacio en casa.',
             price: '$180.000 COP',
             images: [
-                'productos/categoria4_producto4.jpg',
-                'productos/categoria4_producto4_alt1.jpg'
+                'productos_categoria4_producto4.jpg',
+                'productos_categoria4_producto4_alt1.jpg'
             ]
         },
         'deporte5': {
@@ -314,8 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Explora el mundo submarino con comodidad y claridad. Incluye máscara, tubo y aletas de alta calidad.',
             price: '$65.000 COP',
             images: [
-                'productos/categoria4_producto5.jpg',
-                'productos/categoria4_producto5_alt1.jpg'
+                'productos_categoria4_producto5.jpg',
+                'productos_categoria4_producto5_alt1.jpg'
             ]
         },
         'deporte6': {
@@ -323,8 +319,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Espaciosa y cómoda para tus excursiones. Múltiples bolsillos y soporte lumbar para mayor confort.',
             price: '$90.000 COP',
             images: [
-                'productos/categoria4_producto6.jpg',
-                'productos/categoria4_producto6_alt1.jpg'
+                'productos_categoria4_producto6.jpg',
+                'productos_categoria4_producto6_alt1.jpg'
             ]
         }
     };
@@ -332,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', (event) => {
-            // Evita que el clic en el botón de "Comprar" active el modal
             if (event.target.classList.contains('buy-btn')) {
                 return;
             }
@@ -344,21 +339,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalProductTitle.textContent = product.name;
                 modalProductDescription.textContent = product.description;
 
-                // Manejar precio con o sin oferta
                 if (product.originalPrice) {
                     modalProductPrice.innerHTML = `<span class="old-price">${product.originalPrice}</span> <span class="new-price">${product.price}</span>`;
                 } else {
                     modalProductPrice.textContent = product.price;
                 }
 
-                modalBuyButton.dataset.product = product.name; // Para el botón de WhatsApp del modal
+                modalBuyButton.dataset.product = product.name;
 
                 productImages = product.images;
                 currentImageIndex = 0;
                 updateModalImageAndThumbnails();
 
                 productModal.classList.add('active');
-                // Deshabilita el scroll del body
                 document.body.classList.add('no-scroll');
             }
         });
@@ -369,7 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('no-scroll');
     });
 
-    // Cerrar modal al hacer clic fuera del contenido
     window.addEventListener('click', (event) => {
         if (event.target === productModal) {
             productModal.classList.remove('active');
@@ -389,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateModalImageAndThumbnails() {
         if (productImages.length === 0) {
-            modalProductImage.src = 'placeholder.jpg';
+            modalProductImage.src = 'placeholder.jpg'; // Asegúrate de que esta imagen exista en la raíz
             galleryThumbnails.innerHTML = '';
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
@@ -421,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Botones de Comprar a WhatsApp ---
-    const whatsappNumber = '573205893469'; // Tu número incluyendo el código de país (57 para Colombia)
+    const whatsappNumber = '573205893469';
 
     document.querySelectorAll('.product-card .buy-btn').forEach(button => {
         button.addEventListener('click', (event) => {
@@ -447,20 +439,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const answer = question.nextElementSibling;
             const icon = question.querySelector('.expand-icon');
 
-            // Toggle la clase 'active' en la pregunta y la respuesta
             question.classList.toggle('active');
             answer.classList.toggle('active');
 
-            // Controla la rotación del icono
             if (question.classList.contains('active')) {
                 icon.style.transform = 'rotate(180deg)';
             } else {
                 icon.style.transform = 'rotate(0deg)';
             }
 
-            // Opcional: Cerrar otros acordeones si se abre uno nuevo
             document.querySelectorAll('.faq-question.active').forEach(otherQuestion => {
-                if (otherQuestion !== question) { // Si no es la pregunta actual
+                if (otherQuestion !== question) {
                     otherQuestion.classList.remove('active');
                     otherQuestion.nextElementSibling.classList.remove('active');
                     otherQuestion.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
@@ -472,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Service Worker para PWA ---
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('sw.js') // sw.js también en la raíz
                 .then(registration => {
                     console.log('Service Worker registrado con éxito:', registration);
                 })
