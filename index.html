@@ -3,313 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nombre de tu Tienda Online</title>
+    <title>Tienda Online</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192x192.png">
-    <meta name="theme-color" content="#4CAF50"> </head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 <body>
-    <div id="splash-screen">
-        <img src="logo.png" alt="Logo" class="splash-logo"> </div>
+    <div id="splash-screen" class="splash-screen active">
+        <div class="splash-logo">
+            <img src="logo.png" alt="Logo de la Tienda">
+        </div>
+        <div class="loader"></div>
+    </div>
 
-    <header class="sticky-header">
+    <header class="header">
         <div class="container">
             <a href="#" class="logo">
-                <img src="logo.png" alt="Logo de la Tienda" class="logo-img"> TiendaOnline
+                <img src="logo.png" alt="Logo de la Tienda">
+                <span>Tienda Online</span>
             </a>
-            <button id="menu-toggle" class="material-icons">menu</button>
-            <nav id="main-nav">
+            <nav class="main-nav" id="main-nav">
                 <ul>
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#ofertas">Ofertas</a></li>
-                    <li><a href="#electronica">Electrónica</a></li>
-                    <li><a href="#moda">Moda</a></li>
-                    <li><a href="#hogar">Hogar</a></li>
-                    <li><a href="#deportes">Deportes</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#hero-section">Inicio</a></li>
+                    <li><a href="#featured-products">Ofertas</a></li>
+                    <li>
+                        <a href="#categories-section">Categorías</a>
+                        <ul class="dropdown">
+                            <li><a href="#electronics-category">Electrónica</a></li>
+                            <li><a href="#fashion-category">Moda</a></li>
+                            <li><a href="#home-category">Hogar</a></li>
+                            <li><a href="#sports-category">Deportes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#faq-section">FAQs</a></li>
+                    <li><a href="#contact-section">Contacto</a></li>
                 </ul>
             </nav>
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
         </div>
     </header>
 
-    <main>
-        <section class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fondo.jpg');">
-            <h1>Descubre Nuestros Productos</h1>
-            <p>La mejor calidad al mejor precio. ¡Envío a todo el país!</p>
-            <a href="#ofertas" class="btn-primary">Ver Ofertas Especiales</a>
-        </section>
+    <section class="hero-section" id="hero-section">
+        <div class="hero-content">
+            <h1>Descubre ofertas increíbles en <span class="highlight">productos de calidad</span></h1>
+            <p>Desde tecnología hasta moda, encuentra todo lo que necesitas al mejor precio.</p>
+            <a href="#featured-products" class="btn primary-btn">Explorar Ofertas</a>
+        </div>
+    </section>
 
-        <section id="ofertas" class="category-section highlight-category">
-            <div class="container">
-                <h2>🔥 Ofertas Especiales 🔥</h2>
-                <div class="product-grid">
-                    <div class="product-card" data-product-id="oferta1">
-                        <img src="productos_oferta1.jpg" alt="Smart TV 4K 50&quot;">
+    <section class="products-section featured-products" id="featured-products">
+        <div class="container">
+            <h2>Ofertas Destacadas</h2>
+            <p class="section-description">Aprovecha nuestros descuentos exclusivos por tiempo limitado.</p>
+            <div class="product-grid">
+                <div class="product-card" data-product-id="oferta1">
+                    <img src="productos_oferta1.jpg" alt="Smart TV 4K 50&quot;">
+                    <div class="product-info">
                         <h3>Smart TV 4K 50"</h3>
-                        <p>Disfruta de una calidad de imagen inmersiva.</p>
-                        <span class="price"><span class="old-price">$1.500.000 COP</span> <span class="new-price">$999.000 COP</span></span>
-                        <button class="buy-btn" data-product="Smart TV 4K 50&quot;">Comprar por WhatsApp</button>
+                        <p class="product-price"><span class="old-price">$1.500.000 COP</span> <span class="new-price">$999.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Smart TV 4K 50&quot;">Comprar</button>
                     </div>
-                    <div class="product-card" data-product-id="oferta2">
-                        <img src="productos_oferta2.jpg" alt="Cafetera Programable">
+                </div>
+                <div class="product-card" data-product-id="oferta2">
+                    <img src="productos_oferta2.jpg" alt="Cafetera Programable">
+                    <div class="product-info">
                         <h3>Cafetera Programable</h3>
-                        <p>Prepara tu café favorito a la hora deseada.</p>
-                        <span class="price"><span class="old-price">$200.000 COP</span> <span class="new-price">$140.000 COP</span></span>
-                        <button class="buy-btn" data-product="Cafetera Programable">Comprar por WhatsApp</button>
+                        <p class="product-price"><span class="old-price">$200.000 COP</span> <span class="new-price">$140.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Cafetera Programable">Comprar</button>
                     </div>
-                    <div class="product-card" data-product-id="oferta3">
-                        <img src="productos_oferta3.jpg" alt="Dron con Cámara HD">
+                </div>
+                <div class="product-card" data-product-id="oferta3">
+                    <img src="productos_oferta3.jpg" alt="Dron con Cámara HD">
+                    <div class="product-info">
                         <h3>Dron con Cámara HD</h3>
-                        <p>Explora los cielos y captura videos en alta definición.</p>
-                        <span class="price"><span class="old-price">$450.000 COP</span> <span class="new-price">$320.000 COP</span></span>
-                        <button class="buy-btn" data-product="Dron con Cámara HD">Comprar por WhatsApp</button>
+                        <p class="product-price"><span class="old-price">$450.000 COP</span> <span class="new-price">$320.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Dron con Cámara HD">Comprar</button>
                     </div>
-                    <div class="product-card" data-product-id="oferta4">
-                        <img src="productos_oferta4.jpg" alt="Mochila Antirrobo USB">
+                </div>
+                <div class="product-card" data-product-id="oferta4">
+                    <img src="productos_oferta4.jpg" alt="Mochila Antirrobo USB">
+                    <div class="product-info">
                         <h3>Mochila Antirrobo USB</h3>
-                        <p>Diseño seguro y compartimento para laptop.</p>
-                        <span class="price"><span class="old-price">$90.000 COP</span> <span class="new-price">$65.000 COP</span></span>
-                        <button class="buy-btn" data-product="Mochila Antirrobo USB">Comprar por WhatsApp</button>
+                        <p class="product-price"><span class="old-price">$90.000 COP</span> <span class="new-price">$65.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Mochila Antirrobo USB">Comprar</button>
                     </div>
-                    <div class="product-card" data-product-id="oferta5">
-                        <img src="productos_oferta5.jpg" alt="Auriculares Gaming RGB">
+                </div>
+                <div class="product-card" data-product-id="oferta5">
+                    <img src="productos_oferta5.jpg" alt="Auriculares Gaming RGB">
+                    <div class="product-info">
                         <h3>Auriculares Gaming RGB</h3>
-                        <p>Sonido envolvente y luces RGB personalizables.</p>
-                        <span class="price"><span class="old-price">$150.000 COP</span> <span class="new-price">$100.000 COP</span></span>
-                        <button class="buy-btn" data-product="Auriculares Gaming RGB">Comprar por WhatsApp</button>
+                        <p class="product-price"><span class="old-price">$150.000 COP</span> <span class="new-price">$100.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Auriculares Gaming RGB">Comprar</button>
                     </div>
-                    <div class="product-card" data-product-id="oferta6">
-                        <img src="productos_oferta6.jpg" alt="Set de Cuchillos Profesional">
-                        <h3>Set de Cuchillos Profesional</h3>
-                        <p>Cuchillos de acero inoxidable de alta precisión.</p>
-                        <span class="price"><span class="old-price">$120.000 COP</span> <span class="new-price">$85.000 COP</span></span>
-                        <button class="buy-btn" data-product="Set de Cuchillos de Cocina Profesional">Comprar por WhatsApp</button>
+                </div>
+                <div class="product-card" data-product-id="oferta6">
+                    <img src="productos_oferta6.jpg" alt="Set de Cuchillos de Cocina Profesional">
+                    <div class="product-info">
+                        <h3>Set de Cuchillos de Cocina Profesional</h3>
+                        <p class="product-price"><span class="old-price">$120.000 COP</span> <span class="new-price">$85.000 COP</span></p>
+                        <button class="btn buy-btn" data-product="Set de Cuchillos de Cocina Profesional">Comprar</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="electronica" class="category-section">
-            <div class="container">
-                <h2>📱 Electrónica</h2>
+    <section class="categories-section" id="categories-section">
+        <div class="container">
+            <h2>Nuestras Categorías</h2>
+            <p class="section-description">Explora un mundo de productos divididos en categorías para tu conveniencia.</p>
+            <div class="category-list">
+                <a href="#electronics-category" class="category-item">
+                    <span class="material-icons">devices</span>
+                    <h3>Electrónica</h3>
+                </a>
+                <a href="#fashion-category" class="category-item">
+                    <span class="material-icons">accessibility_new</span>
+                    <h3>Moda</h3>
+                </a>
+                <a href="#home-category" class="category-item">
+                    <span class="material-icons">home</span>
+                    <h3>Hogar</h3>
+                </a>
+                <a href="#sports-category" class="category-item">
+                    <span class="material-icons">sports_soccer</span>
+                    <h3>Deportes</h3>
+                </a>
+            </div>
+
+            <div class="category-products" id="electronics-category">
+                <h3>Electrónica</h3>
                 <div class="product-grid">
                     <div class="product-card" data-product-id="elec1">
                         <img src="productos_categoria1_producto1.jpg" alt="Auriculares Inalámbricos">
-                        <h3>Auriculares Inalámbricos</h3>
-                        <p>Sonido de alta fidelidad, cómodos y con gran autonomía.</p>
-                        <span class="price">$50.000 COP</span>
-                        <button class="buy-btn" data-product="Auriculares Inalámbricos">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Auriculares Inalámbricos</h3>
+                            <p class="product-price">$50.000 COP</p>
+                            <button class="btn buy-btn" data-product="Auriculares Inalámbricos">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="elec2">
                         <img src="productos_categoria1_producto2.jpg" alt="Smartwatch">
-                        <h3>Smartwatch</h3>
-                        <p>Controla tu salud y recibe notificaciones.</p>
-                        <span class="price">$120.000 COP</span>
-                        <button class="buy-btn" data-product="Smartwatch">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Smartwatch</h3>
+                            <p class="product-price">$120.000 COP</p>
+                            <button class="btn buy-btn" data-product="Smartwatch">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="elec3">
                         <img src="productos_categoria1_producto3.jpg" alt="Power Bank 10000mAh">
-                        <h3>Power Bank 10000mAh</h3>
-                        <p>Mantén tus dispositivos cargados en cualquier lugar.</p>
-                        <span class="price">$35.000 COP</span>
-                        <button class="buy-btn" data-product="Power Bank 10000mAh">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Power Bank 10000mAh</h3>
+                            <p class="product-price">$35.000 COP</p>
+                            <button class="btn buy-btn" data-product="Power Bank 10000mAh">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="elec4">
                         <img src="productos_categoria1_producto4.jpg" alt="Mini Proyector Portátil">
-                        <h3>Mini Proyector Portátil</h3>
-                        <p>Transforma cualquier pared en una pantalla de cine.</p>
-                        <span class="price">$250.000 COP</span>
-                        <button class="buy-btn" data-product="Mini Proyector Portátil">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Mini Proyector Portátil</h3>
+                            <p class="product-price">$250.000 COP</p>
+                            <button class="btn buy-btn" data-product="Mini Proyector Portátil">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="elec5">
                         <img src="productos_categoria1_producto5.jpg" alt="Teclado Bluetooth">
-                        <h3>Teclado Bluetooth</h3>
-                        <p>Compacto y perfecto para trabajar.</p>
-                        <span class="price">$45.000 COP</span>
-                        <button class="buy-btn" data-product="Teclado Bluetooth">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Teclado Bluetooth</h3>
+                            <p class="product-price">$45.000 COP</p>
+                            <button class="btn buy-btn" data-product="Teclado Bluetooth">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="elec6">
                         <img src="productos_categoria1_producto6.jpg" alt="Cámara Web Full HD">
-                        <h3>Cámara Web Full HD</h3>
-                        <p>Calidad de video nítida para tus videollamadas.</p>
-                        <span class="price">$70.000 COP</span>
-                        <button class="buy-btn" data-product="Cámara Web Full HD">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Cámara Web Full HD</h3>
+                            <p class="product-price">$70.000 COP</p>
+                            <button class="btn buy-btn" data-product="Cámara Web Full HD">Comprar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="moda" class="category-section">
-            <div class="container">
-                <h2>👕 Moda y Accesorios</h2>
+            <div class="category-products" id="fashion-category">
+                <h3>Moda</h3>
                 <div class="product-grid">
                     <div class="product-card" data-product-id="moda1">
                         <img src="productos_categoria2_producto1.jpg" alt="Bolso de Cuero Unisex">
-                        <h3>Bolso de Cuero Unisex</h3>
-                        <p>Elegante y práctico para el día a día.</p>
-                        <span class="price">$80.000 COP</span>
-                        <button class="buy-btn" data-product="Bolso de Cuero Unisex">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Bolso de Cuero Unisex</h3>
+                            <p class="product-price">$80.000 COP</p>
+                            <button class="btn buy-btn" data-product="Bolso de Cuero Unisex">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="moda2">
                         <img src="productos_categoria2_producto2.jpg" alt="Gafas de Sol Polarizadas">
-                        <h3>Gafas de Sol Polarizadas</h3>
-                        <p>Protección UV y diseño moderno.</p>
-                        <span class="price">$40.000 COP</span>
-                        <button class="buy-btn" data-product="Gafas de Sol Polarizadas">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Gafas de Sol Polarizadas</h3>
+                            <p class="product-price">$40.000 COP</p>
+                            <button class="btn buy-btn" data-product="Gafas de Sol Polarizadas">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="moda3">
                         <img src="productos_categoria2_producto3.jpg" alt="Bufanda de Lana Tejida">
-                        <h3>Bufanda de Lana Tejida</h3>
-                        <p>Suave y cálida, ideal para el invierno.</p>
-                        <span class="price">$25.000 COP</span>
-                        <button class="buy-btn" data-product="Bufanda de Lana Tejida">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Bufanda de Lana Tejida</h3>
+                            <p class="product-price">$25.000 COP</p>
+                            <button class="btn buy-btn" data-product="Bufanda de Lana Tejida">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="moda4">
                         <img src="productos_categoria2_producto4.jpg" alt="Reloj Casual Hombre">
-                        <h3>Reloj Casual Hombre</h3>
-                        <p>Diseño minimalista y elegante.</p>
-                        <span class="price">$95.000 COP</span>
-                        <button class="buy-btn" data-product="Reloj Casual Hombre">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Reloj Casual Hombre</h3>
+                            <p class="product-price">$95.000 COP</p>
+                            <button class="btn buy-btn" data-product="Reloj Casual Hombre">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="moda5">
                         <img src="productos_categoria2_producto5.jpg" alt="Aretes de Plata 925">
-                        <h3>Aretes de Plata 925</h3>
-                        <p>Elegancia y brillo para tu estilo.</p>
-                        <span class="price">$30.000 COP</span>
-                        <button class="buy-btn" data-product="Aretes de Plata 925">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Aretes de Plata 925</h3>
+                            <p class="product-price">$30.000 COP</p>
+                            <button class="btn buy-btn" data-product="Aretes de Plata 925">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="moda6">
                         <img src="productos_categoria2_producto6.jpg" alt="Cinturón de Cuero Reversible">
-                        <h3>Cinturón de Cuero Reversible</h3>
-                        <p>Dos estilos en uno, versátil y duradero.</p>
-                        <span class="price">$55.000 COP</span>
-                        <button class="buy-btn" data-product="Cinturón de Cuero Reversible">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Cinturón de Cuero Reversible</h3>
+                            <p class="product-price">$55.000 COP</p>
+                            <button class="btn buy-btn" data-product="Cinturón de Cuero Reversible">Comprar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="hogar" class="category-section">
-            <div class="container">
-                <h2>🏠 Hogar y Cocina</h2>
+            <div class="category-products" id="home-category">
+                <h3>Hogar</h3>
                 <div class="product-grid">
                     <div class="product-card" data-product-id="hogar1">
                         <img src="productos_categoria3_producto1.jpg" alt="Juego de Sábanas de Algodón">
-                        <h3>Juego de Sábanas de Algodón</h3>
-                        <p>Confort y suavidad para un descanso perfecto.</p>
-                        <span class="price">$75.000 COP</span>
-                        <button class="buy-btn" data-product="Juego de Sábanas de Algodón">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Juego de Sábanas de Algodón</h3>
+                            <p class="product-price">$75.000 COP</p>
+                            <button class="btn buy-btn" data-product="Juego de Sábanas de Algodón">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="hogar2">
                         <img src="productos_categoria3_producto2.jpg" alt="Set de Herramientas Básicas">
-                        <h3>Set de Herramientas Básicas</h3>
-                        <p>Imprescindible para cualquier arreglo en casa.</p>
-                        <span class="price">$60.000 COP</span>
-                        <button class="buy-btn" data-product="Set de Herramientas Básicas">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Set de Herramientas Básicas</h3>
+                            <p class="product-price">$60.000 COP</p>
+                            <button class="btn buy-btn" data-product="Set de Herramientas Básicas">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="hogar3">
                         <img src="productos_categoria3_producto3.jpg" alt="Maceta Colgante Decorativa">
-                        <h3>Maceta Colgante Decorativa</h3>
-                        <p>Añade un toque verde y moderno a tus espacios.</p>
-                        <span class="price">$20.000 COP</span>
-                        <button class="buy-btn" data-product="Maceta Colgante Decorativa">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Maceta Colgante Decorativa</h3>
+                            <p class="product-price">$20.000 COP</p>
+                            <button class="btn buy-btn" data-product="Maceta Colgante Decorativa">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="hogar4">
                         <img src="productos_categoria3_producto4.jpg" alt="Lámpara de Escritorio LED">
-                        <h3>Lámpara de Escritorio LED</h3>
-                        <p>Iluminación ajustable y diseño moderno.</p>
-                        <span class="price">$48.000 COP</span>
-                        <button class="buy-btn" data-product="Lámpara de Escritorio LED">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Lámpara de Escritorio LED</h3>
+                            <p class="product-price">$48.000 COP</p>
+                            <button class="btn buy-btn" data-product="Lámpara de Escritorio LED">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="hogar5">
                         <img src="productos_categoria3_producto5.jpg" alt="Robot Aspirador Inteligente">
-                        <h3>Robot Aspirador Inteligente</h3>
-                        <p>Limpieza automática para tu hogar.</p>
-                        <span class="price">$300.000 COP</span>
-                        <button class="buy-btn" data-product="Robot Aspirador Inteligente">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Robot Aspirador Inteligente</h3>
+                            <p class="product-price">$300.000 COP</p>
+                            <button class="btn buy-btn" data-product="Robot Aspirador Inteligente">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="hogar6">
                         <img src="productos_categoria3_producto6.jpg" alt="Mantel Antimanchas">
-                        <h3>Mantel Antimanchas</h3>
-                        <p>Ideal para proteger tu mesa con estilo.</p>
-                        <span class="price">$38.000 COP</span>
-                        <button class="buy-btn" data-product="Mantel Antimanchas">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Mantel Antimanchas</h3>
+                            <p class="product-price">$38.000 COP</p>
+                            <button class="btn buy-btn" data-product="Mantel Antimanchas">Comprar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="deportes" class="category-section">
-            <div class="container">
-                <h2>⚽ Deportes y Aire Libre</h2>
+            <div class="category-products" id="sports-category">
+                <h3>Deportes</h3>
                 <div class="product-grid">
                     <div class="product-card" data-product-id="deporte1">
                         <img src="productos_categoria4_producto1.jpg" alt="Botella de Agua Deportiva">
-                        <h3>Botella de Agua Deportiva</h3>
-                        <p>Hidratación garantizada para tus entrenamientos.</p>
-                        <span class="price">$20.000 COP</span>
-                        <button class="buy-btn" data-product="Botella de Agua Deportiva">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Botella de Agua Deportiva</h3>
+                            <p class="product-price">$20.000 COP</p>
+                            <button class="btn buy-btn" data-product="Botella de Agua Deportiva">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="deporte2">
                         <img src="productos_categoria4_producto2.jpg" alt="Bandas de Resistencia">
-                        <h3>Bandas de Resistencia</h3>
-                        <p>Perfectas para entrenar en casa o al aire libre.</p>
-                        <span class="price">$30.000 COP</span>
-                        <button class="buy-btn" data-product="Bandas de Resistencia">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Bandas de Resistencia</h3>
+                            <p class="product-price">$30.000 COP</p>
+                            <button class="btn buy-btn" data-product="Bandas de Resistencia">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="deporte3">
                         <img src="productos_categoria4_producto3.jpg" alt="Tienda de Campaña Individual">
-                        <h3>Tienda de Campaña Individual</h3>
-                        <p>Ligera y fácil de montar.</p>
-                        <span class="price">$150.000 COP</span>
-                        <button class="buy-btn" data-product="Tienda de Campaña Individual">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Tienda de Campaña Individual</h3>
+                            <p class="product-price">$150.000 COP</p>
+                            <button class="btn buy-btn" data-product="Tienda de Campaña Individual">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="deporte4">
                         <img src="productos_categoria4_producto4.jpg" alt="Mancuernas Ajustables">
-                        <h3>Mancuernas Ajustables</h3>
-                        <p>Versatilidad para tus rutinas de fuerza.</p>
-                        <span class="price">$180.000 COP</span>
-                        <button class="buy-btn" data-product="Mancuernas Ajustables">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Mancuernas Ajustables</h3>
+                            <p class="product-price">$180.000 COP</p>
+                            <button class="btn buy-btn" data-product="Mancuernas Ajustables">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="deporte5">
                         <img src="productos_categoria4_producto5.jpg" alt="Kit de Snorkel">
-                        <h3>Kit de Snorkel</h3>
-                        <p>Explora el mundo submarino con comodidad.</p>
-                        <span class="price">$65.000 COP</span>
-                        <button class="buy-btn" data-product="Kit de Snorkel">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Kit de Snorkel</h3>
+                            <p class="product-price">$65.000 COP</p>
+                            <button class="btn buy-btn" data-product="Kit de Snorkel">Comprar</button>
+                        </div>
                     </div>
                     <div class="product-card" data-product-id="deporte6">
                         <img src="productos_categoria4_producto6.jpg" alt="Mochila de Senderismo 30L">
-                        <h3>Mochila de Senderismo 30L</h3>
-                        <p>Espaciosa y cómoda para tus excursiones.</p>
-                        <span class="price">$90.000 COP</span>
-                        <button class="buy-btn" data-product="Mochila de Senderismo 30L">Comprar por WhatsApp</button>
+                        <div class="product-info">
+                            <h3>Mochila de Senderismo 30L</h3>
+                            <p class="product-price">$90.000 COP</p>
+                            <button class="btn buy-btn" data-product="Mochila de Senderismo 30L">Comprar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-
-        <section id="faq" class="faq-section">
-            <div class="container">
-                <h2>Preguntas Frecuentes</h2>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        ¿Cómo puedo realizar un pedido?
-                        <span class="material-icons expand-icon">expand_more</span>
-                    </div>
-                    <div class="faq-answer">
-                        Puedes realizar un pedido navegando por nuestras categorías y haciendo clic en el botón "Comprar por WhatsApp" en el producto deseado. Te contactaremos para finalizar tu compra.
-                    </div>
-                </div>
+    <section class="faq-section" id="faq-section">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="section-description">Encuentra respuestas a las preguntas más comunes sobre nuestros productos y servicios.</p>
+            <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
                         ¿Cuáles son los métodos de pago aceptados?
                         <span class="material-icons expand-icon">expand_more</span>
                     </div>
                     <div class="faq-answer">
-                        Aceptamos pagos a través de transferencia bancaria, Nequi, y Daviplata. En algunos casos, ofrecemos pago contra entrega en ciertas ciudades. Consulta con nosotros.
+                        <p>Aceptamos pagos con tarjeta de crédito (Visa, MasterCard, American Express), PSE y Nequi. También puedes pagar por transferencia bancaria directa o Daviplata. Todas nuestras transacciones son seguras.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -318,59 +373,133 @@
                         <span class="material-icons expand-icon">expand_more</span>
                     </div>
                     <div class="faq-answer">
-                        El tiempo de envío varía según tu ubicación. Generalmente, los envíos a ciudades principales tardan entre 2 y 5 días hábiles. Para zonas rurales, puede extenderse un poco más.
+                        <p>El tiempo de envío estándar es de 2 a 5 días hábiles, dependiendo de tu ubicación. Ofrecemos envío express en algunas ciudades por un costo adicional.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        ¿Ofrecen garantía en los productos?
+                        ¿Se realizan envíos internacionales?
                         <span class="material-icons expand-icon">expand_more</span>
                     </div>
                     <div class="faq-answer">
-                        Sí, todos nuestros productos tienen garantía por defectos de fabricación. La duración de la garantía puede variar según el producto. Por favor, revisa la descripción individual de cada artículo o contáctanos para más detalles.
+                        <p>Por el momento, solo realizamos envíos dentro de Colombia. Estamos trabajando para expandir nuestras operaciones a otros países en el futuro cercano.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        ¿Puedo devolver un producto si no estoy satisfecho?
+                        ¿Cuál es la política de devoluciones?
                         <span class="material-icons expand-icon">expand_more</span>
                     </div>
                     <div class="faq-answer">
-                        Sí, aceptamos devoluciones dentro de los 7 días posteriores a la recepción del producto, siempre y cuando esté en su empaque original y en perfectas condiciones. Consulta nuestra política de devoluciones completa.
+                        <p>Ofrecemos una política de devolución de 30 días. Si no estás satisfecho con tu compra, puedes devolver el producto en su estado original para un reembolso completo o un cambio. Consulta nuestra sección de Términos y Condiciones para más detalles.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Los productos tienen garantía?
+                        <span class="material-icons expand-icon">expand_more</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, todos nuestros productos cuentan con garantía del fabricante. La duración de la garantía varía según el producto. Para más información, por favor, consulta la descripción de cada producto o contáctanos.</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 TiendaOnline. Todos los derechos reservados.</p>
         </div>
-    </footer>
+    </section>
+
+    <section class="contact-section" id="contact-section">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <p class="section-description">¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para asistirte.</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <p><span class="material-icons">location_on</span> Calle Falsa 123, Pereira, Colombia</p>
+                    <p><span class="material-icons">email</span> info@tiendaonline.com</p>
+                    <p><span class="material-icons">phone</span> +57 320 5893469</p>
+                    <p><span class="material-icons">access_time</span> Lunes - Viernes: 9:00 AM - 6:00 PM</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div id="product-modal" class="modal">
         <div class="modal-content">
-            <span class="close-button material-icons">close</span>
-            <div class="modal-body">
-                <div class="product-image-gallery">
-                    <div class="gallery-main-image">
-                        <img id="modal-product-image" src="" alt="Producto en detalle">
-                        <button class="gallery-prev material-icons">chevron_left</button>
-                        <button class="gallery-next material-icons">chevron_right</button>
+            <span class="close-button">&times;</span>
+            <div class="product-gallery">
+                <div class="gallery-main-image">
                     </div>
-                    <div id="modal-product-thumbnails" class="gallery-thumbnails">
-                        </div>
-                </div>
-                <div class="product-details">
-                    <h2 id="modal-product-title"></h2>
-                    <p id="modal-product-description"></p>
-                    <span class="price" id="modal-product-price"></span>
-                    <button id="modal-buy-btn" class="btn-primary">Comprar por WhatsApp</button>
-                </div>
+                <div class="gallery-thumbnails" id="modal-product-thumbnails">
+                    </div>
+                <button class="gallery-nav gallery-prev">&#10094;</button>
+                <button class="gallery-nav gallery-next">&#10095;</button>
+            </div>
+            <div class="modal-product-info">
+                <h2 id="modal-product-title">Nombre del Producto</h2>
+                <p id="modal-product-description">Descripción del producto.</p>
+                <p class="product-price" id="modal-product-price">$XXX.XXX COP</p>
+                <button class="btn primary-btn" id="modal-buy-btn" data-product="">Comprar por WhatsApp</button>
+                <button class="btn share-btn" id="modal-share-btn">
+                    <span class="material-icons">share</span> Compartir Producto
+                </button>
             </div>
         </div>
     </div>
+
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Tienda Online</h3>
+                <p>Tu mejor opción para comprar productos de calidad.</p>
+                <p>Dirección: Calle Falsa 123, Pereira, Colombia</p>
+                <p>Email: info@tiendaonline.com</p>
+                <p>Teléfono: +57 320 5893469</p>
+            </div>
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#featured-products">Ofertas</a></li>
+                    <li><a href="#electronics-category">Electrónica</a></li>
+                    <li><a href="#fashion-category">Moda</a></li>
+                    <li><a href="#home-category">Hogar</a></li>
+                    <li><a href="#sports-category">Deportes</a></li>
+                    <li><a href="#faq-section">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+                    <a href="https://www.twitter.com/" target="_blank"><img src="twitter.png" alt="Twitter"></a>
+                </div>
+                <button class="btn share-btn" id="footer-share-btn" style="margin-top: 20px;">
+                    <span class="material-icons">share</span> Compartir Tienda
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tienda Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
