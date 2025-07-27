@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
-            // Opcional: Deshabilita el scroll del body cuando el menú está abierto
+            // Deshabilita/habilita el scroll del body cuando el menú está abierto/cerrado
             document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
         });
 
-        // Cerrar el menú si se hace clic en un enlace o fuera del menú (overlay)
+        // Cerrar el menú si se hace clic en un enlace
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -26,14 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.remove('no-scroll');
             });
         });
-
-        // Opcional: Cerrar el menú si se hace clic fuera de él (si implementas un overlay)
-        // document.addEventListener('click', (event) => {
-        //     if (!mainNav.contains(event.target) && !menuToggle.contains(event.target) && mainNav.classList.contains('active')) {
-        //         mainNav.classList.remove('active');
-        //         document.body.classList.remove('no-scroll');
-        //     }
-        // });
     }
 
     // --- Lógica del Modal de Producto y Slider ---
@@ -52,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let productImages = [];
 
     // Datos de productos (ejemplo). En un proyecto real, esto vendría de una API o JSON.
-    // He agregado rutas de imagen adicionales para el slider.
     // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
     const productsData = {
         'oferta1': {
@@ -62,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             originalPrice: '$1.500.000 COP',
             images: [
                 'productos/oferta_producto1.jpg',
-                'productos/oferta_producto1_alt1.jpg', // Asume que tienes estas imágenes alternativas
+                'productos/oferta_producto1_alt1.jpg',
                 'productos/oferta_producto1_alt2.jpg'
             ]
         },
@@ -363,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateModalImageAndThumbnails();
 
                 productModal.classList.add('active');
-                // Opcional: Deshabilita el scroll del body cuando el modal está abierto
+                // Deshabilita el scroll del body
                 document.body.classList.add('no-scroll');
             }
         });
@@ -393,13 +384,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateModalImageAndThumbnails() {
-        if (productImages.length === 0) { // Manejar caso sin imágenes
-            modalProductImage.src = 'placeholder.jpg'; // Imagen por defecto
+        if (productImages.length === 0) {
+            modalProductImage.src = 'placeholder.jpg';
             galleryThumbnails.innerHTML = '';
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
             return;
-        } else if (productImages.length === 1) { // Si solo hay una imagen, oculta los botones de navegación
+        } else if (productImages.length === 1) {
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
         } else {
@@ -408,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modalProductImage.src = productImages[currentImageIndex];
-        galleryThumbnails.innerHTML = ''; // Limpiar miniaturas existentes
+        galleryThumbnails.innerHTML = '';
 
         productImages.forEach((imageSrc, index) => {
             const thumbnail = document.createElement('img');
@@ -428,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Botones de Comprar a WhatsApp ---
     const whatsappNumber = '573205893469'; // Tu número incluyendo el código de país (57 para Colombia)
 
-    // Agrega listeners a los botones de "Comprar" en las tarjetas
     document.querySelectorAll('.product-card .buy-btn').forEach(button => {
         button.addEventListener('click', (event) => {
             const productName = event.target.dataset.product;
@@ -438,42 +428,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Agrega listener al botón de "Comprar" dentro del modal
     modalBuyButton.addEventListener('click', (event) => {
         const productName = event.target.dataset.product;
         const message = `Hola, estoy interesado en comprar el siguiente producto (desde el modal): ${encodeURIComponent(productName)}. Por favor, dame más información.`;
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
-        productModal.classList.remove('active'); // Cerrar modal después de enviar a WhatsApp
+        productModal.classList.remove('active');
         document.body.classList.remove('no-scroll');
     });
-
 
     // --- Preguntas Frecuentes Desplegables ---
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', () => {
-            const answer = question.nextElementSibling; // La respuesta es el siguiente hermano
+            const answer = question.nextElementSibling;
             const icon = question.querySelector('.expand-icon');
 
-            // Cierra todas las demás respuestas abiertas y resetea sus iconos
-            document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
-                if (openAnswer !== answer) { // Solo si no es la respuesta actual
-                    openAnswer.classList.remove('active');
-                    openAnswer.previousElementSibling.classList.remove('active'); // Quitar clase activa de la pregunta
-                    openAnswer.previousElementSibling.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
-                }
-            });
-
-            // Abre o cierra la respuesta actual
+            // Toggle la clase 'active' en la pregunta y la respuesta
+            question.classList.toggle('active');
             answer.classList.toggle('active');
-            question.classList.toggle('active'); // Activa/desactiva la pregunta también
 
-            // Gira el icono de la pregunta actual
+            // Controla la rotación del icono
             if (question.classList.contains('active')) {
                 icon.style.transform = 'rotate(180deg)';
             } else {
                 icon.style.transform = 'rotate(0deg)';
             }
+
+            // Opcional: Cerrar otros acordeones si se abre uno nuevo
+            document.querySelectorAll('.faq-question.active').forEach(otherQuestion => {
+                if (otherQuestion !== question) { // Si no es la pregunta actual
+                    otherQuestion.classList.remove('active');
+                    otherQuestion.nextElementSibling.classList.remove('active');
+                    otherQuestion.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
+                }
+            });
         });
     });
 
@@ -489,8 +477,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
-
-    // Opcional: Clase para deshabilitar el scroll del body
-    // Necesitas añadir esto en tu CSS:
-    // body.no-scroll { overflow: hidden; }
 });
