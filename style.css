@@ -1,14 +1,14 @@
-/* Variables CSS */
+/* Variables CSS (Nuevos tonos inspirados en Mercado Libre/Temu/AliExpress) */
 :root {
-    --primary-color: #007bff; /* Azul vibrante */
-    --secondary-color: #28a745; /* Verde para acciones */
-    --accent-color: #ffc107; /* Amarillo para acentos */
-    --text-color: #343a40; /* Texto oscuro principal */
-    --gray-text-color: #6c757d; /* Texto gris secundario */
+    --primary-color: #ffe033; /* Amarillo vibrante (Mercado Libre) */
+    --secondary-color: #3483fa; /* Azul oscuro (Mercado Libre) */
+    --accent-color: #00a650; /* Verde (Mercado Libre/Éxito) */
+    --text-color: #333333; /* Texto oscuro principal */
+    --gray-text-color: #666666; /* Texto gris secundario */
     --white-color: #ffffff;
-    --light-gray-background: #f8f9fa;
-    --border-color: #dee2e6;
-    --red-color: #dc3545; /* Rojo para errores o acciones de cierre */
+    --light-gray-background: #eeeeee; /* Gris muy claro */
+    --border-color: #dddddd;
+    --red-color: #cc0000; /* Rojo para alertas/cierre */
 }
 
 /* Base Styles */
@@ -27,6 +27,11 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray-background);
+    /* Fondo general con la imagen */
+    background-image: url('fondo.jpg'); /* Asegúrate que fondo.jpg esté en la raíz */
+    background-size: cover; /* Cubrir todo el área */
+    background-position: center; /* Centrar la imagen */
+    background-attachment: fixed; /* Hace que el fondo sea fijo al hacer scroll */
 }
 
 .container {
@@ -51,13 +56,13 @@ p {
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Usar el azul de Mercado Libre para enlaces */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--secondary-color);
+    color: var(--primary-color); /* El amarillo como hover para enlaces */
 }
 
 img {
@@ -80,19 +85,18 @@ img {
 }
 
 .primary-btn {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background-color: var(--primary-color); /* Amarillo */
+    color: var(--text-color); /* Texto oscuro para el botón amarillo */
     border: none;
 }
 
 .primary-btn:hover {
-    background-color: #0056b3; /* Tono más oscuro de azul */
+    background-color: #e6c800; /* Tono más oscuro de amarillo */
     transform: translateY(-2px);
 }
 
-/* Nuevo estilo para botones de compartir */
 .btn.share-btn {
-    background-color: var(--secondary-color); /* Verde */
+    background-color: var(--accent-color); /* Verde */
     color: var(--white-color);
     border: none;
     display: flex; /* Para alinear icono y texto */
@@ -102,14 +106,13 @@ img {
 }
 
 .btn.share-btn:hover {
-    background-color: #218838; /* Tono más oscuro de verde */
+    background-color: #008f44; /* Tono más oscuro de verde */
     transform: translateY(-2px);
 }
 
 .btn.share-btn .material-icons {
     font-size: 1.2em;
 }
-
 
 .section-description {
     text-align: center;
@@ -131,7 +134,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color); /* Color de fondo */
+    background-color: var(--secondary-color); /* Azul */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -187,7 +190,7 @@ img {
     align-items: center;
     font-size: 1.5em;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Azul para el logo de texto */
 }
 
 .logo img {
@@ -213,7 +216,7 @@ img {
 }
 
 .main-nav ul li a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 /* Dropdown Menu */
@@ -226,9 +229,9 @@ img {
     z-index: 1;
     padding: 10px 0;
     border-radius: 5px;
-    top: 100%; /* Posicionar debajo del elemento padre */
+    top: 100%;
     left: 0;
-    margin-top: 10px; /* Espacio entre el ítem principal y el dropdown */
+    margin-top: 10px;
 }
 
 .main-nav ul li:hover > .dropdown {
@@ -236,7 +239,7 @@ img {
 }
 
 .main-nav .dropdown li {
-    margin: 0; /* Reiniciar margen para ítems del dropdown */
+    margin: 0;
 }
 
 .main-nav .dropdown li a {
@@ -246,7 +249,7 @@ img {
 
 /* Mobile Menu Toggle */
 .menu-toggle {
-    display: none; /* Oculto por defecto en desktop */
+    display: none;
     background: none;
     border: none;
     font-size: 2em;
@@ -256,15 +259,15 @@ img {
 
 /* Hero Section */
 .hero-section {
-    background: url('fondo.jpg') no-repeat center center/cover; /* Asegúrate que 'fondo.jpg' exista */
+    background: url('fondo.jpg') no-repeat center center/cover;
     color: var(--white-color);
     text-align: center;
     padding: 100px 20px;
-    height: 70vh; /* Altura de la vista */
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* Para el overlay */
+    position: relative;
 }
 
 .hero-section::before {
@@ -274,7 +277,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay oscuro */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -297,7 +300,7 @@ img {
 }
 
 .hero-content .highlight {
-    color: var(--accent-color);
+    color: var(--primary-color); /* Amarillo como resaltado */
 }
 
 /* Products Section (General) */
@@ -323,7 +326,7 @@ img {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Hace toda la tarjeta clickeable para el modal */
+    cursor: pointer;
     display: flex;
     flex-direction: column;
 }
@@ -335,8 +338,8 @@ img {
 
 .product-card img {
     width: 100%;
-    height: 200px; /* Altura fija para las imágenes de producto */
-    object-fit: cover; /* Recortar si es necesario para llenar el espacio */
+    height: 200px;
+    object-fit: cover;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -345,25 +348,26 @@ img {
     text-align: center;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permite que la info crezca para ocupar espacio */
-    justify-content: space-between; /* Espacia los elementos */
+    flex-grow: 1;
+    justify-content: space-between;
 }
 
 .product-info h3 {
     font-size: 1.3em;
     margin-bottom: 10px;
-    height: 2.6em; /* Altura fija para el título en 2 líneas */
+    height: 3.5em; /* Ajustado para 2-3 líneas de texto completo */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 2; /* Muestra hasta 2 líneas */
     -webkit-box-orient: vertical;
+    line-height: 1.4; /* Ajusta el interlineado para que quepa bien */
 }
 
 .product-price {
     font-size: 1.4em;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Azul para precios */
     margin-bottom: 15px;
 }
 
@@ -376,7 +380,7 @@ img {
 
 .product-card .buy-btn {
     width: 100%;
-    margin-top: auto; /* Empuja el botón hacia abajo */
+    margin-top: auto;
 }
 
 /* Categories Section */
@@ -395,7 +399,7 @@ img {
 }
 
 .category-item {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color); /* Azul para categorías */
     color: var(--white-color);
     padding: 25px;
     border-radius: 8px;
@@ -406,7 +410,7 @@ img {
 }
 
 .category-item:hover {
-    background-color: #0056b3;
+    background-color: #2a73cc; /* Tono más oscuro de azul */
     transform: translateY(-5px);
 }
 
@@ -436,9 +440,9 @@ img {
 
 /* Product Modal */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
-    z-index: 1000; /* Asegúrate de que esté por encima de todo lo demás */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -446,16 +450,16 @@ img {
     background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
-    overflow-y: auto; /* Para permitir scroll si el contenido es largo */
+    overflow-y: auto;
 }
 
 .modal.active {
-    display: flex; /* Mostrar cuando está activo */
+    display: flex;
 }
 
 .modal-content {
     background-color: var(--white-color);
-    margin: 15px auto;
+    margin: 15px; /* Margen para asegurar espacio en pantallas pequeñas */
     padding: 20px;
     border-radius: 8px;
     width: 90%;
@@ -463,12 +467,14 @@ img {
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    flex-wrap: wrap;
     gap: 20px;
+    max-height: 95vh; /* Limita la altura del modal para que siempre quepa */
+    overflow-y: auto; /* Permite scroll dentro del contenido si es necesario */
 }
 
 .modal .close-button {
-    color: var(--gray-color); /* Color visible para el botón de cerrar */
+    color: var(--gray-text-color); /* Un gris que se vea bien sobre fondo blanco */
     font-size: 30px;
     font-weight: bold;
     position: absolute;
@@ -476,23 +482,24 @@ img {
     right: 20px;
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 1010; /* Asegúrate de que esté encima del contenido del modal */
+    z-index: 1010;
+    /* Asegúrate de que el background-color del modal-content no lo oculte si no es transparente */
 }
 
 .modal .close-button:hover,
 .modal .close-button:focus {
-    color: var(--red-color); /* Color de hover que contraste */
+    color: var(--red-color);
     text-decoration: none;
     cursor: pointer;
 }
 
 .product-gallery {
-    flex: 1 1 55%; /* Ocupa más espacio */
-    min-width: 300px; /* Mínimo ancho para la galería */
+    flex: 1 1 55%;
+    min-width: 300px;
     position: relative;
-    padding-bottom: 60%; /* Proporción para el contenedor principal de imagen/video (ej. 16:9) */
-    height: 0; /* Resetea altura */
-    overflow: hidden; /* Oculta lo que se desborda */
+    padding-bottom: 60%;
+    height: 0;
+    overflow: hidden;
 }
 
 .gallery-main-image {
@@ -512,11 +519,10 @@ img {
     max-height: 100%;
     width: auto;
     height: auto;
-    object-fit: contain; /* Ajusta la imagen/video dentro del contenedor */
+    object-fit: contain;
     display: block;
-    background-color: #000; /* Fondo negro para videos si no llenan el espacio */
+    background-color: #000;
 }
-
 
 .gallery-thumbnails {
     position: absolute;
@@ -529,19 +535,19 @@ img {
     padding: 10px 0;
     background-color: rgba(255, 255, 255, 0.8);
     border-top: 1px solid var(--border-color);
-    overflow-x: auto; /* Permite scroll horizontal si hay muchas miniaturas */
-    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .thumbnail-item {
-    width: 70px; /* Tamaño de la miniatura */
+    width: 70px;
     height: 70px;
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color 0.3s ease;
-    flex-shrink: 0; /* Evita que las miniaturas se encojan */
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -557,17 +563,16 @@ img {
     border-color: var(--primary-color);
 }
 
-/* Estilo para la miniatura del video */
 .thumbnail-item.video-thumbnail {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--white-color); /* Color del icono de play */
-    background-color: rgba(0,0,0,0.7); /* Fondo oscuro para la miniatura del video */
-    font-size: 2.5em; /* Tamaño del icono de play */
+    color: var(--white-color);
+    background-color: rgba(0,0,0,0.7);
+    font-size: 2.5em;
     position: relative;
     overflow: hidden;
-    background-size: cover; /* Para la imagen de poster del video */
+    background-size: cover;
     background-position: center;
 }
 
@@ -578,16 +583,15 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3); /* Capa oscura sobre la imagen de fondo */
+    background-color: rgba(0,0,0,0.3);
     z-index: 1;
 }
 
 .thumbnail-item.video-thumbnail .material-icons {
     position: relative;
-    z-index: 2; /* Asegura que el icono esté encima de la capa oscura */
-    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Sombra para el icono */
+    z-index: 2;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
-
 
 .gallery-nav {
     position: absolute;
@@ -601,7 +605,7 @@ img {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    z-index: 100; /* Por encima de la imagen principal */
+    z-index: 100;
 }
 
 .gallery-nav:hover {
@@ -617,7 +621,7 @@ img {
 }
 
 .modal-product-info {
-    flex: 1 1 40%; /* Ocupa el resto del espacio */
+    flex: 1 1 40%;
     min-width: 280px;
     padding: 10px;
     display: flex;
@@ -638,13 +642,13 @@ img {
 
 .modal-product-info .product-price {
     text-align: left;
-    margin-top: auto; /* Empuja el precio y los botones hacia abajo */
+    margin-top: auto;
     margin-bottom: 20px;
 }
 
 .modal-product-info .btn {
     width: 100%;
-    margin-bottom: 10px; /* Espacio entre botones */
+    margin-bottom: 10px;
 }
 
 
@@ -666,7 +670,7 @@ img {
     border-radius: 8px;
     margin-bottom: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Importante para la transición de altura */
+    overflow: hidden;
 }
 
 .faq-question {
@@ -687,27 +691,27 @@ img {
 }
 
 .faq-question.active {
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Azul para FAQ activo */
     background-color: var(--light-gray-background);
 }
 
 .faq-question .expand-icon {
     font-size: 1.5em;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     transition: transform 0.3s ease;
 }
 
 .faq-answer {
     padding: 0 25px;
-    max-height: 0; /* Oculto por defecto */
+    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Transición suave */
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
     color: var(--gray-text-color);
     font-size: 0.95em;
 }
 
 .faq-answer p {
-    padding-bottom: 20px; /* Espacio para el párrafo cuando está abierto */
+    padding-bottom: 20px;
     margin: 0;
 }
 
@@ -729,7 +733,7 @@ img {
 }
 
 .contact-info, .contact-form {
-    flex: 1 1 45%; /* Aproximadamente la mitad del ancho */
+    flex: 1 1 45%;
     min-width: 300px;
     background-color: var(--light-gray-background);
     padding: 30px;
@@ -751,7 +755,7 @@ img {
 }
 
 .contact-info .material-icons {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .form-group {
@@ -779,8 +783,8 @@ img {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.25); /* Sombra azul */
 }
 
 .contact-form .btn {
@@ -791,7 +795,7 @@ img {
 
 /* Footer Section */
 .footer-section {
-    background-color: var(--text-color); /* Fondo oscuro del footer */
+    background-color: var(--text-color);
     color: var(--white-color);
     padding: 40px 20px 20px;
     font-size: 0.9em;
@@ -808,7 +812,7 @@ img {
 }
 
 .footer-info, .footer-links, .footer-social {
-    flex: 1 1 250px; /* Permite que los bloques se envuelvan */
+    flex: 1 1 250px;
     margin-bottom: 20px;
 }
 
@@ -843,6 +847,8 @@ img {
     display: flex;
     gap: 15px;
     margin-top: 15px;
+    /* Centrar iconos en footer-social si es columna */
+    justify-content: flex-start;
 }
 
 .social-icons img {
@@ -854,6 +860,14 @@ img {
 .social-icons img:hover {
     transform: translateY(-3px);
 }
+
+/* Centrar el botón de compartir tienda */
+.footer-social .share-btn {
+    width: auto; /* Permite que el botón se ajuste a su contenido */
+    margin: 20px auto 0; /* Centra el botón horizontalmente con auto */
+    display: flex; /* Asegura que flexbox lo centre */
+}
+
 
 .footer-bottom {
     text-align: center;
@@ -875,19 +889,19 @@ img {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 70px; /* Debajo del header */
+        top: 70px;
         left: 0;
         background-color: var(--white-color);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         z-index: 400;
         padding-bottom: 20px;
         transition: transform 0.3s ease-out;
-        transform: translateY(-100%); /* Ocultar arriba */
+        transform: translateY(-100%);
     }
 
     .main-nav.active {
         display: flex;
-        transform: translateY(0); /* Mostrar */
+        transform: translateY(0);
     }
 
     .main-nav ul {
@@ -913,9 +927,8 @@ img {
         border-bottom: none;
     }
 
-    /* Dropdown en móvil */
     .main-nav .dropdown {
-        position: static; /* Dentro del flujo normal en móvil */
+        position: static;
         box-shadow: none;
         width: 100%;
         padding: 0;
@@ -923,12 +936,12 @@ img {
     }
 
     .main-nav .dropdown li a {
-        background-color: var(--light-gray-background); /* Fondo para sub-items */
-        padding-left: 40px; /* Indentación */
+        background-color: var(--light-gray-background);
+        padding-left: 40px;
     }
 
     .menu-toggle {
-        display: block; /* Mostrar en móvil */
+        display: block;
     }
 
     /* Hero Section */
@@ -944,21 +957,24 @@ img {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
-    /* Modal adjustments for small screens */
+    /* Modal adjustments for small screens (mejorado) */
     .modal-content {
         flex-direction: column;
-        max-width: 95%; /* Ajuste para que ocupe más en móvil */
+        max-width: 95%;
+        width: auto; /* Deja que el contenido defina el ancho */
         margin: 10px auto;
         padding: 15px;
+        max-height: 98vh; /* Más margen para la pantalla */
+        overflow-y: auto; /* Asegura el scroll */
     }
 
     .product-gallery, .modal-product-info {
-        flex: 1 1 100%; /* Cada uno ocupa todo el ancho */
-        min-width: unset; /* Elimina el mínimo ancho fijo */
+        flex: 1 1 100%;
+        min-width: unset;
     }
 
     .product-gallery {
-        padding-bottom: 75%; /* Ajusta la proporción para videos/imágenes en móvil (ej. 4:3) */
+        padding-bottom: 75%;
     }
 
     .modal-product-info h2 {
@@ -973,6 +989,12 @@ img {
 
     .modal-product-info .product-price {
         text-align: center;
+    }
+
+    .modal .close-button {
+        font-size: 35px; /* Un poco más grande para móvil */
+        top: 5px;
+        right: 10px;
     }
 
     /* Contact Section */
@@ -1014,12 +1036,21 @@ img {
         font-size: 0.9em;
     }
     .product-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+        grid-template-columns: 1fr;
     }
     .product-info h3 {
         font-size: 1.2em;
     }
     .product-price {
         font-size: 1.2em;
+    }
+    /* Asegurar que el modal no sea demasiado grande en móviles muy pequeños */
+    .modal-content {
+        padding: 10px;
+    }
+    .modal .close-button {
+        font-size: 30px;
+        top: 5px;
+        right: 5px;
     }
 }
