@@ -1,15 +1,15 @@
-/* Variables CSS (Nuevos tonos inspirados en Mercado Libre/Temu/AliExpress con base ocre/amarillo) */
+/* Variables CSS (Nuevos tonos más vivos, eliminando grises y oscuros innecesarios) */
 :root {
-    --primary-color: #f7a823; /* Amarillo ocre vibrante (similar a Mercado Libre) */
-    --secondary-color: #3f51b5; /* Azul profundo para contraste (similar a ML) */
-    --accent-color: #008f39; /* Verde para éxito/ofertas (similar a ML) */
-    --text-color: #333333; /* Texto oscuro principal */
-    --gray-text-color: #666666; /* Texto gris secundario */
+    --primary-color: #ffc107; /* Amarillo Sol (vivo) */
+    --secondary-color: #2196f3; /* Azul Cielo (vivo) */
+    --accent-color: #4caf50; /* Verde Lima (vivo) */
+    --text-color: #212121; /* Negro casi puro para legibilidad */
+    --gray-text-color: #616161; /* Gris oscuro para texto secundario */
     --white-color: #ffffff;
-    --light-gray-background: #f5f5f5; /* Gris muy claro para secciones */
-    --border-color: #dddddd;
-    --red-color: #cc0000; /* Rojo para alertas/cierre */
-    --dark-background: #212121; /* Fondo oscuro para el footer/sidebar opcional */
+    --light-background-color: #fce4ec; /* Rosa muy claro o similar para fondos suaves */
+    --border-color: #e0e0e0; /* Bordes suaves */
+    --red-color: #f44336; /* Rojo Vivo para alertas */
+    --dark-section-color: #455a64; /* Azul grisáceo oscuro para contraste si se necesita */
 }
 
 /* Base Styles */
@@ -43,7 +43,7 @@ body::before {
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Márgenes de títulos ajustados */
 }
 
 p {
@@ -61,12 +61,11 @@ a:hover {
 }
 
 section {
-    padding: 4rem 2rem;
+    padding: 3rem 1.5rem; /* Márgenes de sección reducidos */
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 1.5rem auto; /* Márgenes entre secciones reducidos */
     background-color: var(--white-color); /* Fondo blanco para las secciones sobre la imagen */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Sombra sutil */
-    margin-bottom: 2rem;
     border-radius: 8px;
 }
 
@@ -77,7 +76,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color); /* ¡Amarillo ocre vibrante! */
+    background-color: #f7a823; /* Amarillo ocre vibrante para el splash screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,7 +125,7 @@ section {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: var(--dark-background); /* Color sólido inicial */
+    background-color: var(--dark-section-color); /* Color oscuro inicial para contraste */
     color: var(--white-color);
     padding: 1rem 2rem;
     display: flex;
@@ -139,7 +138,7 @@ section {
 
 /* Clase para la transparencia después del scroll */
 .navbar.scrolled {
-    background-color: rgba(33, 33, 33, 0.5); /* Color oscuro con 50% de opacidad */
+    background-color: rgba(69, 90, 100, 0.5); /* Color oscuro con 50% de opacidad */
     backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del menú (opcional) */
     -webkit-backdrop-filter: blur(5px); /* Compatibilidad con Safari */
 }
@@ -184,7 +183,7 @@ section {
     right: -300px; /* Oculto por defecto, ajusta el ancho si tu sidebar es más grande */
     width: 300px; /* Ancho del sidebar */
     height: 100%;
-    background-color: var(--dark-background);
+    background-color: var(--dark-section-color);
     color: var(--white-color);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
@@ -236,21 +235,21 @@ section {
     transition: color 0.2s ease-in-out;
 }
 
-.sidebar-nav ul li a img {
+.sidebar-nav ul li a .material-icons {
     height: 24px; /* Tamaño de los iconos */
     width: 24px;
     margin-right: 15px;
-    /* Filtro para cambiar el color del icono a blanco inicial */
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%);
-    transition: filter 0.2s ease-in-out;
+    font-size: 24px;
+    color: var(--white-color); /* Color blanco inicial para iconos */
+    transition: color 0.2s ease-in-out;
 }
 
 .sidebar-nav ul li a:hover {
-    color: var(--primary-color); /* Color ocre al pasar el ratón */
+    color: var(--primary-color); /* Color amarillo vivo al pasar el ratón */
 }
 
-.sidebar-nav ul li a:hover img {
-    filter: invert(60%) sepia(80%) saturate(2000%) hue-rotate(30deg) brightness(1.2); /* Ocre para el icono */
+.sidebar-nav ul li a:hover .material-icons {
+    color: var(--primary-color); /* Amarillo vivo para el icono */
 }
 
 .social-icons-sidebar {
@@ -262,13 +261,14 @@ section {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.social-icons-sidebar img {
-    height: 30px;
-    width: 30px;
-    transition: transform 0.2s ease-in-out;
+.social-icons-sidebar .material-icons {
+    font-size: 30px;
+    color: var(--white-color);
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.social-icons-sidebar img:hover {
+.social-icons-sidebar .material-icons:hover {
+    color: var(--primary-color);
     transform: scale(1.1);
 }
 
@@ -283,16 +283,24 @@ section {
     font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-btn .material-icons {
+    font-size: 1.2rem;
 }
 
 .primary-btn:hover {
-    background-color: #e69812; /* Tono más oscuro de ocre al pasar el ratón */
+    background-color: #ffb300; /* Tono más oscuro de amarillo al pasar el ratón */
     transform: translateY(-2px);
 }
 
 /* Hero Section */
 .hero {
-    min-height: 80vh;
+    min-height: 60vh; /* Altura mínima reducida */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,19 +308,20 @@ section {
     color: var(--white-color); /* Texto blanco para el hero sobre fondo oscuro/transparente */
     position: relative;
     z-index: 2; /* Asegura que el contenido del hero esté por encima del overlay del body */
+    padding: 2rem 1rem; /* Padding reducido */
 }
 
 .hero-content {
     background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente para el texto */
-    padding: 3rem;
+    padding: 2rem; /* Padding reducido */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
+    max-width: 700px; /* Ancho máximo reducido */
 }
 
 .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2rem; /* Tamaño del título reducido */
+    margin-bottom: 0.5rem; /* Margen inferior reducido */
     color: var(--text-color); /* Color de texto oscuro para el título */
 }
 
@@ -321,8 +330,8 @@ section {
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1rem; /* Tamaño del párrafo reducido */
+    margin-bottom: 1rem; /* Margen inferior reducido */
     color: var(--gray-text-color);
 }
 
@@ -333,7 +342,7 @@ section {
     flex-wrap: wrap;
     gap: 2rem;
     text-align: center;
-    background-color: var(--light-gray-background);
+    background-color: var(--light-background-color); /* Color de fondo claro y vivo */
     border-radius: 8px;
     padding: 3rem 2rem;
     box-shadow: none; /* Sin sombra extra, ya que la sección tiene un fondo claro */
@@ -348,21 +357,43 @@ section {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .feature-item:hover {
     transform: translateY(-5px);
 }
 
-.feature-item img {
+.feature-icon-container {
     width: 60px;
     height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
+.feature-icon-container .material-icons {
+    font-size: 30px;
+    color: var(--white-color); /* Iconos blancos por defecto en los contenedores */
+}
+
+.feature-icon-bg-1 { background-color: #81d4fa; /* Azul claro */ }
+.feature-icon-bg-1 .material-icons { color: #01579b; }
+
+.feature-icon-bg-2 { background-color: #a5d6a7; /* Verde suave */ }
+.feature-icon-bg-2 .material-icons { color: #1b5e20; }
+
+.feature-icon-bg-3 { background-color: #ffab91; /* Naranja suave */ }
+.feature-icon-bg-3 .material-icons { color: #d84315; }
+
 .feature-item h3 {
     font-size: 1.5rem;
-    color: var(--secondary-color);
+    color: var(--text-color); /* Color de texto oscuro para consistencia */
 }
 
 .feature-item p {
@@ -376,9 +407,9 @@ section {
 
 .products-section h2, .categories-section h2, .about-section h2, .faq-section h2, .contact-section h2 {
     font-size: 2.5rem;
-    margin-bottom: 2.5rem;
-    position: relative;
+    margin-bottom: 1.5rem; /* Margen de títulos de sección ajustado */
     padding-bottom: 10px;
+    position: relative;
 }
 
 .products-section h2::after, .categories-section h2::after, .about-section h2::after, .faq-section h2::after, .contact-section h2::after {
@@ -393,11 +424,19 @@ section {
     border-radius: 2px;
 }
 
-.product-grid, .category-grid {
+.product-grid {
     display: grid;
+    /* 3 o 4 columnas en PC, ajustando el minmax */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.5rem; /* Espaciado entre productos reducido */
+    margin-top: 1.5rem; /* Margen superior reducido */
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Espaciado entre categorías reducido */
+    margin-top: 1.5rem; /* Margen superior reducido */
 }
 
 .product-card, .category-card {
@@ -406,11 +445,13 @@ section {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     text-align: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Para indicar que son clickeables para la modal */
 }
 
 .product-card:hover, .category-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 }
 
 .product-images {
@@ -457,15 +498,15 @@ section {
 
 .product-card h3 {
     font-size: 1.3rem;
-    margin: 1.5rem 1rem 0.5rem;
-    color: var(--secondary-color);
+    margin: 1rem 1rem 0.5rem; /* Margen de título de producto ajustado */
+    color: var(--text-color); /* Color de texto oscuro para consistencia */
 }
 
 .product-card .description {
     font-size: 0.9rem;
     color: var(--gray-text-color);
     padding: 0 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Margen inferior de descripción ajustado */
 }
 
 .product-card .price {
@@ -483,25 +524,31 @@ section {
     margin-right: 0.5rem;
 }
 
-.product-card .primary-btn {
+.product-card .buy-now-btn {
     width: calc(100% - 2rem);
     margin: 0 1rem 1rem;
 }
 
-.category-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-}
-
-.category-card h3 {
-    font-size: 1.3rem;
-    margin: 1rem 0;
-    color: var(--secondary-color);
+/* Category Card - Ahora con solo color */
+.category-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px; /* Altura mínima para la tarjeta */
     text-align: center;
-    padding-bottom: 1rem;
+    padding: 1rem; /* Padding interno */
 }
+.category-card h3 {
+    margin: 0; /* Eliminar margen del título dentro de la tarjeta */
+    font-size: 1.4rem;
+    color: var(--text-color); /* Color de texto oscuro por defecto */
+}
+/* Colores específicos para categorías */
+.category-bg-1 { background-color: #ffecb3; } /* Amarillo pastel */
+.category-bg-2 { background-color: #c8e6c9; } /* Verde pastel */
+.category-bg-3 { background-color: #bbdefb; } /* Azul pastel */
+.category-bg-4 { background-color: #ffccbc; } /* Naranja pastel */
+
 
 /* Contact Form */
 .contact-form {
@@ -509,7 +556,7 @@ section {
     flex-direction: column;
     gap: 1rem;
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 1.5rem auto; /* Margen superior ajustado */
 }
 
 .contact-form input,
@@ -525,11 +572,11 @@ section {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(247, 168, 35, 0.5);
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Sombra de enfoque con color vivo */
 }
 
 .contact-info {
-    margin-top: 2rem;
+    margin-top: 1.5rem; /* Margen ajustado */
     color: var(--gray-text-color);
 }
 
@@ -539,7 +586,7 @@ section {
 
 /* FAQ Section */
 .faq-item {
-    background-color: var(--light-gray-background);
+    background-color: var(--light-background-color); /* Fondo claro y vivo */
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1rem;
@@ -547,7 +594,7 @@ section {
 }
 
 .faq-item h3 {
-    color: var(--secondary-color);
+    color: var(--text-color); /* Color de texto oscuro para consistencia */
     margin-top: 0;
     cursor: pointer;
     display: flex;
@@ -568,7 +615,7 @@ section {
 
 /* Footer */
 footer {
-    background-color: var(--dark-background);
+    background-color: var(--dark-section-color);
     color: var(--white-color);
     padding: 3rem 2rem;
     text-align: center;
@@ -595,7 +642,7 @@ footer {
 }
 
 .footer-section p, .footer-section ul li a {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8); /* Mayor opacidad para el texto blanco */
     font-size: 0.95rem;
 }
 
@@ -617,17 +664,17 @@ footer {
     display: flex;
     gap: 15px;
     margin-top: 1rem;
+    justify-content: center; /* Centrar iconos sociales en footer */
 }
 
-.social-icons a img {
-    height: 30px;
-    width: 30px;
-    filter: invert(100%); /* Hace los iconos blancos por defecto */
-    transition: filter 0.3s ease, transform 0.3s ease;
+.social-icons .material-icons {
+    font-size: 30px;
+    color: var(--white-color); /* Iconos blancos por defecto */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-icons a:hover img {
-    filter: invert(60%) sepia(80%) saturate(2000%) hue-rotate(30deg) brightness(1.2); /* Ocre para el icono en hover */
+.social-icons .material-icons:hover {
+    color: var(--primary-color); /* Amarillo vivo para el icono en hover */
     transform: scale(1.1);
 }
 
@@ -636,11 +683,204 @@ footer {
     padding-top: 1.5rem;
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
 }
+
+/* Estilos de la Ventana Modal */
+.modal {
+    display: none; /* Oculta la modal por defecto */
+    position: fixed; /* Permanece en su lugar */
+    z-index: 1200; /* Se sitúa por encima de otros elementos, incluyendo sidebar */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilita el scroll si el contenido es demasiado largo */
+    background-color: rgba(0,0,0,0.6); /* Fondo oscuro semitransparente */
+    padding: 20px; /* Padding para que la modal no toque los bordes */
+    box-sizing: border-box;
+    display: flex; /* Usar flex para centrar */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centrado automático */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Más ancho en PC */
+    max-width: 900px; /* Ancho máximo para la modal */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: fadeInScale 0.3s ease-out; /* Animación de entrada */
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1; /* Asegura que esté por encima de todo en la modal */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--red-color);
+    text-decoration: none;
+}
+
+.modal-body {
+    display: flex;
+    gap: 30px; /* Espacio entre secciones de la modal */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+}
+
+.modal-images-container {
+    flex: 1 1 400px; /* Crece y encoge, base de 400px */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.image-slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-slider img {
+    width: 100%;
+    flex-shrink: 0; /* Asegura que las imágenes no se encojan */
+    object-fit: cover;
+    height: 350px; /* Altura fija para el slider de imágenes */
+}
+
+.slider-navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.video-container {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #000; /* Fondo negro para videos */
+}
+
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Proporción común para videos */
+    border: 0;
+}
+
+.modal-details {
+    flex: 1 1 350px; /* Crece y encoge, base de 350px */
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja los botones al final */
+}
+
+.modal-title {
+    color: var(--secondary-color);
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.modal-description {
+    color: var(--gray-text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.modal-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan */
+    gap: 10px;
+    margin-top: auto; /* Empuja los botones al final del contenedor de detalles */
+}
+
+.modal-actions .primary-btn {
+    flex: 1; /* Permite que los botones crezcan */
+    min-width: 150px; /* Ancho mínimo para cada botón */
+}
+
+.share-button {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+}
+.share-button:hover {
+    background-color: #43a047; /* Tono más oscuro de verde */
+}
+
+.buy-button {
+    background-color: #25d366; /* Verde WhatsApp */
+    color: var(--white-color);
+}
+.buy-button:hover {
+    background-color: #128c7e; /* Tono más oscuro de WhatsApp */
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 1.2rem 1rem; /* Menú superior más visible */
+        min-height: 55px;
+    }
+
+    .navbar .logo img {
+        height: 45px; /* Tamaño del logo en el navbar */
+    }
+
+    .navbar .menu-icon {
+        font-size: 2.5rem; /* Aumenta el tamaño del icono de menú */
+    }
+
     .navbar .nav-links {
         display: none; /* Ocultar enlaces de navegación en móviles */
     }
@@ -649,16 +889,12 @@ footer {
         display: block; /* Mostrar icono de menú hamburguesa */
     }
 
-    .navbar {
-        padding: 1rem; /* Ajuste de padding para móviles */
-    }
-
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .hero-content p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .features {
@@ -695,10 +931,39 @@ footer {
     section {
         padding: 2rem 1rem; /* Menos padding en móviles */
     }
+
+    /* Modal en móviles */
+    .modal-content {
+        width: 95%;
+        margin: 20px auto; /* Mantener un margen superior e inferior */
+    }
+
+    .modal-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .modal-images-container {
+        flex-basis: auto; /* Permite que la imagen ocupe el ancho disponible */
+    }
+    .image-slider img {
+        height: 250px; /* Altura más pequeña para móviles */
+    }
 }
 
 @media (max-width: 480px) {
     .splash-screen h1 {
         font-size: 1.8rem;
+    }
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    .modal-price {
+        font-size: 1.7rem;
+    }
+    .modal-actions {
+        flex-direction: column; /* Botones apilados en pantallas muy pequeñas */
     }
 }
