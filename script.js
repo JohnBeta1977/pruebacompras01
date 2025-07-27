@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
     const productsData = {
         'oferta1': {
-            name: 'reloj"',
+            name: 'reloj',
             description: 'moda casual, correa de cuero sintético, reloj de cuarzo para hombres y mujeres, adecuado para el uso diario, viajes, vacaciones, amigos, regalo de cumpleaños, pareja, regreso a casa, temporada de fiestas, Navidad, San Valentín, ideal para regalo.',
             price: '$12.000 COP',
             originalPrice: '$12.000 COP',
