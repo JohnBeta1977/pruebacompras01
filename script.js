@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
-            // Deshabilita/habilita el scroll del body cuando el menú está abierto/cerrado
             document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
         });
 
-        // Cerrar el menú si se hace clic en un enlace
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica del Modal de Producto y Slider ---
     const productModal = document.getElementById('product-modal');
     const closeButton = document.querySelector('.modal .close-button');
-    const modalProductImage = document.getElementById('modal-product-image');
+    const galleryMainImageContainer = document.querySelector('.gallery-main-image'); // Contenedor para la imagen/video principal
     const modalProductTitle = document.getElementById('modal-product-title');
     const modalProductDescription = document.getElementById('modal-product-description');
     const modalProductPrice = document.getElementById('modal-product-price');
@@ -40,21 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryPrev = document.querySelector('.gallery-prev');
     const galleryNext = document.querySelector('.gallery-next');
 
-    let currentImageIndex = 0;
-    let productImages = [];
+    let currentMediaIndex = 0; // Cambiado de currentImageIndex
+    let productMedia = [];     // Cambiado de productImages
 
-    // Datos de productos (ejemplo).
-    // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu carpeta raíz**
+    // Datos de productos
+    // Cada elemento 'media' ahora puede ser un objeto con 'src' y 'type'
     const productsData = {
         'oferta1': {
             name: 'Smart TV 4K 50"',
             description: 'Disfruta de una calidad de imagen inmersiva y funciones inteligentes. Conexión Wi-Fi y múltiples puertos HDMI.',
             price: '$999.000 COP',
             originalPrice: '$1.500.000 COP',
-            images: [
-                'productos_oferta1.jpg',
-                'productos_oferta1_alt1.jpg',
-                'productos_oferta1_alt2.jpg'
+            media: [
+                { src: 'productos_oferta1.jpg', type: 'image' },
+                { src: 'productos_oferta1_alt1.jpg', type: 'image' },
+                { src: 'productos_oferta1_alt2.jpg', type: 'image' }
             ]
         },
         'oferta2': {
@@ -62,9 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Prepara tu café favorito a la hora deseada. Capacidad para 12 tazas y función de mantenimiento de calor.',
             price: '$140.000 COP',
             originalPrice: '$200.000 COP',
-            images: [
-                'productos_oferta2.jpg',
-                'productos_oferta2_alt1.jpg'
+            media: [
+                { src: 'productos_oferta2.jpg', type: 'image' },
+                // Ejemplo de cómo agregar un video:
+                { src: 'video_cafetera.mp4', type: 'video' } // **Asegúrate de tener este archivo video_cafetera.mp4 en tu carpeta raíz**
             ]
         },
         'oferta3': {
@@ -72,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Explora los cielos con este dron fácil de volar y captura videos en alta definición. Ideal para principiantes y entusiastas.',
             price: '$320.000 COP',
             originalPrice: '$450.000 COP',
-            images: [
-                'productos_oferta3.jpg',
-                'productos_oferta3_alt1.jpg'
+            media: [
+                { src: 'productos_oferta3.jpg', type: 'image' },
+                { src: 'productos_oferta3_alt1.jpg', type: 'image' },
+                { src: 'video_dron.mp4', type: 'video' } // **Asegúrate de tener este archivo video_dron.mp4 en tu carpeta raíz**
             ]
         },
         'oferta4': {
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Diseño seguro y compartimento para laptop con puerto USB integrado. Perfecta para viajes y uso diario en la ciudad.',
             price: '$65.000 COP',
             originalPrice: '$90.000 COP',
-            images: [
-                'productos_oferta4.jpg',
-                'productos_oferta4_alt1.jpg'
+            media: [
+                { src: 'productos_oferta4.jpg', type: 'image' },
+                { src: 'productos_oferta4_alt1.jpg', type: 'image' }
             ]
         },
         'oferta5': {
@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Sumérgete en tus juegos con sonido envolvente y luces RGB personalizables. Micrófono retráctil de alta calidad.',
             price: '$100.000 COP',
             originalPrice: '$150.000 COP',
-            images: [
-                'productos_oferta5.jpg',
-                'productos_oferta5_alt1.jpg'
+            media: [
+                { src: 'productos_oferta5.jpg', type: 'image' },
+                { src: 'productos_oferta5_alt1.jpg', type: 'image' }
             ]
         },
         'oferta6': {
@@ -102,225 +102,225 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Cuchillos de acero inoxidable de alta precisión para todas tus necesidades culinarias. Mango ergonómico.',
             price: '$85.000 COP',
             originalPrice: '$120.000 COP',
-            images: [
-                'productos_oferta6.jpg',
-                'productos_oferta6_alt1.jpg'
+            media: [
+                { src: 'productos_oferta6.jpg', type: 'image' },
+                { src: 'productos_oferta6_alt1.jpg', type: 'image' }
             ]
         },
         'elec1': {
             name: 'Auriculares Inalámbricos',
             description: 'Sonido de alta fidelidad, cómodos y con gran autonomía de batería. Perfectos para el día a día y tus entrenamientos.',
             price: '$50.000 COP',
-            images: [
-                'productos_categoria1_producto1.jpg',
-                'productos_categoria1_producto1_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto1.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto1_alt1.jpg', type: 'image' }
             ]
         },
         'elec2': {
             name: 'Smartwatch',
             description: 'Controla tu salud, recibe notificaciones y monitorea tu actividad física desde tu muñeca. Compatible con iOS y Android.',
             price: '$120.000 COP',
-            images: [
-                'productos_categoria1_producto2.jpg',
-                'productos_categoria1_producto2_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto2.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto2_alt1.jpg', type: 'image' }
             ]
         },
         'elec3': {
             name: 'Power Bank 10000mAh',
             description: 'Mantén tus dispositivos cargados en cualquier lugar con esta batería portátil de alta capacidad. Diseño compacto y ligero.',
             price: '$35.000 COP',
-            images: [
-                'productos_categoria1_producto3.jpg',
-                'productos_categoria1_producto3_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto3.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto3_alt1.jpg', type: 'image' }
             ]
         },
         'elec4': {
             name: 'Mini Proyector Portátil',
             description: 'Transforma cualquier pared en una pantalla de cine. Ideal para noches de películas, presentaciones o gaming.',
             price: '$250.000 COP',
-            images: [
-                'productos_categoria1_producto4.jpg',
-                'productos_categoria1_producto4_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto4.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto4_alt1.jpg', type: 'image' }
             ]
         },
         'elec5': {
             name: 'Teclado Bluetooth',
             description: 'Compacto y perfecto para trabajar desde cualquier lugar con tu tablet o smartphone. Conexión rápida y estable.',
             price: '$45.000 COP',
-            images: [
-                'productos_categoria1_producto5.jpg',
-                'productos_categoria1_producto5_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto5.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto5_alt1.jpg', type: 'image' }
             ]
         },
         'elec6': {
             name: 'Cámara Web Full HD',
             description: 'Calidad de video nítida para tus videollamadas, streaming y grabaciones. Micrófono incorporado con reducción de ruido.',
             price: '$70.000 COP',
-            images: [
-                'productos_categoria1_producto6.jpg',
-                'productos_categoria1_producto6_alt1.jpg'
+            media: [
+                { src: 'productos_categoria1_producto6.jpg', type: 'image' },
+                { src: 'productos_categoria1_producto6_alt1.jpg', type: 'image' }
             ]
         },
         'moda1': {
             name: 'Bolso de Cuero Unisex',
             description: 'Elegante y práctico para el día a día, con múltiples compartimentos para organizar tus pertenencias.',
             price: '$80.000 COP',
-            images: [
-                'productos_categoria2_producto1.jpg',
-                'productos_categoria2_producto1_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto1.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto1_alt1.jpg', type: 'image' }
             ]
         },
         'moda2': {
             name: 'Gafas de Sol Polarizadas',
             description: 'Protección UV y diseño moderno que se adapta a cualquier estilo. Ideales para conducir o disfrutar del aire libre.',
             price: '$40.000 COP',
-            images: [
-                'productos_categoria2_producto2.jpg',
-                'productos_categoria2_producto2_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto2.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto2_alt1.jpg', type: 'image' }
             ]
         },
         'moda3': {
             name: 'Bufanda de Lana Tejida',
             description: 'Suave y cálida, ideal para el invierno. Un accesorio esencial para mantenerte abrigado con estilo.',
             price: '$25.000 COP',
-            images: [
-                'productos_categoria2_producto3.jpg',
-                'productos_categoria2_producto3_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto3.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto3_alt1.jpg', type: 'image' }
             ]
         },
         'moda4': {
             name: 'Reloj Casual Hombre',
             description: 'Diseño minimalista y elegante, perfecto para cualquier ocasión. Resistente al agua para el uso diario.',
             price: '$95.000 COP',
-            images: [
-                'productos_categoria2_producto4.jpg',
-                'productos_categoria2_producto4_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto4.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto4_alt1.jpg', type: 'image' }
             ]
         },
         'moda5': {
             name: 'Aretes de Plata 925',
             description: 'Elegancia y brillo para tu estilo. Diseño clásico y atemporal, perfectos para cualquier evento.',
             price: '$30.000 COP',
-            images: [
-                'productos_categoria2_producto5.jpg',
-                'productos_categoria2_producto5_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto5.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto5_alt1.jpg', type: 'image' }
             ]
         },
         'moda6': {
             name: 'Cinturón de Cuero Reversible',
             description: 'Dos estilos en uno, versátil y duradero para combinar con diferentes atuendos.',
             price: '$55.000 COP',
-            images: [
-                'productos_categoria2_producto6.jpg',
-                'productos_categoria2_producto6_alt1.jpg'
+            media: [
+                { src: 'productos_categoria2_producto6.jpg', type: 'image' },
+                { src: 'productos_categoria2_producto6_alt1.jpg', type: 'image' }
             ]
         },
         'hogar1': {
             name: 'Juego de Sábanas de Algodón',
             description: 'Confort y suavidad para un descanso perfecto. Tejido transpirable y resistente al lavado.',
             price: '$75.000 COP',
-            images: [
-                'productos_categoria3_producto1.jpg',
-                'productos_categoria3_producto1_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto1.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto1_alt1.jpg', type: 'image' }
             ]
         },
         'hogar2': {
             name: 'Set de Herramientas Básicas',
             description: 'Imprescindible para cualquier arreglo en casa. Incluye martillo, destornilladores, alicates y más, en un estuche compacto.',
             price: '$60.000 COP',
-            images: [
-                'productos_categoria3_producto2.jpg',
-                'productos_categoria3_producto2_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto2.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto2_alt1.jpg', type: 'image' }
             ]
         },
         'hogar3': {
             name: 'Maceta Colgante Decorativa',
             description: 'Añade un toque verde y moderno a tus espacios interiores o exteriores. Fácil de instalar y limpiar.',
             price: '$20.000 COP',
-            images: [
-                'productos_categoria3_producto3.jpg',
-                'productos_categoria3_producto3_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto3.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto3_alt1.jpg', type: 'image' }
             ]
         },
         'hogar4': {
             name: 'Lámpara de Escritorio LED',
             description: 'Iluminación ajustable y diseño moderno. Ideal para estudiar, trabajar o leer. Con control táctil.',
             price: '$48.000 COP',
-            images: [
-                'productos_categoria3_producto4.jpg',
-                'productos_categoria3_producto4_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto4.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto4_alt1.jpg', type: 'image' }
             ]
         },
         'hogar5': {
             name: 'Robot Aspirador Inteligente',
             description: 'Limpieza automática para tu hogar. Programa su funcionamiento y olvídate de la suciedad. Compatible con asistentes de voz.',
             price: '$300.000 COP',
-            images: [
-                'productos_categoria3_producto5.jpg',
-                'productos_categoria3_producto5_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto5.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto5_alt1.jpg', type: 'image' }
             ]
         },
         'hogar6': {
             name: 'Mantel Antimanchas',
             description: 'Ideal para proteger tu mesa con estilo. Fácil de limpiar y resistente a derrames. Perfecto para uso diario o eventos.',
             price: '$38.000 COP',
-            images: [
-                'productos_categoria3_producto6.jpg',
-                'productos_categoria3_producto6_alt1.jpg'
+            media: [
+                { src: 'productos_categoria3_producto6.jpg', type: 'image' },
+                { src: 'productos_categoria3_producto6_alt1.jpg', type: 'image' }
             ]
         },
         'deporte1': {
             name: 'Botella de Agua Deportiva',
             description: 'Hidratación garantizada para tus entrenamientos. Diseño ergonómico y material duradero, libre de BPA.',
             price: '$20.000 COP',
-            images: [
-                'productos_categoria4_producto1.jpg',
-                'productos_categoria4_producto1_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto1.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto1_alt1.jpg', type: 'image' }
             ]
         },
         'deporte2': {
             name: 'Bandas de Resistencia',
             description: 'Perfectas para entrenar en casa o al aire libre. Incluye diferentes niveles de resistencia para todos los niveles de fitness.',
             price: '$30.000 COP',
-            images: [
-                'productos_categoria4_producto2.jpg',
-                'productos_categoria4_producto2_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto2.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto2_alt1.jpg', type: 'image' }
             ]
         },
         'deporte3': {
             name: 'Tienda de Campaña Individual',
             description: 'Ligera y fácil de montar para tus aventuras al aire libre. Impermeable y resistente al viento, ideal para senderismo.',
             price: '$150.000 COP',
-            images: [
-                'productos_categoria4_producto3.jpg',
-                'productos_categoria4_producto3_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto3.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto3_alt1.jpg', type: 'image' }
             ]
         },
         'deporte4': {
             name: 'Mancuernas Ajustables',
             description: 'Versatilidad para tus rutinas de fuerza. Ajusta el peso rápidamente para diferentes ejercicios. Ahorra espacio en casa.',
             price: '$180.000 COP',
-            images: [
-                'productos_categoria4_producto4.jpg',
-                'productos_categoria4_producto4_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto4.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto4_alt1.jpg', type: 'image' }
             ]
         },
         'deporte5': {
             name: 'Kit de Snorkel',
             description: 'Explora el mundo submarino con comodidad y claridad. Incluye máscara, tubo y aletas de alta calidad.',
             price: '$65.000 COP',
-            images: [
-                'productos_categoria4_producto5.jpg',
-                'productos_categoria4_producto5_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto5.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto5_alt1.jpg', type: 'image' }
             ]
         },
         'deporte6': {
             name: 'Mochila de Senderismo 30L',
             description: 'Espaciosa y cómoda para tus excursiones. Múltiples bolsillos y soporte lumbar para mayor confort.',
             price: '$90.000 COP',
-            images: [
-                'productos_categoria4_producto6.jpg',
-                'productos_categoria4_producto6_alt1.jpg'
+            media: [
+                { src: 'productos_categoria4_producto6.jpg', type: 'image' },
+                { src: 'productos_categoria4_producto6_alt1.jpg', type: 'image' }
             ]
         }
     };
@@ -347,9 +347,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 modalBuyButton.dataset.product = product.name;
 
-                productImages = product.images;
-                currentImageIndex = 0;
-                updateModalImageAndThumbnails();
+                productMedia = product.media; // Asignamos la nueva propiedad 'media'
+                currentMediaIndex = 0;
+                updateModalMediaAndThumbnails(); // Función actualizada
 
                 productModal.classList.add('active');
                 document.body.classList.add('no-scroll');
@@ -360,33 +360,44 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         productModal.classList.remove('active');
         document.body.classList.remove('no-scroll');
+        // Pausar cualquier video al cerrar el modal
+        const currentMediaElement = galleryMainImageContainer.querySelector('img, video');
+        if (currentMediaElement && currentMediaElement.tagName === 'VIDEO') {
+            currentMediaElement.pause();
+        }
     });
 
     window.addEventListener('click', (event) => {
         if (event.target === productModal) {
             productModal.classList.remove('active');
             document.body.classList.remove('no-scroll');
+            // Pausar cualquier video al hacer clic fuera del modal
+            const currentMediaElement = galleryMainImageContainer.querySelector('img, video');
+            if (currentMediaElement && currentMediaElement.tagName === 'VIDEO') {
+                currentMediaElement.pause();
+            }
         }
     });
 
     galleryPrev.addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : productImages.length - 1;
-        updateModalImageAndThumbnails();
+        currentMediaIndex = (currentMediaIndex > 0) ? currentMediaIndex - 1 : productMedia.length - 1;
+        updateModalMediaAndThumbnails();
     });
 
     galleryNext.addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex < productImages.length - 1) ? currentImageIndex + 1 : 0;
-        updateModalImageAndThumbnails();
+        currentMediaIndex = (currentMediaIndex < productMedia.length - 1) ? currentMediaIndex + 1 : 0;
+        updateModalMediaAndThumbnails();
     });
 
-    function updateModalImageAndThumbnails() {
-        if (productImages.length === 0) {
-            modalProductImage.src = 'placeholder.jpg'; // Asegúrate de que esta imagen exista en la raíz
+    // Función que ahora maneja tanto imágenes como videos
+    function updateModalMediaAndThumbnails() {
+        if (productMedia.length === 0) {
+            galleryMainImageContainer.innerHTML = '<img src="placeholder.jpg" alt="No media available">'; // Placeholder
             galleryThumbnails.innerHTML = '';
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
             return;
-        } else if (productImages.length === 1) {
+        } else if (productMedia.length === 1) {
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
         } else {
@@ -394,21 +405,75 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryNext.style.display = 'block';
         }
 
-        modalProductImage.src = productImages[currentImageIndex];
-        galleryThumbnails.innerHTML = '';
+        // Limpiar el contenedor principal antes de agregar nuevo elemento
+        galleryMainImageContainer.innerHTML = '';
 
-        productImages.forEach((imageSrc, index) => {
-            const thumbnail = document.createElement('img');
-            thumbnail.src = imageSrc;
-            thumbnail.classList.add('thumbnail-item');
-            if (index === currentImageIndex) {
-                thumbnail.classList.add('active');
+        const currentMedia = productMedia[currentMediaIndex];
+        let mediaElement;
+
+        if (currentMedia.type === 'image') {
+            mediaElement = document.createElement('img');
+            mediaElement.src = currentMedia.src;
+            mediaElement.alt = modalProductTitle.textContent; // Usar el título del producto como alt text
+        } else if (currentMedia.type === 'video') {
+            mediaElement = document.createElement('video');
+            mediaElement.src = currentMedia.src;
+            mediaElement.controls = true; // Mostrar controles de video
+            mediaElement.loop = true; // Opcional: repetir el video
+            mediaElement.muted = true; // Opcional: iniciar muteado
+            mediaElement.autoplay = false; // No autoplay para evitar múltiples sonidos/cargas
+            mediaElement.load(); // Cargar el video para que el thumbnail funcione mejor
+        }
+
+        if (mediaElement) {
+            galleryMainImageContainer.appendChild(mediaElement);
+            // Si es un video, y es el elemento principal, ponerlo en autoplay (con muted) para que se vea
+            if (mediaElement.tagName === 'VIDEO') {
+                mediaElement.muted = true; // Asegurar que inicie muteado
+                mediaElement.play().catch(error => console.log("Video autoplay prevented:", error)); // Intentar autoplay
             }
-            thumbnail.addEventListener('click', () => {
-                currentImageIndex = index;
-                updateModalImageAndThumbnails();
-            });
-            galleryThumbnails.appendChild(thumbnail);
+        }
+
+
+        // Actualizar miniaturas
+        galleryThumbnails.innerHTML = '';
+        productMedia.forEach((mediaItem, index) => {
+            const thumbnailWrapper = document.createElement('div');
+            thumbnailWrapper.classList.add('thumbnail-item'); // Clase CSS para el wrapper de la miniatura
+
+            let thumbnailElement;
+            if (mediaItem.type === 'image') {
+                thumbnailElement = document.createElement('img');
+                thumbnailElement.src = mediaItem.src;
+                thumbnailElement.alt = `Thumbnail ${index + 1}`;
+            } else if (mediaItem.type === 'video') {
+                // Para videos, a menudo se usa una imagen de 'poster' o el primer frame
+                // Por simplicidad, aquí usaremos un icono o un poster si tienes uno
+                thumbnailElement = document.createElement('div');
+                thumbnailElement.classList.add('video-thumbnail');
+                thumbnailElement.innerHTML = `<span class="material-icons">play_circle_filled</span>`; // Icono de play
+                thumbnailElement.style.backgroundImage = `url('${mediaItem.src.replace(/\.(mp4|webm|ogg)$/i, '.jpg')}')`; // Intenta cargar un poster si el video tiene uno con el mismo nombre pero .jpg
+                thumbnailElement.style.backgroundSize = 'cover';
+                thumbnailElement.style.backgroundPosition = 'center';
+
+            }
+
+            if (thumbnailElement) {
+                thumbnailWrapper.appendChild(thumbnailElement);
+                if (index === currentMediaIndex) {
+                    thumbnailWrapper.classList.add('active');
+                }
+                thumbnailWrapper.addEventListener('click', () => {
+                    // Pausar el video actual antes de cambiar
+                    const currentMainMedia = galleryMainImageContainer.querySelector('img, video');
+                    if (currentMainMedia && currentMainMedia.tagName === 'VIDEO') {
+                        currentMainMedia.pause();
+                    }
+                    currentMediaIndex = index;
+                    updateModalMediaAndThumbnails();
+                });
+                galleryThumbnails.appendChild(thumbnailWrapper);
+            }
         });
     }
 
@@ -461,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Service Worker para PWA ---
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js') // sw.js también en la raíz
+            navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.log('Service Worker registrado con éxito:', registration);
                 })
