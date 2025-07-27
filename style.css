@@ -1,14 +1,15 @@
-/* Variables CSS (Nuevos tonos inspirados en Mercado Libre/Temu/AliExpress) */
+/* Variables CSS (Nuevos tonos inspirados en Mercado Libre/Temu/AliExpress con base ocre/amarillo) */
 :root {
-    --primary-color: #ffe033; /* Amarillo vibrante (Mercado Libre) */
-    --secondary-color: #3483fa; /* Azul oscuro (Mercado Libre) */
-    --accent-color: #00a650; /* Verde (Mercado Libre/Éxito) */
+    --primary-color: #f7a823; /* Amarillo ocre vibrante (similar a Mercado Libre) */
+    --secondary-color: #3f51b5; /* Azul profundo para contraste (similar a ML) */
+    --accent-color: #008f39; /* Verde para éxito/ofertas (similar a ML) */
     --text-color: #333333; /* Texto oscuro principal */
     --gray-text-color: #666666; /* Texto gris secundario */
     --white-color: #ffffff;
-    --light-gray-background: #eeeeee; /* Gris muy claro */
+    --light-gray-background: #f5f5f5; /* Gris muy claro para secciones */
     --border-color: #dddddd;
     --red-color: #cc0000; /* Rojo para alertas/cierre */
+    --dark-background: #212121; /* Fondo oscuro para el footer/sidebar opcional */
 }
 
 /* Base Styles */
@@ -27,11 +28,10 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray-background);
-    /* Fondo general con la imagen */
-    background-image: url('fondo.jpg'); /* Asegúrate que fondo.jpg esté en la raíz */
-    background-size: cover; /* Cubrir todo el área */
-    background-position: center; /* Centrar la imagen */
-    background-attachment: fixed; /* Hace que el fondo sea fijo al hacer scroll */
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container {
@@ -56,13 +56,13 @@ p {
 }
 
 a {
-    color: var(--secondary-color); /* Usar el azul de Mercado Libre para enlaces */
+    color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-color); /* El amarillo como hover para enlaces */
+    color: var(--primary-color);
 }
 
 img {
@@ -85,28 +85,28 @@ img {
 }
 
 .primary-btn {
-    background-color: var(--primary-color); /* Amarillo */
-    color: var(--text-color); /* Texto oscuro para el botón amarillo */
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
 }
 
 .primary-btn:hover {
-    background-color: #e6c800; /* Tono más oscuro de amarillo */
+    background-color: #e69812; /* Tono más oscuro de ocre */
     transform: translateY(-2px);
 }
 
 .btn.share-btn {
-    background-color: var(--accent-color); /* Verde */
+    background-color: var(--accent-color);
     color: var(--white-color);
     border: none;
-    display: flex; /* Para alinear icono y texto */
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Espacio entre icono y texto */
+    gap: 8px;
 }
 
 .btn.share-btn:hover {
-    background-color: #008f44; /* Tono más oscuro de verde */
+    background-color: #007a30;
     transform: translateY(-2px);
 }
 
@@ -134,7 +134,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--secondary-color); /* Azul */
+    background-color: var(--primary-color); /* Color ocre del splash */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -190,12 +190,17 @@ img {
     align-items: center;
     font-size: 1.5em;
     font-weight: 700;
-    color: var(--secondary-color); /* Azul para el logo de texto */
+    color: var(--secondary-color);
 }
 
 .logo img {
     height: 40px;
     margin-right: 10px;
+}
+
+/* Desktop Main Nav (Hide on mobile, handled by sidebar) */
+.main-nav {
+    display: block; /* Visible por defecto en desktop */
 }
 
 .main-nav ul {
@@ -249,13 +254,160 @@ img {
 
 /* Mobile Menu Toggle */
 .menu-toggle {
-    display: none;
+    display: none; /* Oculto por defecto, solo visible en móvil */
     background: none;
     border: none;
     font-size: 2em;
     cursor: pointer;
     color: var(--text-color);
 }
+
+/* Sidebar Styles (New) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Oculto por defecto */
+    width: 280px;
+    height: 100%;
+    background-color: var(--dark-background); /* Fondo oscuro para el sidebar */
+    color: var(--white-color);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+    transition: left 0.3s ease-in-out;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.close-sidebar-btn {
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-sidebar-btn:hover {
+    color: var(--red-color);
+}
+
+.sidebar-nav {
+    flex-grow: 1; /* Para que ocupe el espacio disponible */
+    margin-top: 40px;
+    padding-left: 20px;
+    overflow-y: auto; /* Permite scroll si hay muchos elementos */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav ul li a {
+    color: var(--white-color);
+    font-size: 1.1em;
+    padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.sidebar-nav ul li a img {
+    width: 24px; /* Tamaño de los iconos de Flaticon */
+    height: 24px;
+    filter: invert(100%) brightness(1.5); /* Hace que los iconos se vean blancos/claros */
+}
+
+.sidebar-nav ul li a:hover img {
+    filter: invert(60%) sepia(80%) saturate(2000%) hue-rotate(30deg) brightness(1.2); /* Cambia el color del icono en hover a ocre */
+}
+
+
+.sidebar-dropdown-toggle .dropdown-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-dropdown-toggle.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.sidebar-dropdown-menu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding-left: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 5px 5px;
+    margin-top: -5px;
+}
+
+.sidebar-dropdown-menu.active {
+    max-height: 200px; /* Ajustar según el número de elementos */
+}
+
+.sidebar-dropdown-menu li a {
+    padding: 10px 10px;
+    font-size: 1em;
+    color: var(--light-gray-background);
+}
+
+.sidebar-dropdown-menu li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-social {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.sidebar-social h3 {
+    color: var(--white-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sidebar-social .social-icons {
+    justify-content: center; /* Centrar iconos en el sidebar */
+}
+
+.sidebar-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 800;
+    cursor: pointer;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
 
 /* Hero Section */
 .hero-section {
@@ -300,7 +452,7 @@ img {
 }
 
 .hero-content .highlight {
-    color: var(--primary-color); /* Amarillo como resaltado */
+    color: var(--primary-color);
 }
 
 /* Products Section (General) */
@@ -361,13 +513,13 @@ img {
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Muestra hasta 2 líneas */
     -webkit-box-orient: vertical;
-    line-height: 1.4; /* Ajusta el interlineado para que quepa bien */
+    line-height: 1.4;
 }
 
 .product-price {
     font-size: 1.4em;
     font-weight: 700;
-    color: var(--secondary-color); /* Azul para precios */
+    color: var(--secondary-color);
     margin-bottom: 15px;
 }
 
@@ -399,7 +551,7 @@ img {
 }
 
 .category-item {
-    background-color: var(--secondary-color); /* Azul para categorías */
+    background-color: var(--secondary-color);
     color: var(--white-color);
     padding: 25px;
     border-radius: 8px;
@@ -410,7 +562,7 @@ img {
 }
 
 .category-item:hover {
-    background-color: #2a73cc; /* Tono más oscuro de azul */
+    background-color: #2a73cc;
     transform: translateY(-5px);
 }
 
@@ -459,7 +611,7 @@ img {
 
 .modal-content {
     background-color: var(--white-color);
-    margin: 15px; /* Margen para asegurar espacio en pantallas pequeñas */
+    margin: 15px;
     padding: 20px;
     border-radius: 8px;
     width: 90%;
@@ -469,12 +621,12 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    max-height: 95vh; /* Limita la altura del modal para que siempre quepa */
-    overflow-y: auto; /* Permite scroll dentro del contenido si es necesario */
+    max-height: 95vh;
+    overflow-y: auto;
 }
 
 .modal .close-button {
-    color: var(--gray-text-color); /* Un gris que se vea bien sobre fondo blanco */
+    color: var(--gray-text-color);
     font-size: 30px;
     font-weight: bold;
     position: absolute;
@@ -483,7 +635,6 @@ img {
     cursor: pointer;
     transition: color 0.3s ease;
     z-index: 1010;
-    /* Asegúrate de que el background-color del modal-content no lo oculte si no es transparente */
 }
 
 .modal .close-button:hover,
@@ -651,7 +802,6 @@ img {
     margin-bottom: 10px;
 }
 
-
 /* FAQ Section */
 .faq-section {
     padding: 60px 20px;
@@ -691,7 +841,7 @@ img {
 }
 
 .faq-question.active {
-    color: var(--secondary-color); /* Azul para FAQ activo */
+    color: var(--secondary-color);
     background-color: var(--light-gray-background);
 }
 
@@ -784,7 +934,7 @@ img {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.25); /* Sombra azul */
+    box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.25);
 }
 
 .contact-form .btn {
@@ -795,7 +945,7 @@ img {
 
 /* Footer Section */
 .footer-section {
-    background-color: var(--text-color);
+    background-color: var(--dark-background); /* Color oscuro para el footer */
     color: var(--white-color);
     padding: 40px 20px 20px;
     font-size: 0.9em;
@@ -847,27 +997,25 @@ img {
     display: flex;
     gap: 15px;
     margin-top: 15px;
-    /* Centrar iconos en footer-social si es columna */
     justify-content: flex-start;
 }
 
 .social-icons img {
     height: 30px;
     width: 30px;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, filter 0.3s ease;
 }
 
 .social-icons img:hover {
     transform: translateY(-3px);
+    filter: brightness(1.2); /* Un pequeño efecto de brillo al pasar el ratón */
 }
 
-/* Centrar el botón de compartir tienda */
 .footer-social .share-btn {
-    width: auto; /* Permite que el botón se ajuste a su contenido */
-    margin: 20px auto 0; /* Centra el botón horizontalmente con auto */
-    display: flex; /* Asegura que flexbox lo centre */
+    width: auto;
+    margin: 20px auto 0;
+    display: flex;
 }
-
 
 .footer-bottom {
     text-align: center;
@@ -883,63 +1031,12 @@ img {
     h2 { font-size: 1.8em; }
     h3 { font-size: 1.5em; }
 
-    /* Mobile Nav */
+    /* Ocultar menú de navegación superior en móvil */
     .main-nav {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        background-color: var(--white-color);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        z-index: 400;
-        padding-bottom: 20px;
-        transition: transform 0.3s ease-out;
-        transform: translateY(-100%);
     }
 
-    .main-nav.active {
-        display: flex;
-        transform: translateY(0);
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .main-nav ul li {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-    }
-
-    .main-nav ul li a {
-        padding: 15px 0;
-        border-bottom: 1px solid var(--light-gray-background);
-        width: 100%;
-        display: block;
-    }
-
-    .main-nav ul li:last-child a {
-        border-bottom: none;
-    }
-
-    .main-nav .dropdown {
-        position: static;
-        box-shadow: none;
-        width: 100%;
-        padding: 0;
-        margin-top: 0;
-    }
-
-    .main-nav .dropdown li a {
-        background-color: var(--light-gray-background);
-        padding-left: 40px;
-    }
-
+    /* Mostrar botón de menú móvil */
     .menu-toggle {
         display: block;
     }
@@ -957,15 +1054,15 @@ img {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
-    /* Modal adjustments for small screens (mejorado) */
+    /* Modal adjustments for small screens */
     .modal-content {
         flex-direction: column;
         max-width: 95%;
-        width: auto; /* Deja que el contenido defina el ancho */
+        width: auto;
         margin: 10px auto;
         padding: 15px;
-        max-height: 98vh; /* Más margen para la pantalla */
-        overflow-y: auto; /* Asegura el scroll */
+        max-height: 98vh;
+        overflow-y: auto;
     }
 
     .product-gallery, .modal-product-info {
@@ -992,7 +1089,7 @@ img {
     }
 
     .modal .close-button {
-        font-size: 35px; /* Un poco más grande para móvil */
+        font-size: 35px;
         top: 5px;
         right: 10px;
     }
@@ -1044,7 +1141,6 @@ img {
     .product-price {
         font-size: 1.2em;
     }
-    /* Asegurar que el modal no sea demasiado grande en móviles muy pequeños */
     .modal-content {
         padding: 10px;
     }
