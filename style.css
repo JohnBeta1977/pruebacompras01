@@ -29,10 +29,6 @@ body {
     overflow-x: hidden; /* Evita scroll horizontal */
 }
 
-body.no-scroll {
-    overflow: hidden;
-}
-
 a {
     text-decoration: none;
     color: var(--accent-color);
@@ -55,11 +51,11 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color); /* Color de fondo del splash */
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Asegura que esté por encima de todo */
+    z-index: 9999;
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
@@ -71,8 +67,8 @@ ul {
 }
 
 .splash-logo {
-    max-width: 200px; /* Tamaño del logo en el splash */
-    animation: pulse 1.5s infinite alternate; /* Animación de pulsación */
+    max-width: 200px;
+    animation: pulse 1.5s infinite alternate;
 }
 
 @keyframes pulse {
@@ -85,11 +81,11 @@ ul {
     background-color: var(--dark-color);
     color: var(--white-color);
     padding: 15px 0;
-    position: fixed; /* Hace que la cabecera sea fija */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 1000; /* Asegura que esté por encima del contenido */
+    z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, padding 0.3s ease;
 }
@@ -111,23 +107,24 @@ ul {
 }
 
 .logo-img {
-    height: 40px; /* Tamaño del logo en la cabecera */
+    height: 40px;
     margin-right: 10px;
-    border-radius: 50%; /* Si quieres que el logo sea circular */
+    border-radius: 50%;
     transition: transform 0.3s ease;
 }
 
 .logo:hover .logo-img {
-    transform: rotate(10deg); /* Pequeña animación al pasar el ratón */
+    transform: rotate(10deg);
 }
 
+/* Icono del menú hamburguesa */
 #menu-toggle {
     background: none;
     border: none;
     color: var(--white-color);
     font-size: 2em;
     cursor: pointer;
-    display: none; /* Oculto por defecto en desktop, se muestra en media query */
+    display: none; /* Oculto por defecto en desktop */
     transition: transform 0.3s ease;
 }
 
@@ -135,14 +132,14 @@ ul {
     transform: scale(1.1);
 }
 
+/* Navegación principal (desktop) */
 #main-nav {
-    /* Por defecto, visible para desktop */
-    display: block;
+    display: block; /* Visible por defecto en desktop */
 }
 
 #main-nav ul {
     display: flex;
-    gap: 25px; /* Espacio entre los ítems del menú */
+    gap: 25px;
 }
 
 #main-nav ul li a {
@@ -179,7 +176,7 @@ main {
 
 /* --- Hero Section --- */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/hero-bg.jpg') no-repeat center center/cover; /* Reemplaza con una imagen de fondo */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/hero-bg.jpg') no-repeat center center/cover;
     color: var(--white-color);
     text-align: center;
     padding: 100px 20px;
@@ -219,7 +216,7 @@ main {
 }
 
 .btn-primary:hover {
-    background-color: #1976D2; /* Azul más oscuro al pasar el ratón */
+    background-color: #1976D2;
     transform: translateY(-3px);
 }
 
@@ -271,7 +268,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer; /* Hace que toda la tarjeta sea cliqueable */
+    cursor: pointer;
 }
 
 .product-card:hover {
@@ -302,7 +299,7 @@ main {
     font-size: 0.95em;
     color: #555;
     margin: 0 15px 10px;
-    flex-grow: 1; /* Permite que el párrafo ocupe el espacio restante */
+    flex-grow: 1;
 }
 
 .product-card .price {
@@ -324,14 +321,13 @@ main {
 
 .product-card .price.new-price {
     font-size: 1.6em;
-    color: #E64A19; /* Un rojo anaranjado para ofertas */
+    color: #E64A19;
     font-weight: 800;
     animation: bounceIn 0.8s;
 }
 
-
 .product-card .buy-btn {
-    background-color: var(--primary-color); /* Verde WhatsApp */
+    background-color: var(--primary-color);
     color: var(--white-color);
     padding: 12px 25px;
     border: none;
@@ -340,7 +336,7 @@ main {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    width: calc(100% - 30px); /* Ocupa el ancho del card menos el padding */
+    width: calc(100% - 30px);
     margin: 0 15px;
     display: flex;
     justify-content: center;
@@ -348,21 +344,21 @@ main {
 }
 
 .product-card .buy-btn:hover {
-    background-color: #388E3C; /* Verde más oscuro */
+    background-color: #388E3C;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 /* Resaltar "Ofertas Especiales" */
 .highlight-category {
-    background-color: #FFFDE7; /* Fondo amarillo muy claro */
+    background-color: #FFFDE7;
     border-top: 5px solid var(--secondary-color);
     border-bottom: 5px solid var(--secondary-color);
     animation: fadeIn 1s ease-out;
 }
 
 .highlight-category h2 {
-    color: #E64A19; /* Color de texto más llamativo para el título */
+    color: #E64A19;
     animation: slideInDown 1s ease-out;
 }
 
@@ -404,8 +400,8 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     text-align: left;
-    overflow: hidden; /* Para animar el desplegable */
-    max-width: 800px; /* Limita el ancho del acordeón */
+    overflow: hidden;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -421,8 +417,8 @@ main {
     align-items: center;
     background-color: var(--light-color);
     transition: background-color 0.3s ease, color 0.3s ease;
-    position: relative; /* Asegura que el icono esté correctamente posicionado */
-    z-index: 1; /* Para que el cursor no cambie sobre el icono */
+    position: relative;
+    z-index: 1;
 }
 
 .faq-question:hover {
@@ -430,27 +426,27 @@ main {
 }
 
 .faq-question .expand-icon {
-    font-size: 1.5em; /* Tamaño del icono */
+    font-size: 1.5em;
     margin-left: 10px;
     transition: transform 0.3s ease;
 }
 
 .faq-question.active .expand-icon {
-    transform: rotate(180deg); /* Gira el icono cuando está activo */
+    transform: rotate(180deg);
 }
 
 .faq-answer {
     font-size: 1em;
     color: #666;
-    padding: 0 25px; /* Elimina padding-bottom inicialmente */
-    max-height: 0; /* Oculta la respuesta por defecto */
+    padding: 0 25px;
+    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding-bottom 0.3s ease-out; /* Animación de padding-bottom también */
+    transition: max-height 0.3s ease-out, padding-bottom 0.3s ease-out;
 }
 
 .faq-answer.active {
-    max-height: 200px; /* Suficiente altura para la mayoría de respuestas, ajustar si es necesario */
-    padding-bottom: 20px; /* Añade padding-bottom cuando está activa */
+    max-height: 200px; /* O un valor lo suficientemente grande para contener el texto */
+    padding-bottom: 20px;
 }
 
 /* --- Footer --- */
@@ -464,15 +460,15 @@ footer {
 
 /* --- Product Modal --- */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
-    z-index: 10000; /* Por encima de todo lo demás */
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Habilitar scroll si el contenido es grande */
-    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente */
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -481,7 +477,7 @@ footer {
 }
 
 .modal.active {
-    display: flex; /* Muestra el modal como flexbox cuando está activo */
+    display: flex;
     opacity: 1;
     visibility: visible;
 }
@@ -497,8 +493,8 @@ footer {
     position: relative;
     transform: translateY(20px);
     transition: transform 0.3s ease-out;
-    display: flex; /* Para el layout interno */
-    flex-direction: column; /* Por defecto en móvil, luego fila */
+    display: flex;
+    flex-direction: column; /* Por defecto en móvil */
 }
 
 .modal.active .modal-content {
@@ -523,7 +519,7 @@ footer {
 
 .modal-body {
     display: flex;
-    flex-direction: column; /* Columna por defecto en móvil */
+    flex-direction: column;
     gap: 30px;
     width: 100%;
 }
@@ -538,17 +534,17 @@ footer {
 
 .gallery-main-image {
     width: 100%;
-    height: 300px; /* Altura fija para la imagen principal del modal */
+    height: 300px;
     overflow: hidden;
     position: relative;
     border-radius: 10px;
-    background-color: var(--light-color); /* Fondo mientras carga la imagen */
+    background-color: var(--light-color);
 }
 
 .gallery-main-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ajusta la imagen sin recortar */
+    object-fit: contain;
     display: block;
 }
 
@@ -585,11 +581,11 @@ footer {
     justify-content: center;
     gap: 10px;
     margin-top: 15px;
-    flex-wrap: wrap; /* Permite que las miniaturas se envuelvan */
+    flex-wrap: wrap;
 }
 
 .thumbnail-item {
-    width: 80px; /* Tamaño de las miniaturas */
+    width: 80px;
     height: 80px;
     object-fit: cover;
     border: 2px solid transparent;
@@ -629,12 +625,11 @@ footer {
 }
 
 #modal-buy-btn {
-    width: 100%; /* El botón ocupa todo el ancho disponible */
+    width: 100%;
     padding: 15px 30px;
     font-size: 1.2em;
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
-
 
 /* --- Animaciones CSS --- */
 @keyframes fadeInUp {
@@ -686,8 +681,8 @@ footer {
     }
 }
 
-
 /* --- Responsive Design (Mobile First) --- */
+/* Media query para pantallas más pequeñas (teléfonos) */
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;
@@ -707,22 +702,21 @@ footer {
     }
 
     #menu-toggle {
-        display: block; /* Muestra el icono de menú en móvil */
+        display: block; /* Muestra el icono de menú hamburguesa */
     }
 
     #main-nav {
         position: fixed;
-        top: 0; /* Ajusta la posición para que el menú esté debajo del header */
-        right: -250px; /* Oculta el menú a la derecha */
+        top: 0; /* Asegura que empieza desde arriba */
+        right: -250px; /* Oculta el menú fuera de la pantalla */
         width: 250px;
         height: 100%;
         background-color: var(--dark-color);
         box-shadow: -5px 0 15px rgba(0,0,0,0.2);
         transition: right 0.3s ease;
         z-index: 999;
-        padding-top: 70px; /* Espacio para el header */
-        /* Asegurarse de que esté oculto hasta que se active */
-        visibility: hidden;
+        padding-top: 70px; /* Espacio para el header fijo */
+        visibility: hidden; /* Oculto por defecto */
     }
 
     #main-nav.active {
@@ -753,9 +747,9 @@ footer {
         display: none; /* Desactivar la línea en el menú móvil */
     }
 
-    /* Main content padding adjustment */
+    /* Ajuste de padding para el contenido principal */
     main {
-        padding-top: 70px; /* Ajusta este valor al alto de tu header en móvil */
+        padding-top: 70px;
     }
 
     /* Hero Section */
@@ -792,8 +786,8 @@ footer {
     }
 
     .product-card {
-        margin: 0 auto; /* Centra las tarjetas */
-        max-width: 320px; /* Limita el ancho en móvil */
+        margin: 0 auto;
+        max-width: 320px;
     }
 
     .product-card img {
@@ -826,7 +820,7 @@ footer {
     .modal-content {
         width: 95%;
         padding: 20px;
-        flex-direction: column; /* Asegura que sea columna en móvil */
+        flex-direction: column;
     }
 
     .modal-body {
@@ -861,11 +855,11 @@ footer {
     }
 }
 
+/* Reglas para desktop (asegura que el menú siempre esté visible) */
 @media (min-width: 769px) {
-    /* Asegura que el menú de navegación sea visible en desktop */
     #main-nav {
-        display: block !important; /* !important para anular cualquier estilo inline si fuera necesario */
-        position: static; /* Restaura la posición estática en desktop */
+        display: block !important; /* Asegura que el menú sea visible en desktop */
+        position: static; /* Quita la posición fija */
         height: auto;
         box-shadow: none;
         padding-top: 0;
@@ -874,7 +868,6 @@ footer {
     #menu-toggle {
         display: none; /* Oculta el icono de menú en desktop */
     }
-
     .modal-content {
         flex-direction: row; /* En desktop, el modal se ve en fila */
     }
@@ -885,4 +878,9 @@ footer {
     .product-details {
         padding-left: 20px;
     }
+}
+
+/* Clase para deshabilitar el scroll del body */
+body.no-scroll {
+    overflow: hidden;
 }
