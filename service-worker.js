@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-tienda-pwa-v4'; // ¡Incrementamos la versión para forzar una nueva caché!
+const CACHE_NAME = 'mi-tienda-pwa-v5'; // ¡Incrementamos la versión para forzar una nueva caché!
 const urlsToCache = [
     '/pruebacompras01/', // Ruta base de tu repositorio GitHub Pages (si aplica)
     '/pruebacompras01/index.html',
@@ -8,29 +8,53 @@ const urlsToCache = [
     '/pruebacompras01/fondo.jpg', // Tu imagen de fondo
     '/pruebacompras01/manifest.json',
     
-    // Material Icons (ya están en CDN, no necesitan cacheo local, pero si quieres precargarlos puedes)
-    // 'https://fonts.googleapis.com/icon?family=Material+Icons',
-    // 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap',
-
     // Imágenes de productos - DEBEN ESTAR EN LA RAÍZ DE TU REPOSITORIO
     '/pruebacompras01/productos_oferta1.jpg',
     '/pruebacompras01/productos_oferta1_alt1.jpg',
     '/pruebacompras01/productos_oferta1_alt2.jpg',
     '/pruebacompras01/productos_oferta2.jpg',
-    '/pruebacompras01/productos_categoria1_producto1.jpg', // Si esta imagen se usa en algún lado, cachearla
-    '/pruebacompras01/productos_categoria1_producto1_alt1.jpg', // Si esta imagen se usa en algún lado, cachearla
-    
-    // Imágenes de las secciones de beneficios si las tuvieras (aunque ahora usamos iconos de Material Design)
-    // Si todavía usas imagenes para envio_gratis, pago_seguro, soporte_24_7, ponlas aquí:
-    // '/pruebacompras01/envio_gratis.png', 
-    // '/pruebacompras01/pago_seguro.png',
-    // '/pruebacompras01/soporte_24_7.png',
 
-    // Imágenes de Categorías (si fueran imágenes y no solo colores)
-    // '/pruebacompras01/electronica.jpg', // Ya no se usan como imágenes de fondo de categoría
-    // '/pruebacompras01/moda.jpg',
-    // '/pruebacompras01/hogar.jpg',
-    // '/pruebacompras01/deportes.jpg'
+    // Imágenes para la sección de Electronica (ejemplos)
+    '/pruebacompras01/electronica_tv.jpg',
+    '/pruebacompras01/electronica_tv_alt1.jpg',
+    '/pruebacompras01/electronica_tv_alt2.jpg',
+    '/pruebacompras01/electronica_laptop.jpg',
+    '/pruebacompras01/electronica_laptop_alt1.jpg',
+    '/pruebacompras01/electronica_altavoz.jpg',
+    '/pruebacompras01/electronica_altavoz_alt1.jpg',
+    '/pruebacompras01/electronica_consola.jpg',
+    '/pruebacompras01/electronica_consola_alt1.jpg',
+
+    // Imágenes para la sección de Moda (ejemplos)
+    '/pruebacompras01/moda_chaqueta.jpg',
+    '/pruebacompras01/moda_chaqueta_alt1.jpg',
+    '/pruebacompras01/moda_chaqueta_alt2.jpg',
+    '/pruebacompras01/moda_reloj.jpg',
+    '/pruebacompras01/moda_reloj_alt1.jpg',
+    '/pruebacompras01/moda_zapatos.jpg',
+    '/pruebacompras01/moda_zapatos_alt1.jpg',
+    '/pruebacompras01/moda_bolso.jpg',
+    '/pruebacompras01/moda_bolso_alt1.jpg',
+
+    // Imágenes para la sección de Hogar (ejemplos)
+    '/pruebacompras01/hogar_aspiradora.jpg',
+    '/pruebacompras01/hogar_aspiradora_alt1.jpg',
+    '/pruebacompras01/hogar_cafetera.jpg',
+    '/pruebacompras01/hogar_cafetera_alt1.jpg',
+    '/pruebacompras01/hogar_lampara.jpg',
+    '/pruebacompras01/hogar_lampara_alt1.jpg',
+    '/pruebacompras01/hogar_juego_cama.jpg',
+    '/pruebacompras01/hogar_juego_cama_alt1.jpg',
+
+    // Imágenes para la sección de Usados (ejemplos)
+    '/pruebacompras01/usados_celular.jpg',
+    '/pruebacompras01/usados_celular_alt1.jpg',
+    '/pruebacompras01/usados_bici.jpg',
+    '/pruebacompras01/usados_bici_alt1.jpg',
+    '/pruebacompras01/usados_tablet.jpg',
+    '/pruebacompras01/usados_tablet_alt1.jpg',
+    '/pruebacompras01/usados_libros.jpg',
+    '/pruebacompras01/usados_libros_alt1.jpg',
 
     // Agrega aquí CUALQUIER otra imagen, video o recurso que uses y quieras que se cachee para offline.
     // Asegúrate de que las rutas coincidan con la ubicación real de tus archivos.
