@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '$999.000 COP',
             originalPrice: '$1.500.000 COP',
             images: [
-                'productos/oferta_producto1.jpg',
+                'https://img.kwcdn.com/product/fancy/eb9dc7df-9532-4bf2-af60-39021eb6eb0d.jpg?imageView2/2/w/800/q/70/format/webp',
                 'productos/oferta_producto1_alt1.jpg',
                 'productos/oferta_producto1_alt2.jpg'
             ]
