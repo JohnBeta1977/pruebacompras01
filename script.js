@@ -47,17 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
     const productsData = {
         'oferta1': {
-            name: 'reloj',
-            description: 'moda casual, correa de cuero sintético, reloj de cuarzo para hombres y mujeres, adecuado para el uso diario, viajes, vacaciones, amigos, regalo de cumpleaños, pareja, regreso a casa, temporada de fiestas, Navidad, San Valentín, ideal para regalo.',
-            price: '$12.000 COP',
-            originalPrice: '$18.000 COP',
+            name: 'Smart TV 4K 50"',
+            description: 'Disfruta de una calidad de imagen inmersiva y funciones inteligentes. Conexión Wi-Fi y múltiples puertos HDMI.',
+            price: '$999.000 COP',
+            originalPrice: '$1.500.000 COP',
             images: [
-                'https://img.kwcdn.com/product/fancy/eb9dc7df-9532-4bf2-af60-39021eb6eb0d.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/f1ac195a-7822-477a-b965-de0c7dfa3a99.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/5fa83337-625f-4405-b423-8abf690119cb.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/6ea1907f-664d-4791-aa20-76e1235c37ea.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/8e5f79f0-8854-4dc9-a0f6-d625e1178cb4.jpg?imageView2/2/w/800/q/70/format/webp',
-                'https://img.kwcdn.com/product/fancy/5e4c0902-8276-45ce-a08d-6a46bdae8ea9.jpg?imageView2/2/w/800/q/70/format/webp',
+                'productos/oferta_producto1.jpg',
+                'productos/oferta_producto1_alt1.jpg',
+                'productos/oferta_producto1_alt2.jpg'
             ]
         },
         'oferta2': {
