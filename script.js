@@ -111,4 +111,183 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function changeSlide(
+    function changeSlide(n) {
+        const slides = imageSlider.querySelectorAll('img');
+        currentSlideIndex += n;
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        }
+        if (currentSlideIndex < 0) {
+            currentSlideIndex = slides.length - 1;
+        }
+        showSlides();
+    }
+
+    prevButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevenir que el click se propague a la tarjeta de producto
+        changeSlide(-1);
+    });
+    nextButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevenir que el click se propague a la tarjeta de producto
+        changeSlide(1);
+    });
+
+    productCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+            // Asegurarse de que el click no sea en el botón "Comprar"
+            if (event.target.classList.contains('buy-now-btn') || event.target.closest('.buy-now-btn')) {
+                return;
+            }
+
+            const productId = card.dataset.productId;
+            const title = card.querySelector('h3').textContent;
+            const description = card.querySelector('.description').textContent;
+            const price = card.querySelector('.price').textContent;
+            
+            // Obtener todas las imágenes de la tarjeta
+            const mainImageSrc = card.querySelector('.product-images .main-image').src;
+            const altImagesSrc = Array.from(card.querySelectorAll('.product-images .alt-images img')).map(img => img.src);
+            
+            // Llenar la modal
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            modalPrice.textContent = price;
+
+            // Limpiar slider y añadir imágenes
+            imageSlider.innerHTML = '';
+            // Añadir imagen principal primero
+            imageSlider.appendChild(createImageElement(mainImageSrc, title));
+            // Luego añadir imágenes alternativas
+            altImagesSrc.forEach(src => imageSlider.appendChild(createImageElement(src, `${title} - vista alternativa`)));
+            
+            currentSlideIndex = 0; // Resetear a la primera imagen al abrir
+            showSlides();
+
+            // Configurar video de YouTube
+            videoContainer.innerHTML = ''; // Limpiar video anterior
+            const videoUrl = productVideos[productId];
+            if (videoUrl) {
+                const iframe = document.createElement('iframe');
+                iframe.src = videoUrl;
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', '');
+                videoContainer.appendChild(iframe);
+                videoContainer.style.display = 'block';
+            } else {
+                videoContainer.style.display = 'none'; // Ocultar si no hay video
+            }
+
+            // Enlace de WhatsApp para "Comprar" en la modal
+            const whatsappLink = `https://wa.me/573205893469?text=Hola,%20me%20interesa%20comprar%20este%20producto:%20${encodeURIComponent(title)}%0A${encodeURIComponent(window.location.href.split('#')[0])}`;
+            buyButton.href = whatsappLink;
+
+            // Funcionalidad de compartir
+            shareButton.onclick = () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: title,
+                        text: description,
+                        url: window.location.href.split('#')[0] // Compartir la URL base de la página
+                    }).then(() => {
+                        console.log('Contenido compartido con éxito');
+                    }).catch((error) => {
+                        console.error('Error al compartir:', error);
+                    });
+                } else {
+                    alert('La función de compartir no está disponible en este navegador. Copiando el enlace...');
+                    navigator.clipboard.writeText(`¡Mira este producto: ${title}! ${window.location.href.split('#')[0]}`).then(() => {
+                        alert('Enlace copiado al portapapeles.');
+                    }).catch(err => {
+                        console.error('No se pudo copiar el enlace: ', err);
+                    });
+                }
+            };
+
+            // Mostrar la modal
+            productModal.style.display = "flex";
+        });
+    });
+
+    // Delegación de eventos para los botones de comprar en las tarjetas (directo a WhatsApp)
+    document.querySelectorAll('.buy-now-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita que el click en el botón active la modal de la tarjeta
+            const productName = button.dataset.productName;
+            const whatsappLink = `https://wa.me/573205893469?text=Hola,%20me%20interesa%20comprar%20este%20producto:%20${encodeURIComponent(productName)}`;
+            window.open(whatsappLink, '_blank');
+        });
+    });
+
+    // Función auxiliar para crear elementos de imagen
+    function createImageElement(src, alt) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = alt;
+        return img;
+    }
+
+    // Eventos para cerrar la modal
+    closeModalButton.addEventListener('click', () => {
+        productModal.style.display = "none";
+        videoContainer.innerHTML = ''; // Detener y limpiar el video al cerrar
+    });
+
+    // Cerrar modal al hacer clic fuera del contenido
+    window.addEventListener('click', (event) => {
+        if (event.target == productModal) {
+            productModal.style.display = "none";
+            videoContainer.innerHTML = ''; // Detener y limpiar el video al cerrar
+        }
+    });
+
+    // 5. Toggle de respuestas en la sección FAQ
+    document.querySelectorAll('.faq-item h3').forEach(faqQuestion => {
+        faqQuestion.addEventListener('click', () => {
+            const answer = faqQuestion.nextElementSibling;
+            answer.classList.toggle('active');
+        });
+    });
+
+    // 6. Smooth Scroll para anclas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Cerrar sidebar si está abierto al hacer click en un enlace
+            if (sidebar && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // PWA: Manejo del evento beforeinstallprompt (opcional, para banners personalizados)
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); 
+        deferredPrompt = e;
+        console.log('Evento beforeinstallprompt disparado. Puedes mostrar tu botón de instalación.');
+        const installButton = document.querySelector('.download-btn');
+        if (installButton) {
+            installButton.style.display = 'flex'; // Asegúrate de que el botón sea visible
+            installButton.addEventListener('click', () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Usuario aceptó la instalación de la PWA');
+                        } else {
+                            console.log('Usuario canceló la instalación de la PWA');
+                        }
+                        deferredPrompt = null;
+                        installButton.style.display = 'none'; // Ocultar el botón después de la elección
+                    });
+                }
+            }, { once: true }); // El evento solo se activará una vez
+        }
+    });
+});
