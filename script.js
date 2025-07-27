@@ -29,17 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica del Modal de Producto y Slider ---
     const productModal = document.getElementById('product-modal');
     const closeButton = document.querySelector('.modal .close-button');
-    const galleryMainImageContainer = document.querySelector('.gallery-main-image'); // Contenedor para la imagen/video principal
+    const galleryMainImageContainer = document.querySelector('.gallery-main-image');
     const modalProductTitle = document.getElementById('modal-product-title');
     const modalProductDescription = document.getElementById('modal-product-description');
     const modalProductPrice = document.getElementById('modal-product-price');
     const modalBuyButton = document.getElementById('modal-buy-btn');
+    const modalShareButton = document.getElementById('modal-share-btn'); // Nuevo botón de compartir
     const galleryThumbnails = document.getElementById('modal-product-thumbnails');
     const galleryPrev = document.querySelector('.gallery-prev');
     const galleryNext = document.querySelector('.gallery-next');
 
-    let currentMediaIndex = 0; // Cambiado de currentImageIndex
-    let productMedia = [];     // Cambiado de productImages
+    let currentMediaIndex = 0;
+    let productMedia = [];
 
     // Datos de productos
     // Cada elemento 'media' ahora puede ser un objeto con 'src' y 'type'
@@ -62,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
             originalPrice: '$200.000 COP',
             media: [
                 { src: 'productos_oferta2.jpg', type: 'image' },
-                // Ejemplo de cómo agregar un video:
                 { src: 'video_cafetera.mp4', type: 'video' } // **Asegúrate de tener este archivo video_cafetera.mp4 en tu carpeta raíz**
             ]
         },
@@ -346,10 +346,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 modalBuyButton.dataset.product = product.name;
+                modalShareButton.dataset.productId = productId; // Asignar el ID del producto al botón de compartir
 
-                productMedia = product.media; // Asignamos la nueva propiedad 'media'
+                productMedia = product.media;
                 currentMediaIndex = 0;
-                updateModalMediaAndThumbnails(); // Función actualizada
+                updateModalMediaAndThumbnails();
 
                 productModal.classList.add('active');
                 document.body.classList.add('no-scroll');
@@ -420,17 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaElement.src = currentMedia.src;
             mediaElement.controls = true; // Mostrar controles de video
             mediaElement.loop = true; // Opcional: repetir el video
-            mediaElement.muted = true; // Opcional: iniciar muteado
-            mediaElement.autoplay = false; // No autoplay para evitar múltiples sonidos/cargas
+            mediaElement.muted = true; // Opcional: iniciar muteado (requerido para autoplay en muchos navegadores)
+            mediaElement.autoplay = false; // No autoplay al cargar el modal inicialmente, solo cuando se hace click en la miniatura o al cambiar de slide
             mediaElement.load(); // Cargar el video para que el thumbnail funcione mejor
         }
 
         if (mediaElement) {
             galleryMainImageContainer.appendChild(mediaElement);
-            // Si es un video, y es el elemento principal, ponerlo en autoplay (con muted) para que se vea
-            if (mediaElement.tagName === 'VIDEO') {
-                mediaElement.muted = true; // Asegurar que inicie muteado
-                mediaElement.play().catch(error => console.log("Video autoplay prevented:", error)); // Intentar autoplay
+            // Si es un video, y es el elemento principal, intentar ponerlo en autoplay (con muted)
+            if (mediaElement.tagName === 'VIDEO' && currentMediaIndex === 0) { // Solo si es el primer elemento mostrado
+                mediaElement.muted = true;
+                mediaElement.play().catch(error => console.log("Video autoplay prevented:", error));
             }
         }
 
@@ -439,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryThumbnails.innerHTML = '';
         productMedia.forEach((mediaItem, index) => {
             const thumbnailWrapper = document.createElement('div');
-            thumbnailWrapper.classList.add('thumbnail-item'); // Clase CSS para el wrapper de la miniatura
+            thumbnailWrapper.classList.add('thumbnail-item');
 
             let thumbnailElement;
             if (mediaItem.type === 'image') {
@@ -447,15 +448,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 thumbnailElement.src = mediaItem.src;
                 thumbnailElement.alt = `Thumbnail ${index + 1}`;
             } else if (mediaItem.type === 'video') {
-                // Para videos, a menudo se usa una imagen de 'poster' o el primer frame
-                // Por simplicidad, aquí usaremos un icono o un poster si tienes uno
-                thumbnailElement = document.createElement('div');
-                thumbnailElement.classList.add('video-thumbnail');
-                thumbnailElement.innerHTML = `<span class="material-icons">play_circle_filled</span>`; // Icono de play
-                thumbnailElement.style.backgroundImage = `url('${mediaItem.src.replace(/\.(mp4|webm|ogg)$/i, '.jpg')}')`; // Intenta cargar un poster si el video tiene uno con el mismo nombre pero .jpg
-                thumbnailElement.style.backgroundSize = 'cover';
-                thumbnailElement.style.backgroundPosition = 'center';
-
+                thumbnailWrapper.classList.add('video-thumbnail');
+                thumbnailElement = document.createElement('span'); // Usamos span para el icono
+                thumbnailElement.classList.add('material-icons');
+                thumbnailElement.textContent = 'play_circle_filled';
+                // Puedes intentar cargar un poster para el video thumbnail si existe una imagen con el mismo nombre y extensión .jpg
+                // Ejemplo: video_cafetera.mp4 -> video_cafetera.jpg
+                const posterPath = mediaItem.src.replace(/\.(mp4|webm|ogg)$/i, '.jpg');
+                thumbnailWrapper.style.backgroundImage = `url('${posterPath}')`; // Establece la imagen de fondo
             }
 
             if (thumbnailElement) {
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Botones de Comprar a WhatsApp ---
-    const whatsappNumber = '573205893469';
+    const whatsappNumber = '573205893469'; // Tu número de WhatsApp
 
     document.querySelectorAll('.product-card .buy-btn').forEach(button => {
         button.addEventListener('click', (event) => {
@@ -498,28 +498,86 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('no-scroll');
     });
 
+    // --- Lógica del Botón de Compartir Producto (en el modal) ---
+    if (modalShareButton) {
+        modalShareButton.addEventListener('click', async () => {
+            const productIdToShare = modalShareButton.dataset.productId;
+            const productToShare = productsData[productIdToShare];
+
+            if (navigator.share && productToShare) {
+                try {
+                    await navigator.share({
+                        title: productToShare.name,
+                        text: `¡Mira este increíble producto: ${productToShare.name} - ${productToShare.description} en nuestra Tienda Online!`,
+                        url: window.location.origin + window.location.pathname // La URL de tu PWA
+                    });
+                    console.log('Producto compartido con éxito');
+                } catch (error) {
+                    console.error('Error al compartir el producto:', error);
+                }
+            } else {
+                // Fallback para navegadores que no soportan Web Share API
+                alert(`Para compartir: ${productToShare.name}\n${productToShare.description}\nVisita: ${window.location.href}`);
+            }
+            productModal.classList.remove('active'); // Cerrar modal después de compartir (opcional)
+            document.body.classList.remove('no-scroll');
+        });
+    }
+
+    // --- Lógica del Botón de Compartir Tienda (en el footer) ---
+    const footerShareButton = document.getElementById('footer-share-btn');
+    if (footerShareButton) {
+        footerShareButton.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Tienda Online - Tu mejor opción para comprar productos de calidad',
+                        text: '¡Descubre ofertas increíbles en electrónica, moda, hogar y deportes! Visita nuestra tienda hoy mismo.',
+                        url: window.location.origin + window.location.pathname // La URL de tu PWA
+                    });
+                    console.log('Tienda compartida con éxito');
+                } catch (error) {
+                    console.error('Error al compartir la tienda:', error);
+                }
+            } else {
+                // Fallback
+                alert(`Comparte nuestra tienda: ¡Descubre ofertas increíbles en electrónica, moda, hogar y deportes!\nVisita: ${window.location.href}`);
+            }
+        });
+    }
+
+
     // --- Preguntas Frecuentes Desplegables ---
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', () => {
             const answer = question.nextElementSibling;
             const icon = question.querySelector('.expand-icon');
 
-            question.classList.toggle('active');
-            answer.classList.toggle('active');
-
-            if (question.classList.contains('active')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
-            }
-
+            // Cerrar otras preguntas abiertas
             document.querySelectorAll('.faq-question.active').forEach(otherQuestion => {
                 if (otherQuestion !== question) {
                     otherQuestion.classList.remove('active');
-                    otherQuestion.nextElementSibling.classList.remove('active');
+                    otherQuestion.nextElementSibling.style.maxHeight = '0';
+                    otherQuestion.nextElementSibling.style.paddingTop = '0';
+                    otherQuestion.nextElementSibling.style.paddingBottom = '0';
                     otherQuestion.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
                 }
             });
+
+            // Abrir/cerrar la pregunta actual
+            question.classList.toggle('active');
+
+            if (question.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+                answer.style.maxHeight = answer.scrollHeight + 'px'; // Calcula la altura necesaria
+                answer.style.paddingTop = '15px';
+                answer.style.paddingBottom = '20px';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+                answer.style.maxHeight = '0';
+                answer.style.paddingTop = '0';
+                answer.style.paddingBottom = '0';
+            }
         });
     });
 
