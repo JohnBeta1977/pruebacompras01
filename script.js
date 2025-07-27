@@ -2,21 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Splash Screen
     const splashScreen = document.getElementById('splashScreen');
     if (splashScreen) {
-        // Retraso para mostrar el splash screen por un tiempo mínimo
         setTimeout(() => {
             splashScreen.classList.add('hidden');
-            // Opcional: Eliminar el elemento del DOM después de la transición
             splashScreen.addEventListener('transitionend', () => {
                 splashScreen.remove();
             });
         }, 2000); // Muestra por 2 segundos
     }
 
-    // 2. Transparencia del Navbar al hacer scroll
+    // 2. Transparencia y Reducción del Navbar al hacer scroll
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // Ajusta 50px según cuando quieras que aparezca la transparencia
+            if (window.scrollY > 50) { // Ajusta 50px según cuando quieras la reducción
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cerrar sidebar al hacer clic fuera de él
         document.addEventListener('click', (event) => {
-            // Verifica si el clic no fue dentro del sidebar ni en el botón de toggle
             if (sidebar.classList.contains('active') &&
                 !sidebar.contains(event.target) &&
                 !menuToggle.contains(event.target)) {
@@ -59,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Modal de productos y slider de imágenes
     const productCards = document.querySelectorAll('.product-card');
     const productModal = document.getElementById('productModal');
-    const closeModalButton = productModal.querySelector('.close-button');
+    const closeModalButton = document.getElementById('closeModalButton'); // Nuevo ID para el botón de cerrar
     const modalTitle = productModal.querySelector('.modal-title');
     const modalDescription = productModal.querySelector('.modal-description');
     const modalPrice = productModal.querySelector('.modal-price');
@@ -67,16 +64,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = productModal.querySelector('.slider-navigation .prev');
     const nextButton = productModal.querySelector('.slider-navigation .next');
     const buyButton = productModal.querySelector('.buy-button');
-    const videoContainer = productModal.querySelector('.video-container'); // Contenedor de video
-    const shareButton = productModal.querySelector('.share-button'); // Botón de compartir
+    const videoContainer = productModal.querySelector('.video-container');
+    const shareButton = productModal.querySelector('.share-button');
 
     let currentSlideIndex = 0;
-    let productVideos = { // Objeto para almacenar URLs de video por ID de producto
-        "1": "https://www.youtube.com/embed/YOUR_DRONE_VIDEO_ID", // Reemplaza con ID real de YouTube
+    // URLs de video de YouTube. Reemplaza los IDs con los de tus videos reales.
+    // Ejemplo: "https://www.youtube.com/embed/TU_ID_DE_YOUTUBE?autoplay=1&mute=1"
+    const productVideos = {
+        "1": "https://www.youtube.com/embed/bC2T89yG46c?autoplay=1&mute=1&loop=1&playlist=bC2T89yG46c", // Ejemplo Drone
         "2": "", // Sin video para auriculares
-        "3": "https://www.youtube.com/embed/YOUR_SMARTWATCH_VIDEO_ID", // Reemplaza con ID real de YouTube
-        "4": "" // Sin video para cámara
-        // Agrega más IDs de producto y sus videos aquí
+        "3": "https://www.youtube.com/embed/5qF_qiq_v1Y?autoplay=1&mute=1&loop=1&playlist=5qF_qiq_v1Y", // Ejemplo Smartwatch
+        "4": "", // Sin video para cámara
+        "e1": "https://www.youtube.com/embed/fWzXpX8lHqY?autoplay=1&mute=1&loop=1&playlist=fWzXpX8lHqY", // Ejemplo TV
+        "e2": "https://www.youtube.com/embed/y-F7kXlC0Sg?autoplay=1&mute=1&loop=1&playlist=y-F7kXlC0Sg", // Ejemplo Laptop
+        "e3": "", // Sin video para altavoz
+        "e4": "https://www.youtube.com/embed/Xq4M1l8aW6Q?autoplay=1&mute=1&loop=1&playlist=Xq4M1l8aW6Q", // Ejemplo Consola
+        "m1": "https://www.youtube.com/embed/exampleVideoID_moda1?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_moda1", // Ejemplo Moda Chaqueta
+        "m2": "", // Sin video para reloj
+        "m3": "https://www.youtube.com/embed/exampleVideoID_moda3?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_moda3", // Ejemplo Moda Zapatillas
+        "m4": "", // Sin video para bolso
+        "h1": "https://www.youtube.com/embed/exampleVideoID_hogar1?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_hogar1", // Ejemplo Hogar Aspiradora
+        "h2": "", // Sin video para cafetera
+        "h3": "https://www.youtube.com/embed/exampleVideoID_hogar3?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_hogar3", // Ejemplo Hogar Lámpara
+        "h4": "", // Sin video para sábanas
+        "u1": "https://www.youtube.com/embed/exampleVideoID_usados1?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_usados1", // Ejemplo Usados Celular
+        "u2": "", // Sin video para bici
+        "u3": "https://www.youtube.com/embed/exampleVideoID_usados3?autoplay=1&mute=1&loop=1&playlist=exampleVideoID_usados3", // Ejemplo Usados Tablet
+        "u4": "" // Sin video para libros
     };
 
     function showSlides() {
@@ -85,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         imageSlider.style.transform = `translateX(${-currentSlideIndex * 100}%)`;
 
-        // Mostrar/ocultar botones de navegación si solo hay una imagen
         if (slides.length <= 1) {
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
@@ -111,29 +124,31 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', () => changeSlide(1));
 
     productCards.forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (event) => {
+            // Prevenir que el click en el botón "Comprar" active la modal dos veces
+            if (event.target.classList.contains('buy-now-btn')) {
+                return;
+            }
+
             const productId = card.dataset.productId;
             const title = card.querySelector('h3').textContent;
             const description = card.querySelector('.description').textContent;
             const price = card.querySelector('.price').textContent;
             const mainImageSrc = card.querySelector('.product-images .main-image').src;
-            // Solo toma las imágenes alternativas si existen
             const altImagesSrc = Array.from(card.querySelectorAll('.product-images .alt-images img')).map(img => img.src);
             
             modalTitle.textContent = title;
             modalDescription.textContent = description;
             modalPrice.textContent = price;
 
-            // Rellenar el slider de imágenes
-            imageSlider.innerHTML = ''; // Limpiar imágenes anteriores
+            imageSlider.innerHTML = '';
             imageSlider.appendChild(createImageElement(mainImageSrc, 'Imagen principal'));
             altImagesSrc.forEach(src => imageSlider.appendChild(createImageElement(src, 'Imagen alternativa')));
             
             currentSlideIndex = 0;
             showSlides();
 
-            // Insertar video si existe
-            videoContainer.innerHTML = ''; // Limpiar video anterior
+            videoContainer.innerHTML = '';
             const videoUrl = productVideos[productId];
             if (videoUrl) {
                 const iframe = document.createElement('iframe');
@@ -141,22 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 iframe.allow = "autoplay; encrypted-media; gyroscope; picture-in-picture";
                 iframe.allowFullscreen = true;
                 videoContainer.appendChild(iframe);
-                videoContainer.style.display = 'block'; // Mostrar el contenedor de video
+                videoContainer.style.display = 'block';
             } else {
-                videoContainer.style.display = 'none'; // Ocultar si no hay video
+                videoContainer.style.display = 'none';
             }
 
-            // Actualizar el enlace de WhatsApp dinámicamente
-            const whatsappLink = `https://wa.me/573205893469?text=Me%20interesa%20comprar%20este%20producto:%20${encodeURIComponent(title)} - Ver más: ${encodeURIComponent(window.location.href)}`;
+            const whatsappLink = `https://wa.me/573205893469?text=Hola,%20me%20interesa%20comprar%20este%20producto:%20${encodeURIComponent(title)} - ${encodeURIComponent(window.location.href.split('#')[0])}`;
             buyButton.href = whatsappLink;
 
-            // Configurar el botón de compartir
             shareButton.onclick = () => {
                 if (navigator.share) {
                     navigator.share({
                         title: title,
                         text: description,
-                        url: window.location.href // Compartir la URL actual de la página
+                        url: window.location.href.split('#')[0] // Compartir la URL base de la página
                     }).then(() => {
                         console.log('Contenido compartido con éxito');
                     }).catch((error) => {
@@ -164,8 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 } else {
                     alert('La función de compartir no está disponible en este navegador.');
-                    // Opción de fallback: copiar al portapapeles
-                    navigator.clipboard.writeText(`¡Mira este producto: ${title}! ${window.location.href}`).then(() => {
+                    navigator.clipboard.writeText(`¡Mira este producto: ${title}! ${window.location.href.split('#')[0]}`).then(() => {
                         alert('Enlace copiado al portapapeles.');
                     }).catch(err => {
                         console.error('No se pudo copiar el enlace: ', err);
@@ -173,9 +185,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
-            productModal.style.display = "flex"; // Usar flex para centrar la modal
+            productModal.style.display = "flex";
         });
     });
+
+    // Delegación de eventos para los botones de comprar en las tarjetas
+    document.querySelectorAll('.buy-now-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const productName = button.dataset.productName;
+            const whatsappLink = `https://wa.me/573205893469?text=Hola,%20me%20interesa%20comprar%20este%20producto:%20${encodeURIComponent(productName)}`;
+            window.open(whatsappLink, '_blank');
+        });
+    });
+
 
     function createImageElement(src, alt) {
         const img = document.createElement('img');
@@ -186,16 +208,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeModalButton.addEventListener('click', () => {
         productModal.style.display = "none";
-        videoContainer.innerHTML = ''; // Limpiar video al cerrar
+        videoContainer.innerHTML = '';
     });
 
     window.addEventListener('click', (event) => {
         if (event.target == productModal) {
             productModal.style.display = "none";
-            videoContainer.innerHTML = ''; // Limpiar video al cerrar
+            videoContainer.innerHTML = '';
         }
     });
-
 
     // 5. Toggle de respuestas en la sección FAQ
     document.querySelectorAll('.faq-item h3').forEach(faqQuestion => {
@@ -222,5 +243,23 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault(); 
         deferredPrompt = e;
         console.log('Evento beforeinstallprompt disparado. Puedes mostrar tu botón de instalación.');
+        // Aquí podrías hacer visible un botón o banner para "Instalar App"
+        const installButton = document.querySelector('.download-btn');
+        if (installButton) {
+            installButton.style.display = 'flex'; // O 'block'
+            installButton.addEventListener('click', () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Usuario aceptó la instalación de la PWA');
+                        } else {
+                            console.log('Usuario canceló la instalación de la PWA');
+                        }
+                        deferredPrompt = null;
+                    });
+                }
+            });
+        }
     });
 });
