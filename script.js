@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Reloj Hombre y Mujer',
             description: 'Pulsera de Cuarzo para Hombres y Mujeres, Correa de Cuero sintetico, El Regalo Ideal en Colores Variados.',
             price: '$12.000 COP',
-            originalPrice: '$18.000 COP',
+            // **originalPrice: '$18.000 COP',**
             images: [
                 'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
                 'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg',
