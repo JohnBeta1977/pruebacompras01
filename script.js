@@ -7,22 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500); // 1.5 segundos
     }
 
-    // --- Menú Deslizable Móvil ---
+    // --- Menú Deslizable Móvil y Cerrar al Tocar Fuera ---
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
 
     if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita que el clic en el botón se propague y cierre el menú
             mainNav.classList.toggle('active');
             document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
         });
 
+        // Cerrar menú al hacer clic en un enlace
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mainNav.classList.remove('active');
                 document.body.classList.remove('no-scroll');
             });
+        });
+
+        // Cerrar menú al hacer clic fuera de él
+        document.addEventListener('click', (event) => {
+            // Si el menú está abierto y el clic no fue dentro del menú ni en el botón de toggle
+            if (mainNav.classList.contains('active') && !mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
+                mainNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
         });
     }
 
@@ -34,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalProductDescription = document.getElementById('modal-product-description');
     const modalProductPrice = document.getElementById('modal-product-price');
     const modalBuyButton = document.getElementById('modal-buy-btn');
-    const modalShareButton = document.getElementById('modal-share-btn'); // Nuevo botón de compartir
+    const modalShareButton = document.getElementById('modal-share-btn');
     const galleryThumbnails = document.getElementById('modal-product-thumbnails');
     const galleryPrev = document.querySelector('.gallery-prev');
     const galleryNext = document.querySelector('.gallery-next');
@@ -42,8 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentMediaIndex = 0;
     let productMedia = [];
 
-    // Datos de productos
-    // Cada elemento 'media' ahora puede ser un objeto con 'src' y 'type'
+    // Datos de productos (se mantiene igual, ya está actualizado con media)
     const productsData = {
         'oferta1': {
             name: 'Smart TV 4K 50"',
@@ -63,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             originalPrice: '$200.000 COP',
             media: [
                 { src: 'productos_oferta2.jpg', type: 'image' },
-                { src: 'video_cafetera.mp4', type: 'video' } // **Asegúrate de tener este archivo video_cafetera.mp4 en tu carpeta raíz**
+                { src: 'video_cafetera.mp4', type: 'video' }
             ]
         },
         'oferta3': {
@@ -74,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             media: [
                 { src: 'productos_oferta3.jpg', type: 'image' },
                 { src: 'productos_oferta3_alt1.jpg', type: 'image' },
-                { src: 'video_dron.mp4', type: 'video' } // **Asegúrate de tener este archivo video_dron.mp4 en tu carpeta raíz**
+                { src: 'video_dron.mp4', type: 'video' }
             ]
         },
         'oferta4': {
@@ -346,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 modalBuyButton.dataset.product = product.name;
-                modalShareButton.dataset.productId = productId; // Asignar el ID del producto al botón de compartir
+                modalShareButton.dataset.productId = productId;
 
                 productMedia = product.media;
                 currentMediaIndex = 0;
@@ -361,7 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         productModal.classList.remove('active');
         document.body.classList.remove('no-scroll');
-        // Pausar cualquier video al cerrar el modal
         const currentMediaElement = galleryMainImageContainer.querySelector('img, video');
         if (currentMediaElement && currentMediaElement.tagName === 'VIDEO') {
             currentMediaElement.pause();
@@ -372,7 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === productModal) {
             productModal.classList.remove('active');
             document.body.classList.remove('no-scroll');
-            // Pausar cualquier video al hacer clic fuera del modal
             const currentMediaElement = galleryMainImageContainer.querySelector('img, video');
             if (currentMediaElement && currentMediaElement.tagName === 'VIDEO') {
                 currentMediaElement.pause();
@@ -390,10 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateModalMediaAndThumbnails();
     });
 
-    // Función que ahora maneja tanto imágenes como videos
     function updateModalMediaAndThumbnails() {
         if (productMedia.length === 0) {
-            galleryMainImageContainer.innerHTML = '<img src="placeholder.jpg" alt="No media available">'; // Placeholder
+            galleryMainImageContainer.innerHTML = '<img src="placeholder.jpg" alt="No media available">';
             galleryThumbnails.innerHTML = '';
             galleryPrev.style.display = 'none';
             galleryNext.style.display = 'none';
@@ -406,7 +413,6 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryNext.style.display = 'block';
         }
 
-        // Limpiar el contenedor principal antes de agregar nuevo elemento
         galleryMainImageContainer.innerHTML = '';
 
         const currentMedia = productMedia[currentMediaIndex];
@@ -415,28 +421,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentMedia.type === 'image') {
             mediaElement = document.createElement('img');
             mediaElement.src = currentMedia.src;
-            mediaElement.alt = modalProductTitle.textContent; // Usar el título del producto como alt text
+            mediaElement.alt = modalProductTitle.textContent;
         } else if (currentMedia.type === 'video') {
             mediaElement = document.createElement('video');
             mediaElement.src = currentMedia.src;
-            mediaElement.controls = true; // Mostrar controles de video
-            mediaElement.loop = true; // Opcional: repetir el video
-            mediaElement.muted = true; // Opcional: iniciar muteado (requerido para autoplay en muchos navegadores)
-            mediaElement.autoplay = false; // No autoplay al cargar el modal inicialmente, solo cuando se hace click en la miniatura o al cambiar de slide
-            mediaElement.load(); // Cargar el video para que el thumbnail funcione mejor
+            mediaElement.controls = true;
+            mediaElement.loop = true;
+            mediaElement.muted = true;
+            mediaElement.autoplay = false;
+            mediaElement.load();
         }
 
         if (mediaElement) {
             galleryMainImageContainer.appendChild(mediaElement);
-            // Si es un video, y es el elemento principal, intentar ponerlo en autoplay (con muted)
-            if (mediaElement.tagName === 'VIDEO' && currentMediaIndex === 0) { // Solo si es el primer elemento mostrado
+            if (mediaElement.tagName === 'VIDEO' && currentMediaIndex === 0) {
                 mediaElement.muted = true;
                 mediaElement.play().catch(error => console.log("Video autoplay prevented:", error));
             }
         }
 
-
-        // Actualizar miniaturas
         galleryThumbnails.innerHTML = '';
         productMedia.forEach((mediaItem, index) => {
             const thumbnailWrapper = document.createElement('div');
@@ -449,13 +452,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 thumbnailElement.alt = `Thumbnail ${index + 1}`;
             } else if (mediaItem.type === 'video') {
                 thumbnailWrapper.classList.add('video-thumbnail');
-                thumbnailElement = document.createElement('span'); // Usamos span para el icono
+                thumbnailElement = document.createElement('span');
                 thumbnailElement.classList.add('material-icons');
                 thumbnailElement.textContent = 'play_circle_filled';
-                // Puedes intentar cargar un poster para el video thumbnail si existe una imagen con el mismo nombre y extensión .jpg
-                // Ejemplo: video_cafetera.mp4 -> video_cafetera.jpg
                 const posterPath = mediaItem.src.replace(/\.(mp4|webm|ogg)$/i, '.jpg');
-                thumbnailWrapper.style.backgroundImage = `url('${posterPath}')`; // Establece la imagen de fondo
+                thumbnailWrapper.style.backgroundImage = `url('${posterPath}')`;
             }
 
             if (thumbnailElement) {
@@ -464,7 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     thumbnailWrapper.classList.add('active');
                 }
                 thumbnailWrapper.addEventListener('click', () => {
-                    // Pausar el video actual antes de cambiar
                     const currentMainMedia = galleryMainImageContainer.querySelector('img, video');
                     if (currentMainMedia && currentMainMedia.tagName === 'VIDEO') {
                         currentMainMedia.pause();
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Botones de Comprar a WhatsApp ---
-    const whatsappNumber = '573205893469'; // Tu número de WhatsApp
+    const whatsappNumber = '573205893469';
 
     document.querySelectorAll('.product-card .buy-btn').forEach(button => {
         button.addEventListener('click', (event) => {
@@ -509,17 +509,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     await navigator.share({
                         title: productToShare.name,
                         text: `¡Mira este increíble producto: ${productToShare.name} - ${productToShare.description} en nuestra Tienda Online!`,
-                        url: window.location.origin + window.location.pathname // La URL de tu PWA
+                        url: window.location.origin + window.location.pathname
                     });
                     console.log('Producto compartido con éxito');
                 } catch (error) {
                     console.error('Error al compartir el producto:', error);
                 }
             } else {
-                // Fallback para navegadores que no soportan Web Share API
                 alert(`Para compartir: ${productToShare.name}\n${productToShare.description}\nVisita: ${window.location.href}`);
             }
-            productModal.classList.remove('active'); // Cerrar modal después de compartir (opcional)
+            productModal.classList.remove('active');
             document.body.classList.remove('no-scroll');
         });
     }
@@ -533,19 +532,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     await navigator.share({
                         title: 'Tienda Online - Tu mejor opción para comprar productos de calidad',
                         text: '¡Descubre ofertas increíbles en electrónica, moda, hogar y deportes! Visita nuestra tienda hoy mismo.',
-                        url: window.location.origin + window.location.pathname // La URL de tu PWA
+                        url: window.location.origin + window.location.pathname
                     });
                     console.log('Tienda compartida con éxito');
                 } catch (error) {
                     console.error('Error al compartir la tienda:', error);
                 }
             } else {
-                // Fallback
                 alert(`Comparte nuestra tienda: ¡Descubre ofertas increíbles en electrónica, moda, hogar y deportes!\nVisita: ${window.location.href}`);
             }
         });
     }
-
 
     // --- Preguntas Frecuentes Desplegables ---
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -553,7 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const answer = question.nextElementSibling;
             const icon = question.querySelector('.expand-icon');
 
-            // Cerrar otras preguntas abiertas
             document.querySelectorAll('.faq-question.active').forEach(otherQuestion => {
                 if (otherQuestion !== question) {
                     otherQuestion.classList.remove('active');
@@ -564,12 +560,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Abrir/cerrar la pregunta actual
             question.classList.toggle('active');
 
             if (question.classList.contains('active')) {
                 icon.style.transform = 'rotate(180deg)';
-                answer.style.maxHeight = answer.scrollHeight + 'px'; // Calcula la altura necesaria
+                answer.style.maxHeight = answer.scrollHeight + 'px';
                 answer.style.paddingTop = '15px';
                 answer.style.paddingBottom = '20px';
             } else {
@@ -581,7 +576,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Service Worker para PWA ---
+    // --- Service Worker para PWA (Desactivado para revisión) ---
+    // NOTA: Se ha comentado la lógica del Service Worker y manifest para depurar
+    // Si la PWA no funciona, es mejor revisar la configuración y despliegue por separado.
+    // Una vez que el resto de la web funcione, podemos reintroducir el PWA de forma controlada.
+    /*
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
@@ -593,4 +592,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+    */
 });
