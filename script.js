@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // **Asegúrate de que estas rutas de imagen sean correctas y existan en tu proyecto**
     const productsData = {
         'oferta1': {
-            name: 'Smart TV 4K 50"',
-            description: 'Disfruta de una calidad de imagen inmersiva y funciones inteligentes. Conexión Wi-Fi y múltiples puertos HDMI.',
-            price: '$999.000 COP',
-            originalPrice: '$1.500.000 COP',
+            name: 'Reloj Hombre y Mujer',
+            description: 'Pulsera de Cuarzo para Hombres y Mujeres, Moda Deportiva Romántica Sencilla para Parejas, Correa de Cuero PU para Fiestas, Regalo Ideal para Ella en Cumpleaños, Día de la Madre o Día del Padre, La Mejor Elección para Regalos en Colores Variados.',
+            price: '$12.000 COP',
+            originalPrice: '$18.000 COP',
             images: [
-                'productos/oferta_producto1.jpg',
+                'https://img.kwcdn.com/product/fancy/a5d647be-0a89-4fb1-935f-fe49a0c1efd2.jpg?imageView2/2/w/800/q/70/format/webp',
                 'productos/oferta_producto1_alt1.jpg',
                 'productos/oferta_producto1_alt2.jpg'
             ]
