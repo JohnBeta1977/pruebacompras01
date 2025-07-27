@@ -7,35 +7,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500); // 1.5 segundos
     }
 
-    // --- Menú Deslizable Móvil y Cerrar al Tocar Fuera ---
+    // --- Menú Lateral (Sidebar) y su control ---
     const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('main-nav');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-    if (menuToggle && mainNav) {
+    // Abre el sidebar
+    if (menuToggle && sidebar && sidebarOverlay) {
         menuToggle.addEventListener('click', (event) => {
             event.stopPropagation(); // Evita que el clic en el botón se propague y cierre el menú
-            mainNav.classList.toggle('active');
-            document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
+            sidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            document.body.classList.add('no-scroll');
         });
+    }
 
-        // Cerrar menú al hacer clic en un enlace
-        const navLinks = mainNav.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
+    // Cierra el sidebar al hacer clic en el botón de cerrar
+    if (closeSidebarBtn && sidebar && sidebarOverlay) {
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         });
+    }
 
-        // Cerrar menú al hacer clic fuera de él
-        document.addEventListener('click', (event) => {
-            // Si el menú está abierto y el clic no fue dentro del menú ni en el botón de toggle
-            if (mainNav.classList.contains('active') && !mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mainNav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
+    // Cierra el sidebar al hacer clic en el overlay (fuera del sidebar)
+    if (sidebarOverlay && sidebar) {
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    }
+
+    // Cierra el sidebar al hacer clic en un enlace de navegación dentro del sidebar
+    const sidebarNavLinks = document.querySelectorAll('#sidebar .sidebar-nav a:not(.sidebar-dropdown-toggle a)'); // Excluye los toggles de dropdown
+    sidebarNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    });
+
+    // Toggle de Dropdown en el Sidebar
+    const sidebarDropdownToggle = document.querySelector('.sidebar-dropdown-toggle');
+    if (sidebarDropdownToggle) {
+        sidebarDropdownToggle.addEventListener('click', (event) => {
+            event.preventDefault(); // Evita que el enlace de categoría navegue
+            event.stopPropagation(); // Evita que se cierre el sidebar al hacer clic en el toggle
+            sidebarDropdownToggle.classList.toggle('active');
+            const dropdownMenu = sidebarDropdownToggle.querySelector('.sidebar-dropdown-menu');
+            if (sidebarDropdownToggle.classList.contains('active')) {
+                dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + 'px';
+            } else {
+                dropdownMenu.style.maxHeight = '0';
             }
         });
     }
+
 
     // --- Lógica del Modal de Producto y Slider ---
     const productModal = document.getElementById('product-modal');
@@ -53,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentMediaIndex = 0;
     let productMedia = [];
 
-    // Datos de productos (se mantiene igual, ya está actualizado con media)
     const productsData = {
         'oferta1': {
             name: 'Smart TV 4K 50"',
@@ -335,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', (event) => {
             if (event.target.classList.contains('buy-btn')) {
@@ -393,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateModalMediaAndThumbnails();
     });
 
-    galleryNext.addEventListener('click', () => {
+    galleryNext.addEventListener(() => {
         currentMediaIndex = (currentMediaIndex < productMedia.length - 1) ? currentMediaIndex + 1 : 0;
         updateModalMediaAndThumbnails();
     });
@@ -575,22 +604,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // --- Service Worker para PWA (Desactivado para revisión) ---
-    // NOTA: Se ha comentado la lógica del Service Worker y manifest para depurar
-    // Si la PWA no funciona, es mejor revisar la configuración y despliegue por separado.
-    // Una vez que el resto de la web funcione, podemos reintroducir el PWA de forma controlada.
-    /*
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-                .then(registration => {
-                    console.log('Service Worker registrado con éxito:', registration);
-                })
-                .catch(error => {
-                    console.error('Fallo el registro del Service Worker:', error);
-                });
-        });
-    }
-    */
 });
