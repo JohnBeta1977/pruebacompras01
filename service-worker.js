@@ -1,4 +1,4 @@
-const CACHE_NAME = 'compras-mas-pwa-v1'; // ¡Incrementamos la versión nuevamente para asegurar la actualización!
+const CACHE_NAME = 'compras-mas-pwa-v2'; // ¡Incrementamos la versión nuevamente para asegurar la actualización!
 const urlsToCache = [
     '/pruebacompras01/', // Ruta base de tu repositorio GitHub Pages (si aplica)
     '/pruebacompras01/index.html',
