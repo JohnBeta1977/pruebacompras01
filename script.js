@@ -241,6 +241,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- NUEVA FUNCIONALIDAD: Formulario de Contacto a WhatsApp ---
+    const contactForm = document.getElementById('contactForm'); //
+    const contactName = document.getElementById('contactName'); //
+    const contactEmail = document.getElementById('contactEmail'); //
+    const contactMessage = document.getElementById('contactMessage'); //
+
+    if (contactForm && contactName && contactEmail && contactMessage) { //
+        contactForm.addEventListener('submit', function(event) { //
+            event.preventDefault(); // Evita el envío estándar del formulario
+
+            const name = contactName.value; //
+            const email = contactEmail.value; //
+            const message = contactMessage.value; //
+            const whatsappNumber = '573205893469'; //
+
+            // Construir el mensaje de WhatsApp
+            const fullMessage = `Hola, soy ${name} (${email}). Mi mensaje es: ${message}`; //
+            const encodedMessage = encodeURIComponent(fullMessage); //
+
+            // Abrir WhatsApp con el mensaje pre-rellenado
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank'); //
+
+            // Opcional: Limpiar el formulario después de enviar
+            contactForm.reset(); //
+        });
+    }
+    // --- FIN NUEVA FUNCIONALIDAD ---
+    
     // 5. Toggle de respuestas en la sección FAQ
     document.querySelectorAll('.faq-item h3').forEach(faqQuestion => {
         faqQuestion.addEventListener('click', () => {
